@@ -1,0 +1,10 @@
+# Spring系列框架的配置
+spring:
+  # 连接数据库的配置
+  datasource:
+    # 连接数据库的URL
+    url: jdbc:mysql://localhost:3306/mall_ams?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    # 登录数据库的用户名
+    username: root
+    # 登录数据库的密码
+    password: root

@@ -1,0 +1,20 @@
+# Spring系列框架的配置
+spring:
+  # Profile配置
+  profiles:
+    # 激活Profile配置
+    active: dev
+  # 连接数据库的相关配置
+  datasource:
+    # 使用的数据库连接池类型
+    type: com.alibaba.druid.pool.DruidDataSource
+  # 关于jackson的配置
+  jackson:
+    # 响应的JSON中默认包含哪些属性
+    default-property-inclusion: non_null
+
+# Mybatis相关配置
+mybatis:
+  # 用于配置SQL语句的XML文件的位置
+  mapper-locations: classpath:mapper/*.xml
+
