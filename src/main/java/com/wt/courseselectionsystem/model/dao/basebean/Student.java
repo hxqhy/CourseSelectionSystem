@@ -24,7 +24,7 @@ public class Student {
     /**
      * 性别
      */
-    private char gender;
+    private Integer gender;
     /**
      * 班级
      */
