@@ -4,7 +4,8 @@ import lombok.Data;
 
 /**
  * 教师实体类
- *  @author xxx
+ *
+ * @author xxx
  */
 @Data
 public class Teacher {

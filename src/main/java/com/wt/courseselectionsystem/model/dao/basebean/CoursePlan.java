@@ -4,7 +4,8 @@ import lombok.Data;
 
 /**
  * 课程计划
- *  @author xxx
+ *
+ * @author xxx
  */
 @Data
 public class CoursePlan {

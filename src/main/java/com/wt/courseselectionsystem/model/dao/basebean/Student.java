@@ -4,7 +4,8 @@ import lombok.Data;
 
 /**
  * 学生实体类
- *  @author xxx
+ *
+ * @author xxx
  */
 @Data
 public class Student {
@@ -29,4 +30,4 @@ public class Student {
      */
     private String studentClass;
 
-   }
+}

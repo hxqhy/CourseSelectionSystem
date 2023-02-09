@@ -7,7 +7,14 @@ import org.springframework.stereotype.Repository;
  * @author lixin
  */
 @Repository
-public interface IAccountDao {
-    /**根据账号获取用户信息*/
-    public Account selectByAccountNo(String accountNo);
+public interface AccountDao {
+
+    /**
+     * 根据账号获取用户信息
+     *
+     * @param accountNo 学号
+     * @return ...
+     */
+    Account selectByAccountNo(String accountNo);
+    
 }

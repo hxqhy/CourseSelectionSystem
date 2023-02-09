@@ -1,16 +1,13 @@
 package com.wt.courseselectionsystem.model.dao.basebean;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * 课程
- *  @author xxx
+ *
+ * @author xxx
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Course {
 
     /**
