@@ -1,6 +1,6 @@
 package com.wt.courseselectionsystem.dao;
 
-import com.wt.courseselectionsystem.entity.Account;
+import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AccountDao {
-    //根据账号获取用户信息
-    public Account selectById(String id);
+
+    /**
+     * 根据账号获取用户信息
+     *
+     * @param id id
+     * @return ...
+     */
+    Account selectById(String id);
 }

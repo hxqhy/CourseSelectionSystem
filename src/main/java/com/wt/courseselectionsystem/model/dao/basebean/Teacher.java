@@ -1,4 +1,4 @@
-package com.wt.courseselectionsystem.entity;
+package com.wt.courseselectionsystem.model.dao.basebean;
 
 public class Teacher {
     //教师id

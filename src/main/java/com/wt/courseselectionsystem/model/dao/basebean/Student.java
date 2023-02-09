@@ -1,7 +1,7 @@
-package com.wt.courseselectionsystem.entity;
+package com.wt.courseselectionsystem.model.dao.basebean;
 
 /**
- *学生实体类
+ * 学生实体类
  */
 public class Student {
     //学生id

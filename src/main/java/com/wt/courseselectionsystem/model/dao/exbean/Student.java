@@ -1,4 +1,4 @@
-package com.wt.courseselectionsystem.model.dao;
+package com.wt.courseselectionsystem.model.dao.exbean;
 
 import lombok.Data;
 
