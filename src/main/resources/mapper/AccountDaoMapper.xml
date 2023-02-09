@@ -4,13 +4,20 @@
 
     <resultMap id="AccountMap" type="com.wt.courseselectionsystem.model.dao.basebean.Account">
         <result column="id" property="id" jdbcType="INTEGER"/>
-        <result column=""/>
+        <result column="account_no" property="accountNo"/>
+        <result column="password" property="password"/>
+        <result column="account_type" property="accountType"/>
     </resultMap>
 
+    <insert id="insertAccount">
+        insert into account(account_no, password, account_type)
+            value (#{accountNo}, #{password}, #{accountType});
+    </insert>
+
     <select id="selectByAccountNo" resultMap="AccountMap">
-        select *
+        select id, account_no, password, account_type
         from account
-        where accountNo = #{accountNo};
+        where account_no = #{accountNo};
     </select>
 
 </mapper>

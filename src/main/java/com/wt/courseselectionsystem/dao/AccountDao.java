@@ -16,5 +16,13 @@ public interface AccountDao {
      * @return ...
      */
     Account selectByAccountNo(String accountNo);
-    
+
+    /**
+     * 保存账号信息
+     *
+     * @param account account
+     * @return row
+     */
+    int insertAccount(Account account);
+
 }

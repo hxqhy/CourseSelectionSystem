@@ -1,5 +1,7 @@
 package com.wt.courseselectionsystem.dao;
 
+import com.wt.courseselectionsystem.model.dao.basebean.Student;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -7,4 +9,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface StudentDao {
+
+    /**
+     * 保存学生信息
+     *
+     * @param student student
+     * @return rows
+     */
+    int insertStudent(@Param("student") Student student);
+    
 }

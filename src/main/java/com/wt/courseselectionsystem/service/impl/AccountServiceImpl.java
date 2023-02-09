@@ -42,7 +42,7 @@ public class AccountServiceImpl implements AccountService {
     public BaseResult<LoginResult> login(LoginForm form) {
         Account account = accountDao.selectByAccountNo(form.getAccount());
         if (Objects.isNull(account)) {
-            throw new RuntimeException("用户不存在");
+            return ResultUtils.fail("账号密码错误");
         }
         String password = passwordEncode(form.getPassword());
         if (password.equals(account.getPassword())) {
