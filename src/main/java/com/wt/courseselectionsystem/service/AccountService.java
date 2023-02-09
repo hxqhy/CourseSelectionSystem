@@ -1,6 +1,8 @@
 package com.wt.courseselectionsystem.service;
 
+import com.wt.courseselectionsystem.common.BaseResult;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
+import com.wt.courseselectionsystem.model.vo.result.LoginResult;
 
 /**
  * 用户模块 业务接口
@@ -15,6 +17,6 @@ public interface AccountService {
      * @param form ...
      * @return ...
      */
-    boolean login(LoginForm form);
+    BaseResult<LoginResult> login(LoginForm form);
 
 }
