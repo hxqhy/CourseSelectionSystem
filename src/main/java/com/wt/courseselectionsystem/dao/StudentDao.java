@@ -17,5 +17,11 @@ public interface StudentDao {
      * @return rows
      */
     int insertStudent(@Param("student") Student student);
-    
+    /**
+     * 根据账号获取用户信息
+     *
+     * @param studentNo 学号
+     * @return ...
+     */
+    Student selectByStudentNo(String studentNo);
 }

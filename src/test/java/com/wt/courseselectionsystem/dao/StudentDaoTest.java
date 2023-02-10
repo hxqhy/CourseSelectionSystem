@@ -21,4 +21,8 @@ public class StudentDaoTest {
         Student student = builder.generateStudent();
         System.out.println(studentDao.insertStudent(student) == 1);
     }
+    @Test
+    public void testSelectStudentByStudentNo(){
+        System.out.println(studentDao.selectByStudentNo("202040823585"));
+    }
 }

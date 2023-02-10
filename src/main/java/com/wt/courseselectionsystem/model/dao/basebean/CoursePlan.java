@@ -24,6 +24,6 @@ public class CoursePlan {
     /**
      * 授课老师编号
      */
-    private String courseName;
+    private String teacherNo;
 
 }
