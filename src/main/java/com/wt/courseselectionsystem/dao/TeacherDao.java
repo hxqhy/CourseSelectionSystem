@@ -9,12 +9,15 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TeacherDao {
+    
     /**
      * 保存教师信息
-     * @Param teacher teacher
-     * return ...
+     *
+     * @param teacher teacher
+     * @return ...
      */
-    int insertTeacher(@Param("teacher")Teacher teacher);
+    int insertTeacher(@Param("teacher") Teacher teacher);
+
     /**
      * 根据账号获取用户信息
      *
