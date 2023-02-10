@@ -25,4 +25,5 @@ public interface AccountDao {
      */
     int insertAccount(Account account);
 
+
 }

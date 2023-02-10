@@ -13,8 +13,21 @@
             value (#{student.studentNo}, #{student.studentName}, #{student.gender}, #{student.studentClass});
     </insert>
     <select id="selectByStudentNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Student">
-        select id,student_no,student_name,gender,student_class
-        from student where student_no=#{studentNo};
+        select id, student_no, student_name, gender, student_class
+        from student
+        where student_no = #{studentNo};
+    </select>
+
+    <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.Student">
+        select id, student_no, student_name, gender, student_class from student
+        <where>
+            <if test="query.gender != null">
+                gender = #{query.gender}
+            </if>
+            <if test="query.studentClass != null and query.studentClass != '' ">
+                studnet_class = #{query.studentClass}
+            </if>
+        </where>
     </select>
 
 </mapper>

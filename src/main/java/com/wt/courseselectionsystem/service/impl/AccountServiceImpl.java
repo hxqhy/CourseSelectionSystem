@@ -5,14 +5,16 @@ import com.wt.courseselectionsystem.common.ResultUtils;
 import com.wt.courseselectionsystem.dao.AccountDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
+import com.wt.courseselectionsystem.model.vo.result.AccountVo;
 import com.wt.courseselectionsystem.model.vo.result.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
 import com.wt.courseselectionsystem.service.TokenService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+
+import static com.wt.courseselectionsystem.common.SystemUtils.passwordEncode;
 
 /**
  * 用户模块 业务实现类
@@ -54,13 +56,17 @@ public class AccountServiceImpl implements AccountService {
         return ResultUtils.fail("账号密码错误");
     }
 
-    /**
-     * 密码加密 （MD5）
-     *
-     * @param password 密码-明文
-     * @return 密码-密文
-     */
-    private String passwordEncode(String password) {
-        return DigestUtils.md5DigestAsHex(password.getBytes(StandardCharsets.UTF_8));
+    @Override
+    public BaseResult<AccountVo> getAccountInfo(String token) {
+        Account data = tokenService.getData(token);
+        AccountVo vo = new AccountVo();
+        BeanUtils.copyProperties(data, vo);
+        return ResultUtils.success(vo);
     }
+
+    @Override
+    public BaseResult<Object> activationStudentAccount(String accountNo) {
+        return null;
+    }
+
 }
