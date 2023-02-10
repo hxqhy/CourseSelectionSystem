@@ -1,7 +1,7 @@
 package com.wt.courseselectionsystem.dao;
 
-import com.wt.courseselectionsystem.data.StudentTestData;
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
+import com.wt.courseselectionsystem.utils.StudentBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,8 +17,8 @@ public class StudentDaoTest {
 
     @Test
     public void testInsertStudent() {
-        StudentTestData testData = new StudentTestData();
-        Student student = testData.generateStudent();
+        StudentBuilder builder = new StudentBuilder();
+        Student student = builder.generateStudent();
         System.out.println(studentDao.insertStudent(student) == 1);
     }
 }
