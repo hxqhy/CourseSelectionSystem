@@ -17,7 +17,9 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class TokenServiceImpl implements TokenService<Account> {
-
+    /**
+     * 本地缓存池
+     */
     private final Cache<String, Account> tokenCache = CacheBuilder.newBuilder()
             .maximumSize(1000L)
             .expireAfterAccess(20, TimeUnit.MINUTES)

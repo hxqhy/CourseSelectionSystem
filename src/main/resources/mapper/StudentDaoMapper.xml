@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wt.courseselectionsystem.dao.StudentDao">
-
+    <resultMap id="StudentMap" type="com.wt.courseselectionsystem.model.dao.basebean.Student">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="student_no" property="studentNo"/>
+        <result column="student_name" property="studentName"/>
+        <result column="gender" property="gender"/>
+        <result column="student_class" property="studentClass"/>
+    </resultMap>
     <insert id="insertStudent">
         insert into student(student_no, student_name, gender, student_class)
             value (#{student.studentNo}, #{student.studentName}, #{student.gender}, #{student.studentClass});
     </insert>
+    <select id="selectByStudentNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Student">
+        select id,student_no,student_name,gender,student_class
+        from student where student_no=#{studentNo};
+    </select>
 
 </mapper>
