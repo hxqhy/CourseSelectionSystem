@@ -12,4 +12,9 @@ import lombok.EqualsAndHashCode;
 public class StudentQuery extends PageRequest {
     private Integer gender;
     private String studentClass;
+
+    /**
+     * 是否处于激活状态，激活：1，未激活：0；
+     */
+    private Integer active;
 }

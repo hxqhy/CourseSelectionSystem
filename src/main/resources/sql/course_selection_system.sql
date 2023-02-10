@@ -5,7 +5,7 @@ use course_selection_system;
 create table account
 (
     id           int auto_increment primary key,
-    account_no   char(12)     not null comment '账号',
+    account_no   char(13)     not null comment '账号',
     password     varchar(100) not null comment '密码',
     account_type int          not null comment '用户类型,0:管理员，1:学生，2:教师',
     unique index account_no_index (account_no)

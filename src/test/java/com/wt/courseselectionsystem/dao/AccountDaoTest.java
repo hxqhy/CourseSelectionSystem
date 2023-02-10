@@ -1,5 +1,6 @@
 package com.wt.courseselectionsystem.dao;
 
+import com.wt.courseselectionsystem.common.constant.AccountConstant;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,9 @@ public class AccountDaoTest {
     @Test
     public void testInsertAccount() {
         Account account = new Account();
-        account.setAccountNo("12323");
-        String s = passwordEncode("12323");
-        account.setPassword(s);
-        account.setAccountType(1);
+        account.setAccountNo("admin");
+        account.setPassword(passwordEncode("admin"));
+        account.setAccountType(AccountConstant.ADMIN_CODE);
         System.out.println(accountDao.insertAccount(account) == 1);
     }
 

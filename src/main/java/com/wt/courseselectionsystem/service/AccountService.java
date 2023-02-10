@@ -32,9 +32,9 @@ public interface AccountService {
     /**
      * 激活学生账号
      *
-     * @param accountNo 学号
+     * @param studentNo 学号
      * @return ...
      */
-    NoDataResult activationStudentAccount(String accountNo);
+    NoDataResult activateStudentAccount(String studentNo);
 
 }

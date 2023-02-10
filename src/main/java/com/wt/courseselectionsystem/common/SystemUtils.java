@@ -1,5 +1,6 @@
 package com.wt.courseselectionsystem.common;
 
+import com.wt.courseselectionsystem.common.constant.AccountConstant;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
@@ -50,6 +51,27 @@ public final class SystemUtils {
             }).collect(Collectors.toList());
         }
         return result;
+    }
+
+    /**
+     * 通过学生编号生成账号
+     *
+     * @param studentNo 学号
+     * @return accountNo
+     */
+    public static String generateStudentAccountNo(String studentNo) {
+        return AccountConstant.STUDENT_PREFIX + studentNo;
+    }
+
+    /**
+     * 将常量转换为mybatis xml能够使用的常量
+     *
+     * @param constant ...
+     * @return ...
+     */
+    @SuppressWarnings("unused")
+    public static String xmlConstant(String constant) {
+        return String.format("'%s'", constant);
     }
 
 }

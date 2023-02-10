@@ -66,7 +66,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public NoDataResult activationStudentAccount(String accountNo) {
+    public NoDataResult activateStudentAccount(String studentNo) {
         return null;
     }
 

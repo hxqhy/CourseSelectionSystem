@@ -27,6 +27,14 @@
             <if test="query.studentClass != null and query.studentClass != '' ">
                 studnet_class = #{query.studentClass}
             </if>
+            <if test="query.active == 0 or query.active == 1">
+                (select count(*) from account where account_no =
+                concat(
+                ${@com.wt.courseselectionsystem.common.SystemUtils@
+                xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@STUDENT_PREFIX)}
+                ,student_no))
+                = #{query.active}
+            </if>
         </where>
     </select>
 
