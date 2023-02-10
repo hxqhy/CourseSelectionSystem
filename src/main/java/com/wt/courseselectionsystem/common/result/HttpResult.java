@@ -7,6 +7,7 @@ import lombok.Data;
  */
 @Data
 public abstract class HttpResult<T> {
+
     private Integer code;
     private String msg;
 

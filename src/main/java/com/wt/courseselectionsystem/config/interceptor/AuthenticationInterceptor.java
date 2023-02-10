@@ -35,7 +35,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         }
 
         Method method = ((HandlerMethod) handler).getMethod();
-
         Class<?> clazz = method.getDeclaringClass();
         boolean classAnnotation = clazz.isAnnotationPresent(LoginRequired.class);
         boolean methodAnnotation = method.isAnnotationPresent(LoginRequired.class);
