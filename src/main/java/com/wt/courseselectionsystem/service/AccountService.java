@@ -1,6 +1,7 @@
 package com.wt.courseselectionsystem.service;
 
-import com.wt.courseselectionsystem.common.BaseResult;
+import com.wt.courseselectionsystem.common.result.DataResult;
+import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
 import com.wt.courseselectionsystem.model.vo.result.AccountVo;
 import com.wt.courseselectionsystem.model.vo.result.LoginResult;
@@ -18,7 +19,7 @@ public interface AccountService {
      * @param form ...
      * @return ...
      */
-    BaseResult<LoginResult> login(LoginForm form);
+    DataResult<LoginResult> login(LoginForm form);
 
     /**
      * 通过token获取用户信息
@@ -26,7 +27,7 @@ public interface AccountService {
      * @param token token
      * @return account info
      */
-    BaseResult<AccountVo> getAccountInfo(String token);
+    DataResult<AccountVo> getAccountInfo(String token);
 
     /**
      * 激活学生账号
@@ -34,6 +35,6 @@ public interface AccountService {
      * @param accountNo 学号
      * @return ...
      */
-    BaseResult<Object> activationStudentAccount(String accountNo);
+    NoDataResult activationStudentAccount(String accountNo);
 
 }

@@ -1,6 +1,7 @@
 package com.wt.courseselectionsystem.controller;
 
-import com.wt.courseselectionsystem.common.BaseResult;
+import com.wt.courseselectionsystem.common.annotation.LoginRequired;
+import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
 import com.wt.courseselectionsystem.model.vo.result.AccountVo;
 import com.wt.courseselectionsystem.model.vo.result.LoginResult;
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/account")
-public class LoginController {
+public class AccountController {
 
     private final AccountService accountService;
 
-    public LoginController(AccountService accountService) {
+    public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
 
@@ -26,12 +27,13 @@ public class LoginController {
      * 功能描述：系统用户登录
      */
     @PostMapping("/login")
-    public BaseResult<LoginResult> accountLogin(@RequestBody LoginForm form) {
+    public DataResult<LoginResult> accountLogin(@RequestBody LoginForm form) {
         return accountService.login(form);
     }
 
+    @LoginRequired
     @GetMapping("/info")
-    public BaseResult<AccountVo> getAccount(@RequestHeader(value = "token") String token) {
+    public DataResult<AccountVo> getAccount(@RequestHeader(value = "token") String token) {
         return accountService.getAccountInfo(token);
     }
 }

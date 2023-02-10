@@ -1,7 +1,6 @@
 package com.wt.courseselectionsystem.controller;
 
-import com.wt.courseselectionsystem.common.BaseResult;
-import com.wt.courseselectionsystem.common.ResultUtils;
+import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
 import com.wt.courseselectionsystem.model.vo.result.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
@@ -26,8 +25,7 @@ public class StudentController {
     }
 
     @PostMapping("/list")
-    public BaseResult<List<StudentVo>> list(@RequestBody StudentQuery query) {
-        List<StudentVo> list = studentService.query(query);
-        return ResultUtils.success(list);
+    public DataResult<List<StudentVo>> list(@RequestBody StudentQuery query) {
+        return studentService.query(query);
     }
 }

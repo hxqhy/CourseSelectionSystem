@@ -16,6 +16,6 @@ public class StudentServiceTest {
     @Test
     public void testStudentQuery() {
         StudentQuery query = new StudentQuery();
-        System.out.println(service.query(query).size());
+        System.out.println(service.query(query).getData().size());
     }
 }

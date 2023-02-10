@@ -1,7 +1,8 @@
 package com.wt.courseselectionsystem.service.impl;
 
-import com.wt.courseselectionsystem.common.BaseResult;
 import com.wt.courseselectionsystem.common.ResultUtils;
+import com.wt.courseselectionsystem.common.result.DataResult;
+import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.AccountDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
@@ -41,10 +42,10 @@ public class AccountServiceImpl implements AccountService {
      * @return ...
      */
     @Override
-    public BaseResult<LoginResult> login(LoginForm form) {
+    public DataResult<LoginResult> login(LoginForm form) {
         Account account = accountDao.selectByAccountNo(form.getAccount());
         if (Objects.isNull(account)) {
-            return ResultUtils.fail("账号密码错误");
+            throw new RuntimeException("账号密码错误");
         }
         String password = passwordEncode(form.getPassword());
         if (password.equals(account.getPassword())) {
@@ -53,11 +54,11 @@ public class AccountServiceImpl implements AccountService {
             result.setToken(token);
             return ResultUtils.success(result);
         }
-        return ResultUtils.fail("账号密码错误");
+        throw new RuntimeException("账号密码错误");
     }
 
     @Override
-    public BaseResult<AccountVo> getAccountInfo(String token) {
+    public DataResult<AccountVo> getAccountInfo(String token) {
         Account data = tokenService.getData(token);
         AccountVo vo = new AccountVo();
         BeanUtils.copyProperties(data, vo);
@@ -65,7 +66,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public BaseResult<Object> activationStudentAccount(String accountNo) {
+    public NoDataResult activationStudentAccount(String accountNo) {
         return null;
     }
 

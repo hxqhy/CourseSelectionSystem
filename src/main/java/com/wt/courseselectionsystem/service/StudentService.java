@@ -1,5 +1,6 @@
 package com.wt.courseselectionsystem.service;
 
+import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
 import com.wt.courseselectionsystem.model.vo.result.StudentVo;
 
@@ -16,5 +17,5 @@ public interface StudentService {
      * @param query ...
      * @return ...
      */
-    List<StudentVo> query(StudentQuery query);
+    DataResult<List<StudentVo>> query(StudentQuery query);
 }
