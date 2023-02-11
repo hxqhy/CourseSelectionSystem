@@ -3,7 +3,7 @@ package com.wt.courseselectionsystem.controller;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
-import com.wt.courseselectionsystem.model.vo.result.StudentVo;
+import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 

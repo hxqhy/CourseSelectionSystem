@@ -65,6 +65,7 @@ public final class SystemUtils {
 
     /**
      * 将常量转换为mybatis xml能够使用的常量
+     * S -> 'S'
      *
      * @param constant ...
      * @return ...

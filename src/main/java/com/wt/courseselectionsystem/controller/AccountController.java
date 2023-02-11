@@ -3,8 +3,8 @@ package com.wt.courseselectionsystem.controller;
 import com.wt.courseselectionsystem.common.annotation.LoginRequired;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
-import com.wt.courseselectionsystem.model.vo.result.AccountVo;
-import com.wt.courseselectionsystem.model.vo.result.LoginResult;
+import com.wt.courseselectionsystem.model.vo.response.AccountVo;
+import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 
