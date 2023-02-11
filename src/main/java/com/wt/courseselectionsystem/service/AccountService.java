@@ -3,8 +3,8 @@ package com.wt.courseselectionsystem.service;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
-import com.wt.courseselectionsystem.model.vo.result.AccountVo;
-import com.wt.courseselectionsystem.model.vo.result.LoginResult;
+import com.wt.courseselectionsystem.model.vo.response.AccountVo;
+import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 
 /**
  * 用户模块 业务接口

@@ -8,7 +8,7 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.dao.StudentDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
 import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
-import com.wt.courseselectionsystem.model.vo.result.StudentVo;
+import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
 import org.springframework.stereotype.Service;
 

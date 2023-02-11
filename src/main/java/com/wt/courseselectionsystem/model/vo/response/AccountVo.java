@@ -1,4 +1,4 @@
-package com.wt.courseselectionsystem.model.vo.result;
+package com.wt.courseselectionsystem.model.vo.response;
 
 import lombok.Data;
 
