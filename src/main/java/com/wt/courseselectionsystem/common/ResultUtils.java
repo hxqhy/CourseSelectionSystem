@@ -20,6 +20,10 @@ public final class ResultUtils {
         return buildNoDataResult(DEFAULT_SUCCESS_CODE, DEFAULT_SUCCESS_MSG);
     }
 
+    public static NoDataResult success(String msg) {
+        return buildNoDataResult(DEFAULT_SUCCESS_CODE, msg);
+    }
+
     public static NoDataResult fail(String msg) {
         return buildNoDataResult(DEFAULT_FAIL_CODE, msg);
     }

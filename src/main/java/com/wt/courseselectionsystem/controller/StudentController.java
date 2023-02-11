@@ -1,13 +1,11 @@
 package com.wt.courseselectionsystem.controller;
 
 import com.wt.courseselectionsystem.common.result.DataResult;
+import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
 import com.wt.courseselectionsystem.model.vo.result.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +24,26 @@ public class StudentController {
 
     @PostMapping("/list")
     public DataResult<List<StudentVo>> list(@RequestBody StudentQuery query) {
-        return studentService.query(query);
+        return studentService.list(query);
+    }
+
+    @PostMapping("/update")
+    public NoDataResult update(@RequestBody StudentVo studentVo) {
+        return studentService.update(studentVo);
+    }
+
+    @PostMapping("/add")
+    public NoDataResult addStudent(@RequestBody StudentVo studentVo) {
+        return studentService.addStudent(studentVo);
+    }
+
+    @GetMapping("/info")
+    public DataResult<StudentVo> info(String studentNo) {
+        return studentService.info(studentNo);
+    }
+
+    @DeleteMapping()
+    public NoDataResult delete(String studentNo) {
+        return studentService.delete(studentNo);
     }
 }

@@ -12,6 +12,26 @@
         insert into student(student_no, student_name, gender, student_class)
             value (#{student.studentNo}, #{student.studentName}, #{student.gender}, #{student.studentClass});
     </insert>
+    <update id="updateStudentInfo">
+        update student
+        <set>
+            <if test="student.studentName != null and student.studentName !='' ">
+                student_name=#{student.studentName},
+            </if>
+            <if test="student.gender!= null">
+                gender=#{student.gender},
+            </if>
+            <if test="student.studentClass != null and student.studentClass != '' ">
+                student_class=#{student.studentClass},
+            </if>
+        </set>
+        where student_no=#{student.studentNo}
+    </update>
+    <delete id="delete">
+        delete
+        from student
+        where student_no = #{studentNo};
+    </delete>
     <select id="selectByStudentNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Student">
         select id, student_no, student_name, gender, student_class
         from student

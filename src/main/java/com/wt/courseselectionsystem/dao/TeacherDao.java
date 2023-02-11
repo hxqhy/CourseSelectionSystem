@@ -4,12 +4,14 @@ import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author xxx
  */
 @Repository
 public interface TeacherDao {
-    
+
     /**
      * 保存教师信息
      *
@@ -25,4 +27,6 @@ public interface TeacherDao {
      * @return ...
      */
     Teacher selectByTeacherNo(String teacherNo);
+
+
 }

@@ -35,5 +35,22 @@ public interface StudentDao {
      * @param query ...
      * @return ...
      */
-    List<Student> select(@Param("query") StudentQuery query);
+    List<Student> select(@Param("list") StudentQuery query);
+
+    /**
+     * 修改学生信息
+     *
+     * @param student student
+     * @return ...
+     */
+    int updateStudentInfo(@Param("student") Student student);
+
+    /**
+     * 删除学生信息
+     *
+     * @param studentNo ...
+     * @return ...
+     */
+    int delete(String studentNo);
+
 }

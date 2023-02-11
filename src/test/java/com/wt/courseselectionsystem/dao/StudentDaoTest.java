@@ -34,4 +34,20 @@ public class StudentDaoTest {
         query.setActive(1);
         System.out.println(studentDao.select(query));
     }
+
+    @Test
+    public void testUpdate() {
+        Student student = new Student();//202040823585
+
+        student.setStudentNo("1");
+        student.setGender(0);
+        student.setStudentName("xiaoxiao");
+        System.out.println(studentDao.updateStudentInfo(student));
+    }
+
+    @Test
+    public void testDelete() {
+        System.out.println(studentDao.delete("202040823585"));
+    }
+
 }
