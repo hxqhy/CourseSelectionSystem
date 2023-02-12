@@ -54,12 +54,17 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         String token = Optional.ofNullable(request.getHeader("token"))
                 .orElseThrow(() -> new RuntimeException("Login required."));
 
-        return Optional.of(tokenService.getData(token))
+        Optional.of(tokenService.getData(token))
                 .map(account -> {
                     Integer role = account.getAccountType();
                     List<Integer> roleList = Arrays.stream(loginRequired.role()).boxed()
                             .collect(Collectors.toList());
-                    return roleList.contains(role);
-                }).orElse(true);
+                    if (roleList.contains(role)) {
+                        return true;
+                    } else {
+                        throw new RuntimeException("禁止访问");
+                    }
+                });
+        return true;
     }
 }
