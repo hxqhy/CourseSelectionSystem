@@ -37,7 +37,7 @@ public class StudentServiceTest {
     public void insertStudent() {
         StudentAddForm form = new StudentAddForm();
         StudentBuilder builder = new StudentBuilder();
-        Student student = builder.generateStudent();
+        Student student = builder.generate();
         BeanUtils.copyProperties(student, form);
         System.out.println(service.addStudent(form));
     }

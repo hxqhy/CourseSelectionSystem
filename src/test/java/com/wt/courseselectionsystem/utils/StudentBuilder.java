@@ -4,14 +4,14 @@ import com.wt.courseselectionsystem.model.dao.basebean.Student;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static com.wt.courseselectionsystem.utils.RandmDataUtils.*;
+import static com.wt.courseselectionsystem.utils.RandomDataUtils.*;
 
 /**
  * @author lixin
  */
 public class StudentBuilder {
 
-    public Student generateStudent() {
+    public Student generate() {
         Student student = new Student();
         String studentNo = generateStudentNo();
         //学号

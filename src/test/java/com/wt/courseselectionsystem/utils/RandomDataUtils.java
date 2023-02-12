@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * @author lixin
  */
-public class RandmDataUtils {
+public class RandomDataUtils {
 
     /**
      * 姓氏
@@ -42,7 +42,7 @@ public class RandmDataUtils {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         return strings[random.nextInt(strings.length)];
     }
-    
+
     public static int generateGender() {
         return ThreadLocalRandom.current().nextInt(2);
     }

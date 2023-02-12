@@ -19,7 +19,7 @@ public class StudentDaoTest {
     @Test
     public void testInsertStudent() {
         StudentBuilder builder = new StudentBuilder();
-        Student student = builder.generateStudent();
+        Student student = builder.generate();
         System.out.println(studentDao.insertStudent(student) == 1);
     }
 
