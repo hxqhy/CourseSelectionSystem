@@ -2,7 +2,9 @@ package com.wt.courseselectionsystem.controller;
 
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
-import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
 import org.springframework.web.bind.annotation.*;
@@ -28,13 +30,13 @@ public class StudentController {
     }
 
     @PostMapping("/update")
-    public NoDataResult update(@RequestBody StudentVo studentVo) {
-        return studentService.update(studentVo);
+    public NoDataResult update(@RequestBody StudentUpdateForm form) {
+        return studentService.update(form);
     }
 
     @PostMapping("/add")
-    public NoDataResult addStudent(@RequestBody StudentVo studentVo) {
-        return studentService.addStudent(studentVo);
+    public NoDataResult addStudent(@RequestBody StudentAddForm form) {
+        return studentService.addStudent(form);
     }
 
     @GetMapping("/info")

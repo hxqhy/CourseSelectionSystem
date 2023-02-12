@@ -1,7 +1,7 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
-import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
 import com.wt.courseselectionsystem.utils.StudentBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class StudentDaoTest {
 
     @Test
     public void testSelectStudentByStudentNo() {
-        System.out.println(studentDao.selectByStudentNo("202040823585"));
+        System.out.println(studentDao.selectByStudentNo("201578167291"));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class StudentDaoTest {
     public void testUpdate() {
         Student student = new Student();//202040823585
 
-        student.setStudentNo("1");
+        student.setStudentNo("201578167291");
         student.setGender(0);
         student.setStudentName("xiaoxiao");
         System.out.println(studentDao.updateStudentInfo(student));

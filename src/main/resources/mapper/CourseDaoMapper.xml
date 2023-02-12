@@ -12,14 +12,52 @@
     </resultMap>
 
     <insert id="insertCourse">
-        insert into course(course_no,course_name, credit, course_hours,student_number)
+        insert into course(course_no, course_name, credit, course_hours, student_number)
             value (#{course.courseNo}, #{course.courseName}, #{course.credit}, #{course.courseHours}, #{course.studentNumber});
     </insert>
+    <update id="updateCourseInfo">
+        update course
+        <set>
+            <if test="course.courseName != null and course.courseName !='' ">
+                course_name=#{course.courseName},
+            </if>
+            <if test="course.credit!= null">
+                credit=#{course.credit},
+            </if>
+            <if test="course.courseHours!= null">
+                course_hours=#{course.courseHours},
+            </if>
+            <if test="course.studentNumber!= null">
+                student_number=#{course.studentNumber},
+            </if>
+        </set>
+
+    </update>
+    <delete id="delete">
+        delete
+        from course
+        where course_no = #{couseNo};
+    </delete>
 
     <select id="selectByCourseNo" resultMap="CourseMap">
-        select id, course_no, course_name, credit,course_hours,student_number
+        select id, course_no, course_name, credit, course_hours, student_number
         from course
         where course_no = #{courseNo};
+    </select>
+    <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.Course">
+        select id, course_no, course_name, credit, course_hours, student_number
+        from course
+        <where>
+            <if test="course.credit!= null">
+                credit=#{course.credit},
+            </if>
+            <if test="course.courseHours!= null">
+                course_hours=#{course.courseHours},
+            </if>
+            <if test="course.studentNumber!= null">
+                student_number=#{course.studentNumber},
+            </if>
+        </where>
     </select>
 
 </mapper>

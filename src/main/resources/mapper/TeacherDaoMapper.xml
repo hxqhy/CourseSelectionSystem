@@ -3,11 +3,45 @@
 <mapper namespace="com.wt.courseselectionsystem.dao.TeacherDao">
 
     <insert id="insertTeacher">
-        insert into teacher(teacher_no,teacher_name,gender)
-        value (#{teacher.teacherNo},#{teacher.teacherName},#{teacher.gender});
+        insert into teacher(teacher_no, teacher_name, gender)
+            value (#{teacher.teacherNo},#{teacher.teacherName},#{teacher.gender});
     </insert>
+    <update id="updateTeacherInfo">
+        update teacher
+        <set>
+            <if test="teacher.teacherName != null and teacher.teacherName !='' ">
+                teacher_name=#{teacher.teacherName},
+            </if>
+            <if test="teacher.gender!= null">
+                gender=#{teacher.gender},
+            </if>
+        </set>
+        where teacher_no=#{teacher.teacherNo}
+    </update>
+    <delete id="delete">
+        delete
+        from teacher
+        where teacher_no = #{teacher.teacherNo};
+    </delete>
     <select id="selectByTeacherNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Teacher">
-        select id,teacher_no,teacher_name,gender
-        from teacher where teacher_no=#{studentno};
+        select id, teacher_no, teacher_name, gender
+        from teacher
+        where teacher_no = #{studentno};
+    </select>
+    <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.Teacher">
+        select id, teacher_no, teacher_name, gender from teacher
+        <where>
+            <if test="query.gender != null">
+                gender = #{query.gender}
+            </if>
+            <if test="query.active == 0 or query.active == 1">
+                (select count(*) from account where account_no =
+                concat(
+                ${@com.wt.courseselectionsystem.common.SystemUtils@
+                xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@TEACHER_PREFIX)}
+                ,teacher_no))
+                = #{query.active}
+            </if>
+        </where>
     </select>
 </mapper>

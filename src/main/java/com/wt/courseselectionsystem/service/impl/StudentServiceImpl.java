@@ -8,7 +8,9 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.StudentDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
-import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
 import org.springframework.beans.BeanUtils;
@@ -38,22 +40,22 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public NoDataResult update(StudentVo studentVo) {
+    public NoDataResult update(StudentUpdateForm form) {
         Student student = new Student();
-        BeanUtils.copyProperties(studentVo, student);
+        BeanUtils.copyProperties(form, student);
         int row = studentDao.updateStudentInfo(student);
         if (row == 1) {
             return ResultUtils.success("修改成功");
         } else {
             return ResultUtils.fail("修改失败");
         }
-
     }
 
     @Override
-    public NoDataResult addStudent(StudentVo studentVo) {
+    public NoDataResult addStudent(StudentAddForm form) {
+        //todo 校验学号是否唯一
         Student student = new Student();
-        BeanUtils.copyProperties(studentVo, student);
+        BeanUtils.copyProperties(form, student);
         int row = studentDao.insertStudent(student);
         if (row == 1) {
             return ResultUtils.success("添加成功");

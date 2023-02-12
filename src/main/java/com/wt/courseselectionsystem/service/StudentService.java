@@ -2,7 +2,9 @@ package com.wt.courseselectionsystem.service;
 
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
-import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 
 import java.util.List;
@@ -23,18 +25,18 @@ public interface StudentService {
     /**
      * 修改学生信息
      *
-     * @param studentVo ...
+     * @param form ...
      * @return ...
      */
-    NoDataResult update(StudentVo studentVo);
+    NoDataResult update(StudentUpdateForm form);
 
     /**
      * 增加学生
      *
-     * @param studentVo ...
+     * @param form ...
      * @return ...
      */
-    NoDataResult addStudent(StudentVo studentVo);
+    NoDataResult addStudent(StudentAddForm form);
 
     /**
      * 查询单个学生的信息

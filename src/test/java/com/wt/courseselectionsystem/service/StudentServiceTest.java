@@ -1,8 +1,9 @@
 package com.wt.courseselectionsystem.service;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
-import com.wt.courseselectionsystem.model.vo.request.StudentQuery;
-import com.wt.courseselectionsystem.model.vo.result.StudentVo;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
 import com.wt.courseselectionsystem.utils.StudentBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
@@ -22,25 +23,27 @@ public class StudentServiceTest {
         StudentQuery query = new StudentQuery();
         System.out.println(service.list(query).getData().size());
     }
+
     @Test
-    public void updateStudentInfo(){
-        StudentVo studentVo = new StudentVo();
-        studentVo.setStudentNo("202040823585");
-        studentVo.setGender(0);
-        studentVo.setStudentName("hahah");
-        System.out.println(service.update(studentVo));
+    public void updateStudentInfo() {
+        StudentUpdateForm form = new StudentUpdateForm();
+        form.setStudentNo("201578167291");
+        form.setGender(0);
+        form.setStudentName("hahah");
+        System.out.println(service.update(form));
     }
 
     @Test
-    public void insertStudent(){
-        StudentVo studentVo = new StudentVo();
+    public void insertStudent() {
+        StudentAddForm form = new StudentAddForm();
         StudentBuilder builder = new StudentBuilder();
         Student student = builder.generateStudent();
-        BeanUtils.copyProperties(student,studentVo);
-        System.out.println(service.addStudent(studentVo) );
+        BeanUtils.copyProperties(student, form);
+        System.out.println(service.addStudent(form));
     }
+
     @Test
-    public void selectByStudentNo(){
+    public void selectByStudentNo() {
         System.out.println(service.info("202040823585"));
     }
 }
