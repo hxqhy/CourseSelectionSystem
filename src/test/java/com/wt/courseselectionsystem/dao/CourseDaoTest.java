@@ -33,16 +33,16 @@ public class CourseDaoTest {
 
     @Test
     public void testSelect() {
-        CourseQuery courseQuery = new CourseQuery();
-        courseQuery.setCredit(3);
-        System.out.println(courseDao.select(courseQuery));
+        CourseQuery query = new CourseQuery();
+        query.setCourseHours(30);
+        System.out.println(courseDao.select(query));
     }
 
     @Test
     public void testUpdate() {
         Course course = new Course();
         course.setCourseNo("123");
-        course.setCourseName("大学英语1");
+        course.setCourseName("大学英语");
         System.out.println(courseDao.updateCourseInfo(course));
     }
 
