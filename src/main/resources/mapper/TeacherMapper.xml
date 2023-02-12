@@ -11,10 +11,10 @@
         update teacher
         <set>
             <if test="teacher.teacherName != null and teacher.teacherName !='' ">
-                teacher_name=#{teacher.teacherName}
+                teacher_name=#{teacher.teacherName},
             </if>
             <if test="teacher.gender!= null">
-                gender=#{teacher.gender}
+                gender=#{teacher.gender},
             </if>
         </set>
         where teacher_no=#{teacher.teacherNo}
@@ -39,7 +39,7 @@
                 gender = #{query.gender}
             </if>
             <if test="query.active == 0 or query.active == 1">
-                (select count(*) from account where account_no =
+                and (select count(*) from account where account_no =
                 concat(
                 ${@com.wt.courseselectionsystem.common.SystemUtils@
                 xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@TEACHER_PREFIX)}

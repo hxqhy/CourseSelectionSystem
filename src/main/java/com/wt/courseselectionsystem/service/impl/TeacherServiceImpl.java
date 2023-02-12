@@ -17,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author HY
@@ -31,7 +32,9 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public NoDataResult addTeacher(TeacherAddForm form) {
-        //todo 校验学号是否唯一
+        if (!Objects.isNull(teacherDao.selectByTeacherNo(form.getTeacherNo()))) {
+            return ResultUtils.fail("教师编号重复");
+        }
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(form, teacher);
         int rows = teacherDao.insertTeacher(teacher);
@@ -55,7 +58,7 @@ public class TeacherServiceImpl implements TeacherService {
     public NoDataResult update(TeacherUpdateForm form) {
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(form, teacher);
-        int rows = teacherDao.insertTeacher(teacher);
+        int rows = teacherDao.updateTeacherInfo(teacher);
         if (rows == 1) {
             return ResultUtils.success("修改成功");
         } else {

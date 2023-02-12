@@ -30,9 +30,9 @@ public class CoursePlanDaoTest {
 
     @Test
     public void testSelect() {
-        CoursePlanQuery course = new CoursePlanQuery();
-        course.setCourseNo("123");
-        System.out.println(coursePlanDao.select(course));
+        CoursePlanQuery query = new CoursePlanQuery();
+        query.setCourseNo("123456");
+        System.out.println(coursePlanDao.select(query));
     }
 
     @Test
