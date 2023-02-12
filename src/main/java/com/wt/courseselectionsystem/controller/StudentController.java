@@ -1,5 +1,6 @@
 package com.wt.courseselectionsystem.controller;
 
+import com.wt.courseselectionsystem.common.annotation.LoginRequired;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
@@ -11,11 +12,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
+
 /**
  * @author lixin
  */
 @RestController
 @RequestMapping("/student")
+@LoginRequired(role = {ADMIN_CODE})
 public class StudentController {
 
     private final StudentService studentService;

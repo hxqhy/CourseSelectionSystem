@@ -31,4 +31,6 @@ public final class AccountConstant {
      * 教师账号前缀
      */
     public static final String TEACHER_PREFIX = "T";
+    
 }
+

@@ -10,7 +10,10 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author lixin
@@ -24,7 +27,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             TokenService<Account> tokenService) {
         this.tokenService = tokenService;
     }
-
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
@@ -49,10 +51,15 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        Optional.ofNullable(request.getHeader("token"))
-                .map(token -> Optional.ofNullable(tokenService.getData(token)))
+        String token = Optional.ofNullable(request.getHeader("token"))
                 .orElseThrow(() -> new RuntimeException("Login required."));
 
-        return true;
+        return Optional.of(tokenService.getData(token))
+                .map(account -> {
+                    Integer role = account.getAccountType();
+                    List<Integer> roleList = Arrays.stream(loginRequired.role()).boxed()
+                            .collect(Collectors.toList());
+                    return roleList.contains(role);
+                }).orElse(true);
     }
 }
