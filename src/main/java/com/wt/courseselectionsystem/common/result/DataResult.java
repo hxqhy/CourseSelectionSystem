@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class DataResult<T> extends HttpResult<T> {
+public class DataResult<T> extends BaseHttpResult<T> {
 
     private T data;
 
@@ -16,5 +16,5 @@ public class DataResult<T> extends HttpResult<T> {
     public void setData(T data) {
         this.data = data;
     }
-    
+
 }

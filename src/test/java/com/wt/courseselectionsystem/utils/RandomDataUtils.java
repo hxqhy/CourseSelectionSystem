@@ -46,4 +46,8 @@ public class RandomDataUtils {
     public static int generateGender() {
         return ThreadLocalRandom.current().nextInt(2);
     }
+
+    public static String randomDigit() {
+        return String.valueOf(ThreadLocalRandom.current().nextInt(10));
+    }
 }

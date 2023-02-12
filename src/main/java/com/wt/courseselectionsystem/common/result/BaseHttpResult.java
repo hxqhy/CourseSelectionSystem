@@ -6,7 +6,7 @@ import lombok.Data;
  * @author lixin
  */
 @Data
-public abstract class HttpResult<T> {
+public abstract class BaseHttpResult<T> {
 
     private Integer code;
     private String msg;
