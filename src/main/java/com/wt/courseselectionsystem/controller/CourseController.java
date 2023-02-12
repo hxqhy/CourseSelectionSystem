@@ -24,7 +24,6 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-
     @PostMapping("/add")
     public NoDataResult addCourse(@RequestBody CourseAddForm form) {
         return courseService.addCourse(form);
@@ -48,4 +47,5 @@ public class CourseController {
     public NoDataResult delete(String courseNo) {
         return courseService.delete(courseNo);
     }
+
 }

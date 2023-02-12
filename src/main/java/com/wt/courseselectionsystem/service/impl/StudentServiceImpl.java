@@ -17,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author lixin
@@ -53,7 +54,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public NoDataResult addStudent(StudentAddForm form) {
-        //todo 校验学号是否唯一
+        if (!Objects.isNull(studentDao.selectByStudentNo(form.getStudentNo()))) {
+            return ResultUtils.fail("学生编号重复");
+        }
         Student student = new Student();
         BeanUtils.copyProperties(form, student);
         int row = studentDao.insertStudent(student);
