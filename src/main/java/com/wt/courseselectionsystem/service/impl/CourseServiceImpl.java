@@ -17,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author HY
@@ -32,6 +33,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public NoDataResult addCourse(CourseAddForm form) {
+        if (!Objects.isNull(courseDao.selectByCourseNo(form.getCourseNo()))) {
+            return ResultUtils.fail("课程计划编号重复");
+        }
         Course course = new Course();
         BeanUtils.copyProperties(form, course);
         int rows = courseDao.insertCourse(course);
@@ -55,7 +59,7 @@ public class CourseServiceImpl implements CourseService {
     public NoDataResult update(CourseUpdateForm form) {
         Course course = new Course();
         BeanUtils.copyProperties(form, course);
-        int rows = courseDao.insertCourse(course);
+        int rows = courseDao.updateCourseInfo(course);
         if (rows == 1) {
             return ResultUtils.success("修改成功");
         } else {

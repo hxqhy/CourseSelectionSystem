@@ -29,7 +29,7 @@ public class StudentServiceTest {
         StudentUpdateForm form = new StudentUpdateForm();
         form.setStudentNo("201578167291");
         form.setGender(0);
-        form.setStudentName("hahah");
+        form.setStudentName("hah");
         System.out.println(service.update(form));
     }
 

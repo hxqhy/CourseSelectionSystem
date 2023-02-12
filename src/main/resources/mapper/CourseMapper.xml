@@ -29,10 +29,10 @@
                 course_hours = #{course.courseHours},
             </if>
             <if test="course.studentNumber!= null">
-                student_number = #{course.studentNumber},
+                student_number = #{course.studentNumber}
             </if>
         </set>
-        where course_no = #{course.courseNo};
+        where course_no = #{course.courseNo}
     </update>
     <delete id="delete">
         delete

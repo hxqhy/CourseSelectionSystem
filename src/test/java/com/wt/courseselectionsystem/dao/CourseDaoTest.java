@@ -42,7 +42,7 @@ public class CourseDaoTest {
     public void testUpdate() {
         Course course = new Course();
         course.setCourseNo("123");
-        course.setCourseName("大学英语");
+        course.setCourseName("大学英语2");
         System.out.println(courseDao.updateCourseInfo(course));
     }
 
