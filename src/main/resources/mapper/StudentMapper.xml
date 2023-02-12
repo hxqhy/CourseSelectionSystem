@@ -16,10 +16,10 @@
         update student
         <set>
             <if test="student.studentName != null and student.studentName !='' ">
-                student_name=#{student.studentName}
+                student_name=#{student.studentName},
             </if>
             <if test="student.gender!= null">
-                gender=#{student.gender}
+                gender=#{student.gender},
             </if>
             <if test="student.studentClass != null and student.studentClass != '' ">
                 student_class=#{student.studentClass}

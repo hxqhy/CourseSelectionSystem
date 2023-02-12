@@ -14,7 +14,7 @@
     <insert id="insertCourse">
         insert into course(course_no, course_name, credit, course_hours, student_number)
             value (#{course.courseNo}, #{course.courseName}, #{course.credit}, #{course.courseHours},
-                   #{course.studentNumber});
+            #{course.studentNumber});
     </insert>
     <update id="updateCourseInfo">
         update course
@@ -54,10 +54,10 @@
                 credit=#{query.credit},
             </if>
             <if test="query.courseHours != null">
-                and course_hours=#{query.courseHours},
+                and course_hours=#{query.courseHours}
             </if>
             <if test="query.studentNumber != null">
-                and student_number=#{query.studentNumber},
+                and student_number=#{query.studentNumber}
             </if>
         </where>
     </select>
