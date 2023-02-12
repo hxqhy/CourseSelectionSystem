@@ -16,11 +16,11 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/course")
-public class CourseCrontroller {
+public class CourseController {
 
     private final CourseService courseService;
 
-    public CourseCrontroller(CourseService courseService) {
+    public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
 
