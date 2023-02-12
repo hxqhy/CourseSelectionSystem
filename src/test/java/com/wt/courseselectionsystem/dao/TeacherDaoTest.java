@@ -10,7 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @author xxx
  */
 @SpringBootTest
-public class TeacherDaoMapperTest {
+public class TeacherDaoTest {
+
     @Autowired
     private TeacherDao teacherDao;
 

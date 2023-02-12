@@ -43,7 +43,8 @@ public class TeacherController {
     public DataResult<TeacherVo> info(String teacherNo) {
         return teacherService.info(teacherNo);
     }
-
+    
+    @DeleteMapping()
     public NoDataResult delete(String teacherNo) {
         return teacherService.delete(teacherNo);
     }

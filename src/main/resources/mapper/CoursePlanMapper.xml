@@ -1,40 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wt.courseselectionsystem.dao.CoursePlanDao">
+
     <insert id="insertCoursePlan">
         insert into course_plan(course_plan_no, course_no, teacher_no)
-            value (#{coursePlan.coursePlanNo},#{coursePlan.courseNo},#{coursePlan.teacherNo});
+            value (#{coursePlan.coursePlanNo}, #{coursePlan.courseNo}, #{coursePlan.teacherNo});
     </insert>
+
     <update id="updateInfo">
         update course_plan
         <set>
-            <if test="coursePlan.courseNo!= null and coursePlan.courseNo!=''">
-                course_no=#{coursePlan.courseNo},
+            <if test="coursePlan.courseNo != null and coursePlan.courseNo != ''">
+                course_no = #{coursePlan.courseNo},
             </if>
-            <if test="coursePlan.teacherNo!= null andcoursePlan.teacherNo!=''">
-                teacher_no=#{coursePlan.teacherNo},
+            <if test="coursePlan.teacherNo != null and coursePlan.teacherNo !=''">
+                teacher_no = #{coursePlan.teacherNo},
             </if>
         </set>
+        where course_plan_no = #{coursePlan.coursePlanNo}
     </update>
+
     <delete id="delete">
         delete
         from course_plan
         where course_plan_no = #{couseNo}
     </delete>
+
     <select id="selectByCoursePlan" resultType="com.wt.courseselectionsystem.model.dao.basebean.CoursePlan">
         select id, course_plan_no, course_no, teacher_no
         from course_plan
         where course_plan_no = #{coursePlanNo};
     </select>
+
     <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.CoursePlan">
         select id, course_plan_no, course_no, teacher_no
         from course_plan
         <where>
             <if test="coursePlan.courseNo!= null and coursePlan.courseNo!=''">
-                course_no=#{coursePlan.courseNo},
+                course_no=#{coursePlan.courseNo}
             </if>
-            <if test="coursePlan.teacherNo!= null andcoursePlan.teacherNo!=''">
-                teacher_no=#{coursePlan.teacherNo},
+            <if test="coursePlan.teacherNo!= null and coursePlan.teacherNo!=''">
+                and teacher_no=#{coursePlan.teacherNo}
             </if>
         </where>
     </select>

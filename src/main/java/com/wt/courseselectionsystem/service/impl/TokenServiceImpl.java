@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class TokenServiceImpl implements TokenService<Account> {
+
     /**
      * 本地缓存池
      */

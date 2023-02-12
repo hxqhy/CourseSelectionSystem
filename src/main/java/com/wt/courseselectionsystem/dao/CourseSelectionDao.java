@@ -9,11 +9,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CourseSelectionDao {
+    
     /**
      * 保存选课信息
+     *
      * @param courseSelection courseSelection
      * @return ...
      */
-    int insertCourseSelection(@Param("courseSelection")CourseSelection courseSelection);
+    int insertCourseSelection(@Param("courseSelection") CourseSelection courseSelection);
 
 }

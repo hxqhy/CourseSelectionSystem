@@ -12,6 +12,7 @@ import java.util.List;
  */
 @Repository
 public interface CoursePlanDao {
+    
     /**
      * 根据课程计划号获取课程计划信息
      *

@@ -12,9 +12,17 @@ mybatis:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
 
+
 pagehelper:
   helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+logging:
+  level:
+    com:
+      wt:
+        courseselectionsystem:
+          dao: debug
 

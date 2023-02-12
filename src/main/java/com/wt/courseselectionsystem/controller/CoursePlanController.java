@@ -43,6 +43,7 @@ public class CoursePlanController {
         return coursePlanService.info(coursePlanNo);
     }
 
+    @DeleteMapping()
     public NoDataResult delete(String teacherNo) {
         return coursePlanService.delete(teacherNo);
     }

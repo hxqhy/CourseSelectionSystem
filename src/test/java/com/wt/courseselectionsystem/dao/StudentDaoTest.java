@@ -31,6 +31,7 @@ public class StudentDaoTest {
     @Test
     public void testSelect() {
         StudentQuery query = new StudentQuery();
+        query.setGender(1);
         query.setActive(1);
         System.out.println(studentDao.select(query));
     }
@@ -38,7 +39,6 @@ public class StudentDaoTest {
     @Test
     public void testUpdate() {
         Student student = new Student();//202040823585
-
         student.setStudentNo("201578167291");
         student.setGender(0);
         student.setStudentName("xiaoxiao");

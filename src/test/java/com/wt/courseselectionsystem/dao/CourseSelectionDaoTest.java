@@ -9,7 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @author xxx
  */
 @SpringBootTest
-public class CourseSelctionDaoMapperTest {
+public class CourseSelectionDaoTest {
+
     @Autowired
     private CourseSelectionDao courseSelectionDao;
 
@@ -19,7 +20,5 @@ public class CourseSelctionDaoMapperTest {
         courseSelection.setCoursePlanNo("123");
         courseSelection.setStudentNo("123");
         courseSelectionDao.insertCourseSelection(courseSelection);
-
-
     }
 }

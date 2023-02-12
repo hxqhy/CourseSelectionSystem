@@ -16,22 +16,24 @@
         update student
         <set>
             <if test="student.studentName != null and student.studentName !='' ">
-                student_name=#{student.studentName},
+                student_name=#{student.studentName}
             </if>
             <if test="student.gender!= null">
-                gender=#{student.gender},
+                gender=#{student.gender}
             </if>
             <if test="student.studentClass != null and student.studentClass != '' ">
-                student_class=#{student.studentClass},
+                student_class=#{student.studentClass}
             </if>
         </set>
-        where student_no=#{student.studentNo}
+        where student_no = #{student.studentNo}
     </update>
+
     <delete id="delete">
         delete
         from student
         where student_no = #{studentNo};
     </delete>
+
     <select id="selectByStudentNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Student">
         select id, student_no, student_name, gender, student_class
         from student
@@ -45,10 +47,10 @@
                 gender = #{query.gender}
             </if>
             <if test="query.studentClass != null and query.studentClass != '' ">
-                studnet_class = #{query.studentClass}
+                and studnet_class = #{query.studentClass}
             </if>
             <if test="query.active == 0 or query.active == 1">
-                (select count(*) from account where account_no =
+                and (select count(*) from account where account_no =
                 concat(
                 ${@com.wt.courseselectionsystem.common.SystemUtils@
                 xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@STUDENT_PREFIX)}

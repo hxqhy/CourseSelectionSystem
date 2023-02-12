@@ -44,6 +44,7 @@ public class CourseController {
         return courseService.info(courseNo);
     }
 
+    @DeleteMapping()
     public NoDataResult delete(String courseNo) {
         return courseService.delete(courseNo);
     }

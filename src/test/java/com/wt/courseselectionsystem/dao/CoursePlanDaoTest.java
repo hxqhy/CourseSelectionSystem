@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @author xxx
  */
 @SpringBootTest
-public class CoursePlanDaoMapperTest {
+public class CoursePlanDaoTest {
     @Autowired
     private CoursePlanDao coursePlanDao;
 
@@ -39,7 +39,8 @@ public class CoursePlanDaoMapperTest {
     public void testUpdate() {
         CoursePlan coursePlan = new CoursePlan();
         coursePlan.setCoursePlanNo("123");
-        coursePlan.setCoursePlanNo("123456");
+        coursePlan.setCourseNo("123456");
+        coursePlan.setTeacherNo("111");
         System.out.println(coursePlanDao.updateInfo(coursePlan));
     }
 
