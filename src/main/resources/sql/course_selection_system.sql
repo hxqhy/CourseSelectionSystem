@@ -44,9 +44,10 @@ create table course
 create table course_plan
 (
     id             int auto_increment primary key,
-    course_plan_no char(20) not null comment '课程计划编号，course_id + _ + teacher_no + 两位数序号',
+    course_plan_no char(22) not null comment '课程计划编号，course_no + teacher_no + 开课年份',
     course_no      char(6)  not null comment '课程号',
     teacher_no     char(12) not null comment '授课老师编号',
+    year           char(4)  not null comment '开课年份',
     unique index course_no_index (course_plan_no)
 ) comment '课程计划表';
 
@@ -54,7 +55,7 @@ create table course_selection
 (
     id             int auto_increment primary key,
     student_no     char(12) not null comment '学生编号',
-    course_plan_no char(20) not null comment '课程计划编号'
+    course_plan_no char(22) not null comment '课程计划编号'
 ) comment '选课表';
 
 
