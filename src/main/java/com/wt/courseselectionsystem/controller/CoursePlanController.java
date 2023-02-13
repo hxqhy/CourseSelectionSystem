@@ -15,7 +15,7 @@ import java.util.List;
  * @author HY
  */
 @RestController
-@RequestMapping("/courseplan")
+@RequestMapping("/course_plan")
 public class CoursePlanController {
     private final CoursePlanService coursePlanService;
 
