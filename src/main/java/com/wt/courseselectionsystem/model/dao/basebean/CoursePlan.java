@@ -25,5 +25,9 @@ public class CoursePlan {
      * 授课老师编号
      */
     private String teacherNo;
+    /**
+     * 开课年份
+     */
+    private String coursePlanYear;
 
 }

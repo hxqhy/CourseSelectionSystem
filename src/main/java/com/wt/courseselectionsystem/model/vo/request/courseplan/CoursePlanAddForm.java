@@ -7,10 +7,7 @@ import lombok.Data;
  */
 @Data
 public class CoursePlanAddForm {
-    /**
-     * 课程计划编号
-     */
-    private String coursePlanNo;
+   
     /**
      * 课程号
      */

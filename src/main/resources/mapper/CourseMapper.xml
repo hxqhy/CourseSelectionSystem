@@ -7,7 +7,7 @@
         <result column="course_no" property="courseNo"/>
         <result column="course_name" property="courseName"/>
         <result column="credit" property="credit"/>
-        <result column="course_hous" property="courseHours"/>
+        <result column="course_hours" property="courseHours"/>
         <result column="student_number" property="studentNumber"/>
     </resultMap>
 

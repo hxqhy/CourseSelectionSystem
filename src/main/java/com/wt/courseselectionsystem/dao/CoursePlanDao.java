@@ -12,14 +12,14 @@ import java.util.List;
  */
 @Repository
 public interface CoursePlanDao {
-    
+
     /**
      * 根据课程计划号获取课程计划信息
      *
      * @param coursePlanNo 课程计划编码
      * @return ...
      */
-    CoursePlan selectByCoursePlan(String coursePlanNo);
+    CoursePlan selectByCoursePlanNo(String coursePlanNo);
 
     /**
      * 保存信息

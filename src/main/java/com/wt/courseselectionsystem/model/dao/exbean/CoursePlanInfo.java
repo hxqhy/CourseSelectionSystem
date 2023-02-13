@@ -1,15 +1,16 @@
-package com.wt.courseselectionsystem.model.vo.request.courseplan;
+package com.wt.courseselectionsystem.model.dao.exbean;
 
-import com.wt.courseselectionsystem.model.vo.request.base.PageRequest;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
- * @author xxx
+ * @author HY
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class CoursePlanQuery extends PageRequest {
+public class CoursePlanInfo {
+    /**
+     * 课程计划编号
+     */
+    private String coursePlanNo;
     /**
      * 课程号
      */
@@ -26,4 +27,5 @@ public class CoursePlanQuery extends PageRequest {
      * 教师名称
      */
     private String teacherName;
+
 }

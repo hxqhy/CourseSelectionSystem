@@ -17,7 +17,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author HY
@@ -30,12 +29,10 @@ public class CoursePlanServiceImpl implements CoursePlanService {
     }
 
     private final CoursePlanDao coursePlanDao;
+    
 
     @Override
     public NoDataResult addCoursePlan(CoursePlanAddForm form) {
-        if (!Objects.isNull(coursePlanDao.selectByCoursePlan(form.getCoursePlanNo()))) {
-            return ResultUtils.fail("课程计划编号重复");
-        }
         CoursePlan coursePlan = new CoursePlan();
         BeanUtils.copyProperties(form, coursePlan);
         int rows = coursePlanDao.insertCoursePlan(coursePlan);
@@ -71,7 +68,7 @@ public class CoursePlanServiceImpl implements CoursePlanService {
     @Override
     public DataResult<CoursePlanVo> info(String coursePlanNo) {
         CoursePlanVo coursePlanVo = new CoursePlanVo();
-        CoursePlan coursePlan = coursePlanDao.selectByCoursePlan(coursePlanNo);
+        CoursePlan coursePlan = coursePlanDao.selectByCoursePlanNo(coursePlanNo);
         BeanUtils.copyProperties(coursePlan, coursePlanVo);
 
         return ResultUtils.success(coursePlanVo);

@@ -17,15 +17,16 @@ public class CoursePlanDaoTest {
     @Test
     public void testInsert() {
         CoursePlan coursePlan = new CoursePlan();
-        coursePlan.setCoursePlanNo("123");
+        coursePlan.setCoursePlanNo("23");
         coursePlan.setCourseNo("123");
         coursePlan.setTeacherNo("123");
+        coursePlan.setYear("2014");
         coursePlanDao.insertCoursePlan(coursePlan);
     }
 
     @Test
     public void testSelectByCoursePlanNo() {
-        System.out.println(coursePlanDao.selectByCoursePlan("123"));
+        System.out.println(coursePlanDao.selectByCoursePlanNo("23"));
     }
 
     @Test

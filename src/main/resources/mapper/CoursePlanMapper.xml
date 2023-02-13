@@ -3,8 +3,9 @@
 <mapper namespace="com.wt.courseselectionsystem.dao.CoursePlanDao">
 
     <insert id="insertCoursePlan">
-        insert into course_plan(course_plan_no, course_no, teacher_no)
-            value (#{coursePlan.coursePlanNo}, #{coursePlan.courseNo}, #{coursePlan.teacherNo});
+        insert into course_plan(course_plan_no, course_no, teacher_no, course_plan_year)
+            value
+            (#{coursePlan.coursePlanNo}, #{coursePlan.courseNo}, #{coursePlan.teacherNo}, #{coursePlan.coursePlanYear});
     </insert>
 
     <update id="updateInfo">
@@ -26,14 +27,14 @@
         where course_plan_no = #{couseNo}
     </delete>
 
-    <select id="selectByCoursePlan" resultType="com.wt.courseselectionsystem.model.dao.basebean.CoursePlan">
-        select id, course_plan_no, course_no, teacher_no
+    <select id="selectByCoursePlanNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.CoursePlan">
+        select id, course_plan_no, course_no, teacher_no, course_plan_year
         from course_plan
         where course_plan_no = #{coursePlanNo};
     </select>
 
     <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.CoursePlan">
-        select id, course_plan_no, course_no, teacher_no
+        select id, course_plan_no, course_no, teacher_no, course_plan_year
         from course_plan
         <where>
             <if test="query.courseNo!= null and query.courseNo!=''">

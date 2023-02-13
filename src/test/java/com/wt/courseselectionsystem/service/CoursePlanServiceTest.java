@@ -33,7 +33,6 @@ public class CoursePlanServiceTest {
     public void insertCoursePlan() {
         CoursePlanAddForm form = new CoursePlanAddForm();
         form.setCourseNo("123");
-        form.setCoursePlanNo("1234");
         form.setTeacherNo("12345");
         System.out.println(service.addCoursePlan(form));
     }
