@@ -2,20 +2,19 @@ package com.wt.courseselectionsystem.controller;
 
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanAddForm;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanQuery;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanUpdateForm;
-import com.wt.courseselectionsystem.model.vo.response.CoursePlanVo;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
+import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 import com.wt.courseselectionsystem.service.CoursePlanService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author HY
  */
 @RestController
-@RequestMapping("/course_plan")
+@RequestMapping("/course/plan")
 public class CoursePlanController {
     private final CoursePlanService coursePlanService;
 
@@ -29,7 +28,7 @@ public class CoursePlanController {
     }
 
     @PostMapping("/list")
-    public DataResult<List<CoursePlanVo>> list(@RequestBody CoursePlanQuery query) {
+    public DataResult<CoursePlanListVo> list(@RequestBody CoursePlanInfoQuery query) {
         return coursePlanService.list(query);
     }
 

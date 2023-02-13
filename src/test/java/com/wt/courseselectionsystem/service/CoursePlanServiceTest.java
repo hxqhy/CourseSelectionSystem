@@ -1,8 +1,8 @@
 package com.wt.courseselectionsystem.service;
 
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanAddForm;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanQuery;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanUpdateForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,8 +17,8 @@ public class CoursePlanServiceTest {
 
     @Test
     public void testCoursePlanQuery() {
-        CoursePlanQuery query = new CoursePlanQuery();
-        System.out.println(service.list(query).getData().size());
+        CoursePlanInfoQuery query = new CoursePlanInfoQuery();
+        System.out.println(service.list(query).getData().getList().size());
     }
 
     @Test

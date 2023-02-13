@@ -1,7 +1,9 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.CoursePlan;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanQuery;
+import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -52,4 +54,12 @@ public interface CoursePlanDao {
      * @return ...
      */
     int delete(String coursePlanNo);
+
+    /**
+     * 查询排课详情信息
+     *
+     * @param query 查询条件
+     * @return list
+     */
+    List<CoursePlanInfo> selectCoursePlanInfo(@Param("query") CoursePlanInfoQuery query);
 }

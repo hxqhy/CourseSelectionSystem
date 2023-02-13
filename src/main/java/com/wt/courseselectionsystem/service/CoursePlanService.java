@@ -2,12 +2,11 @@ package com.wt.courseselectionsystem.service;
 
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanAddForm;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanQuery;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanUpdateForm;
-import com.wt.courseselectionsystem.model.vo.response.CoursePlanVo;
-
-import java.util.List;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
+import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 
 /**
  * @author HY
@@ -27,7 +26,7 @@ public interface CoursePlanService {
      * @param query ...
      * @return ...
      */
-    DataResult<List<CoursePlanVo>> list(CoursePlanQuery query);
+    DataResult<CoursePlanListVo> list(CoursePlanInfoQuery query);
 
     /**
      * 修改课程计划

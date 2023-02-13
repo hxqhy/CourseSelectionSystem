@@ -1,5 +1,6 @@
 package com.wt.courseselectionsystem.utils;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -41,6 +42,11 @@ public class RandomDataUtils {
     public static String choice(String[] strings) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         return strings[random.nextInt(strings.length)];
+    }
+
+    public static <T> T choice(List<T> list) {
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        return list.get(random.nextInt(list.size()));
     }
 
     public static int generateGender() {

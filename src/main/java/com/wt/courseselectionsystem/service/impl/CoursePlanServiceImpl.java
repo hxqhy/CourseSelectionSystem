@@ -8,15 +8,19 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.CoursePlanDao;
 import com.wt.courseselectionsystem.model.dao.basebean.CoursePlan;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanAddForm;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanQuery;
-import com.wt.courseselectionsystem.model.vo.request.courseplan.CoursePlanUpdateForm;
-import com.wt.courseselectionsystem.model.vo.response.CoursePlanVo;
+import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
+import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 import com.wt.courseselectionsystem.service.CoursePlanService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author HY
@@ -29,12 +33,19 @@ public class CoursePlanServiceImpl implements CoursePlanService {
     }
 
     private final CoursePlanDao coursePlanDao;
-    
+
 
     @Override
     public NoDataResult addCoursePlan(CoursePlanAddForm form) {
+        LocalDate now = LocalDate.now();
+        String coursePlanNo = generateCoursePlanNo(form, now);
+        if (!Objects.isNull(coursePlanDao.selectByCoursePlanNo(coursePlanNo))) {
+            throw new RuntimeException("排课已存在");
+        }
         CoursePlan coursePlan = new CoursePlan();
         BeanUtils.copyProperties(form, coursePlan);
+        coursePlan.setCoursePlanNo(coursePlanNo);
+        coursePlan.setCoursePlanYear(String.valueOf(now.getYear()));
         int rows = coursePlanDao.insertCoursePlan(coursePlan);
         if (rows == 1) {
             return ResultUtils.success("添加成功");
@@ -44,12 +55,14 @@ public class CoursePlanServiceImpl implements CoursePlanService {
     }
 
     @Override
-    public DataResult<List<CoursePlanVo>> list(CoursePlanQuery query) {
+    public DataResult<CoursePlanListVo> list(CoursePlanInfoQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        List<CoursePlan> list = coursePlanDao.select(query);
-        List<CoursePlanVo> coursePlanVos = SystemUtils.easyCopy(list, CoursePlanVo.class);
-        PageInfo<CoursePlanVo> info = new PageInfo<>(coursePlanVos);
-        return ResultUtils.success(info.getList());
+        List<CoursePlanInfo> list = coursePlanDao.selectCoursePlanInfo(query);
+        PageInfo<CoursePlanInfo> info = new PageInfo<>(list);
+        CoursePlanListVo result = new CoursePlanListVo();
+        result.setList(SystemUtils.easyCopy(list, CoursePlanVo.class));
+        SystemUtils.configPageInfo(result, info);
+        return ResultUtils.success(result);
     }
 
     @Override
@@ -82,5 +95,9 @@ public class CoursePlanServiceImpl implements CoursePlanService {
         } else {
             return ResultUtils.fail("删除失败");
         }
+    }
+
+    private String generateCoursePlanNo(CoursePlanAddForm form, LocalDate date) {
+        return form.getTeacherNo() + form.getCourseNo() + date.getYear();
     }
 }

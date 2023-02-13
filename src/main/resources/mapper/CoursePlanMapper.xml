@@ -45,4 +45,12 @@
             </if>
         </where>
     </select>
+
+    <select id="selectCoursePlanInfo"
+            resultType="com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo">
+        select cp.course_plan_no, cp.course_no, c.course_name
+        from course_plan cp
+                 inner join course c on cp.course_no = c.course_no
+                 inner join teacher t on cp.teacher_no = t.teacher_no
+    </select>
 </mapper>

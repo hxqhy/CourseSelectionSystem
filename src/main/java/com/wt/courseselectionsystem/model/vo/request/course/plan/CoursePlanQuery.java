@@ -1,4 +1,4 @@
-package com.wt.courseselectionsystem.model.vo.request.courseplan;
+package com.wt.courseselectionsystem.model.vo.request.course.plan;
 
 import com.wt.courseselectionsystem.model.vo.request.base.PageRequest;
 import lombok.Data;

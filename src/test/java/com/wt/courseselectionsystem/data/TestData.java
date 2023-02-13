@@ -1,13 +1,20 @@
 package com.wt.courseselectionsystem.data;
 
 import com.wt.courseselectionsystem.common.constant.AccountConstant;
+import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.AccountDao;
 import com.wt.courseselectionsystem.dao.CourseDao;
 import com.wt.courseselectionsystem.dao.StudentDao;
 import com.wt.courseselectionsystem.dao.TeacherDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.dao.basebean.Course;
+import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
+import com.wt.courseselectionsystem.model.vo.request.course.CourseQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
+import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
+import com.wt.courseselectionsystem.service.CoursePlanService;
 import com.wt.courseselectionsystem.utils.CourseBuilder;
+import com.wt.courseselectionsystem.utils.RandomDataUtils;
 import com.wt.courseselectionsystem.utils.StudentBuilder;
 import com.wt.courseselectionsystem.utils.TeacherBuilder;
 import org.junit.jupiter.api.Test;
@@ -39,6 +46,9 @@ public class TestData {
 
     @Autowired
     private AccountDao accountDao;
+
+    @Autowired
+    private CoursePlanService coursePlanService;
 
     @Test
     public void account() {
@@ -72,6 +82,31 @@ public class TestData {
         List<Course> courses = list.stream().map(builder::generate).collect(Collectors.toList());
         addData(courses, (data) -> courseDao.insertCourse(data));
         System.out.println(list);
+    }
+
+    @Test
+    public void coursePlans() {
+        List<String> teacherNo = teacherDao.select(new TeacherQuery()).stream()
+                .map(Teacher::getTeacherNo)
+                .limit(20)
+                .collect(Collectors.toList());
+        List<String> courseNo = courseDao.select(new CourseQuery()).stream()
+                .map(Course::getCourseNo)
+                .limit(20)
+                .collect(Collectors.toList());
+        for (int i = 0; i < 50; ) {
+            CoursePlanAddForm form = new CoursePlanAddForm();
+            form.setTeacherNo(RandomDataUtils.choice(teacherNo));
+            form.setCourseNo(RandomDataUtils.choice(courseNo));
+            try {
+                NoDataResult result = coursePlanService.addCoursePlan(form);
+                if (result.getCode() == 200) {
+                    i++;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private <T> void addData(Supplier<T> supplier, Consumer<T> consumer, int num) {
