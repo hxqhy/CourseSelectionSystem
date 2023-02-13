@@ -21,6 +21,7 @@ public class StudentServiceTest {
     @Test
     public void testStudentQuery() {
         StudentQuery query = new StudentQuery();
+        query.setStudentName("h");
         System.out.println(service.list(query).getData().size());
     }
 

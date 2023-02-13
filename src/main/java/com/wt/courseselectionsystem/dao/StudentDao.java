@@ -36,6 +36,7 @@ public interface StudentDao {
      * @return ...
      */
     List<Student> select(@Param("query") StudentQuery query);
+    
 
     /**
      * 修改学生信息

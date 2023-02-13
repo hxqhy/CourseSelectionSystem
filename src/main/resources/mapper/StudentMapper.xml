@@ -43,8 +43,11 @@
     <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.Student">
         select id, student_no, student_name, gender, student_class from student
         <where>
+            <if test="query.studentName != null and query.studentName != '' ">
+                student_name like '%${query.studentName}%'
+            </if>
             <if test="query.gender != null">
-                gender = #{query.gender}
+                and gender = #{query.gender}
             </if>
             <if test="query.studentClass != null and query.studentClass != '' ">
                 and studnet_class = #{query.studentClass}

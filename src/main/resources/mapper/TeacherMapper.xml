@@ -35,8 +35,11 @@
     <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.Teacher">
         select id, teacher_no, teacher_name, gender from teacher
         <where>
+            <if test="query.teacherName != null and query.teacherName != '' ">
+                teacher_name like '%${query.teacherName}%'
+            </if>
             <if test="query.gender != null">
-                gender = #{query.gender}
+                and gender = #{query.gender}
             </if>
             <if test="query.active == 0 or query.active == 1">
                 and (select count(*) from account where account_no =

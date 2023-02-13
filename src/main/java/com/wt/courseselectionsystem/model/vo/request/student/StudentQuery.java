@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 public class StudentQuery extends PageRequest {
     private Integer gender;
     private String studentClass;
-    //todo 通过姓名模糊查询
+    private String studentName;
     /**
      * 是否处于激活状态，激活：1，未激活：0；
      */

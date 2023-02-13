@@ -22,6 +22,7 @@ public class TeacherServiceTest {
     @Test
     public void testTeacherQuery() {
         TeacherQuery query = new TeacherQuery();
+        query.setTeacherName("张");
         System.out.println(service.list(query).getData().size());
     }
 

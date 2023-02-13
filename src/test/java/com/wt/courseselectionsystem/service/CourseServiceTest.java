@@ -21,6 +21,7 @@ public class CourseServiceTest {
     @Test
     public void testCourseQuery() {
         CourseQuery query = new CourseQuery();
+        query.setCourseName("生");
         System.out.println(service.list(query).getData().size());
     }
 

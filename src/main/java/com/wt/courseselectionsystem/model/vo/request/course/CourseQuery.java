@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CourseQuery extends PageRequest {
+    private String courseName;
     /**
      * 学分
      */

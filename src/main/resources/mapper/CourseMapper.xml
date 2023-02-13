@@ -50,8 +50,11 @@
         select id, course_no, course_name, credit, course_hours, student_number
         from course
         <where>
+            <if test="query.courseName != null and query.courseName != '' ">
+                course_name like '%${query.courseName}%'
+            </if>
             <if test="query.credit != null">
-                credit=#{query.credit},
+                and credit=#{query.credit},
             </if>
             <if test="query.courseHours != null">
                 and course_hours=#{query.courseHours}
