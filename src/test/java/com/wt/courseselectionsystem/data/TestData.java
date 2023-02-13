@@ -1,8 +1,11 @@
 package com.wt.courseselectionsystem.data;
 
+import com.wt.courseselectionsystem.common.constant.AccountConstant;
+import com.wt.courseselectionsystem.dao.AccountDao;
 import com.wt.courseselectionsystem.dao.CourseDao;
 import com.wt.courseselectionsystem.dao.StudentDao;
 import com.wt.courseselectionsystem.dao.TeacherDao;
+import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.dao.basebean.Course;
 import com.wt.courseselectionsystem.utils.CourseBuilder;
 import com.wt.courseselectionsystem.utils.StudentBuilder;
@@ -16,6 +19,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+
+import static com.wt.courseselectionsystem.common.SystemUtils.passwordEncode;
 
 /**
  * @author lixin
@@ -31,6 +36,18 @@ public class TestData {
 
     @Autowired
     private CourseDao courseDao;
+
+    @Autowired
+    private AccountDao accountDao;
+
+    @Test
+    public void account() {
+        Account account = new Account();
+        account.setAccountNo("admin");
+        account.setPassword(passwordEncode("admin"));
+        account.setAccountType(AccountConstant.ADMIN_CODE);
+        System.out.println(accountDao.insertAccount(account) == 1);
+    }
 
     @Test
     public void students() {
