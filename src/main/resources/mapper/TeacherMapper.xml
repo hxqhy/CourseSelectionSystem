@@ -35,8 +35,8 @@
     <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.Teacher">
         select id, teacher_no, teacher_name, gender from teacher
         <where>
-            <if test="query.teacherName != null and query.teacherName != '' ">
-                teacher_name like '%${query.teacherName}%'
+            <if test="@org.springframework.util.StringUtils@hasLength(query.teacherName)">
+                teacher_name like concat('%',#{query.teacherName},'%')
             </if>
             <if test="query.gender != null">
                 and gender = #{query.gender}

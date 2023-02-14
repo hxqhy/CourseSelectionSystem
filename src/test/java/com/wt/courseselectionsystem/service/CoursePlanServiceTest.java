@@ -18,14 +18,14 @@ public class CoursePlanServiceTest {
     @Test
     public void testCoursePlanQuery() {
         CoursePlanInfoQuery query = new CoursePlanInfoQuery();
-        System.out.println(service.list(query).getData().getList().size());
+
+        System.out.println(service.list(query).getData());
     }
 
     @Test
     public void updateCoursePlanInfo() {
         CoursePlanUpdateForm form = new CoursePlanUpdateForm();
-        form.setCoursePlanNo("123");
-        form.setCourseNo("123445");
+        form.setCourseNo("2005912933802419192023");
         System.out.println(service.update(form));
     }
 
@@ -39,7 +39,7 @@ public class CoursePlanServiceTest {
 
     @Test
     public void selectByCoursePlanNo() {
-        System.out.println(service.info("123"));
+        System.out.println(service.info("2004876516665403932023"));
     }
 
 }

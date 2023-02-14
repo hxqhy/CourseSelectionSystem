@@ -24,14 +24,9 @@
     <delete id="delete">
         delete
         from course_plan
-        where course_plan_no = #{couseNo}
+        where course_plan_no = #{coursePlanNo}
     </delete>
 
-    <select id="selectByCoursePlanNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.CoursePlan">
-        select id, course_plan_no, course_no, teacher_no, course_plan_year
-        from course_plan
-        where course_plan_no = #{coursePlanNo};
-    </select>
 
     <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.CoursePlan">
         select id, course_plan_no, course_no, teacher_no, course_plan_year
@@ -48,9 +43,34 @@
 
     <select id="selectCoursePlanInfo"
             resultType="com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo">
-        select cp.course_plan_no, cp.course_no, c.course_name
+        select cp.course_plan_no
+             , cp.course_no
+             , c.course_name
+             , c.credit
+             , c.course_hours
+             , c.student_number
+             , cp.teacher_no
+             , t.teacher_name
+             , cp.course_plan_year
         from course_plan cp
                  inner join course c on cp.course_no = c.course_no
                  inner join teacher t on cp.teacher_no = t.teacher_no
     </select>
+    <select id="selectByCoursePlanNo"
+            resultType="com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo">
+        select cp.course_plan_no
+             , cp.course_no
+             , c.course_name
+             , c.credit
+             , c.course_hours
+             , c.student_number
+             , cp.teacher_no
+             , t.teacher_name
+             , cp.course_plan_year
+        from course_plan cp
+                 inner join course c on cp.course_no = c.course_no
+                 inner join teacher t on cp.teacher_no = t.teacher_no
+        where course_plan_no = #{coursePlanNo};
+    </select>
+
 </mapper>

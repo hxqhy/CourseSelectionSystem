@@ -27,7 +27,7 @@ public class CourseDaoTest {
 
     @Test
     public void testSelectByCourseNo() {
-        System.out.println(courseDao.selectByCourseNo("123"));
+        System.out.println(courseDao.selectByCourseNo("238084"));
 
     }
 

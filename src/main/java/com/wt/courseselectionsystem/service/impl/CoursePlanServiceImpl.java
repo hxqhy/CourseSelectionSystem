@@ -81,8 +81,6 @@ public class CoursePlanServiceImpl implements CoursePlanService {
     @Override
     public DataResult<CoursePlanVo> info(String coursePlanNo) {
         CoursePlanVo coursePlanVo = new CoursePlanVo();
-        CoursePlan coursePlan = coursePlanDao.selectByCoursePlanNo(coursePlanNo);
-        BeanUtils.copyProperties(coursePlan, coursePlanVo);
 
         return ResultUtils.success(coursePlanVo);
     }

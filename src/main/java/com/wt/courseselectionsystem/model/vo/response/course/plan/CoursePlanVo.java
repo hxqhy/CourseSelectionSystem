@@ -40,5 +40,9 @@ public class CoursePlanVo {
      * 学生人数
      */
     private Integer studentNumber;
+    /**
+     * 开课年份
+     */
+    private String coursePlanYear;
 
 }
