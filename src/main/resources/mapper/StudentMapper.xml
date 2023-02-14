@@ -15,7 +15,7 @@
     <update id="updateStudentInfo">
         update student
         <set>
-            <if test="student.studentName != null and student.studentName !='' ">
+            <if test="student.studentName != null and student.studentName != '' ">
                 student_name=#{student.studentName},
             </if>
             <if test="student.gender!= null">
