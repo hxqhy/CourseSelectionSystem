@@ -31,6 +31,10 @@ public final class AccountConstant {
      * 教师账号前缀
      */
     public static final String TEACHER_PREFIX = "T";
-    
+
+    /**
+     * 默认密码
+     */
+    public static final String DEFAULT_PASSWORD = "123456";
 }
 

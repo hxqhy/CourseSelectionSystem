@@ -2,6 +2,10 @@ create database course_selection_system;
 
 use course_selection_system;
 
+
+use course_selection_system;
+
+drop table if exists account;
 create table account
 (
     id           int auto_increment primary key,
@@ -11,6 +15,7 @@ create table account
     unique index account_no_index (account_no)
 ) comment '账号表';
 
+drop table if exists student;
 create table student
 (
     id            int auto_increment primary key,
@@ -21,6 +26,7 @@ create table student
     unique index student_no_index (student_no)
 ) comment '学生信息表';
 
+drop table if exists teacher;
 create table teacher
 (
     id           int auto_increment primary key,
@@ -30,6 +36,7 @@ create table teacher
     unique index student_no_index (teacher_no)
 ) comment '教师信息表';
 
+drop table if exists course;
 create table course
 (
     id             int auto_increment primary key,
@@ -41,6 +48,7 @@ create table course
     unique index course_no_index (course_no)
 ) comment '课程信息表';
 
+drop table if exists course_plan;
 create table course_plan
 (
     id               int auto_increment primary key,
@@ -51,11 +59,15 @@ create table course_plan
     unique index course_no_index (course_plan_no)
 ) comment '课程计划表';
 
+drop table if exists course_selection;
 create table course_selection
 (
     id             int auto_increment primary key,
     student_no     char(12) not null comment '学生编号',
     course_plan_no char(22) not null comment '课程计划编号'
 ) comment '选课表';
+
+
+
 
 

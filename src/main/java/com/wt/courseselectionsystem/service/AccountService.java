@@ -3,8 +3,11 @@ package com.wt.courseselectionsystem.service;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
+import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
+
+import java.util.List;
 
 /**
  * 用户模块 业务接口
@@ -37,4 +40,27 @@ public interface AccountService {
      */
     NoDataResult activateStudentAccount(String studentNo);
 
+    /**
+     * 激活导师账号
+     *
+     * @param teacherNo 导师号
+     * @return ...
+     */
+    NoDataResult activateTeacherAccount(String teacherNo);
+
+    /**
+     * 批量激活学生账号
+     *
+     * @param activeStudentForm ...
+     * @return row
+     */
+    NoDataResult activateStudentList(ActiveStudentForm activeStudentForm);
+
+    /**
+     * 批量激活导师账号
+     *
+     * @param teacherNoList ...
+     * @return row
+     */
+    NoDataResult activateTeacherList(List<String> teacherNoList);
 }

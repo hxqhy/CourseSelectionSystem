@@ -78,6 +78,16 @@ public final class SystemUtils {
     }
 
     /**
+     * 通过学生编号生成账号
+     *
+     * @param teacherNo 导师号
+     * @return teacherNo
+     */
+    public static String generateTeacherAccountNo(String teacherNo) {
+        return AccountConstant.TEACHER_PREFIX + teacherNo;
+    }
+
+    /**
      * 将常量转换为mybatis xml能够使用的常量
      * S -> 'S'
      *

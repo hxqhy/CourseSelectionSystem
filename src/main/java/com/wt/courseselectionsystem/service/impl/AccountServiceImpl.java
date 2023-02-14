@@ -1,11 +1,14 @@
 package com.wt.courseselectionsystem.service.impl;
 
 import com.wt.courseselectionsystem.common.ResultUtils;
+import com.wt.courseselectionsystem.common.SystemUtils;
+import com.wt.courseselectionsystem.common.constant.AccountConstant;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.AccountDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
+import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
@@ -13,7 +16,9 @@ import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static com.wt.courseselectionsystem.common.SystemUtils.passwordEncode;
 
@@ -67,7 +72,44 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public NoDataResult activateStudentAccount(String studentNo) {
-        return null;
+        int i = accountDao.activateStudentAccount(SystemUtils.generateStudentAccountNo(studentNo)
+                , passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+        return i != 0 ? ResultUtils.success("学生账号激活成功") : ResultUtils.fail("学生账号激活失败");
+    }
+
+    @Override
+    public NoDataResult activateTeacherAccount(String teacherNo) {
+        int i = accountDao.activateStudentAccount(SystemUtils.generateTeacherAccountNo(teacherNo)
+                , passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+        return i != 0 ? ResultUtils.success("导师账号激活成功") : ResultUtils.fail("导师账号激活成功");
+    }
+
+    @Override
+    public NoDataResult activateStudentList(ActiveStudentForm activeStudentForm) {
+        List<String> studentNoList = activeStudentForm.getStudentNoList();
+        if (studentNoList.size() > 0) {
+            List<String> collect = studentNoList.stream()
+                    .map(SystemUtils::generateStudentAccountNo).collect(Collectors.toList());
+            int i = accountDao.activateStudentList(collect, passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+            if (i != 0) {
+                return ResultUtils.success("学生账号批量激活成功");
+            }
+        }
+
+        return ResultUtils.fail("学生账号批量激活失败");
+    }
+
+    @Override
+    public NoDataResult activateTeacherList(List<String> teacherNoList) {
+        if (teacherNoList.size() > 0) {
+            List<String> collect = teacherNoList.stream()
+                    .map(SystemUtils::generateStudentAccountNo).collect(Collectors.toList());
+            int i = accountDao.activateStudentList(collect, passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+            if (i != 0) {
+                return ResultUtils.success("导师账号批量激活成功");
+            }
+        }
+        return ResultUtils.fail("导师账号批量激活失败");
     }
 
 }
