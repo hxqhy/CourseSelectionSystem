@@ -42,6 +42,16 @@
         </if>
     </insert>
 
+    <insert id="insertAccountList">
+        insert into account(account_no, password, account_type)
+        values
+        <if test="!@org.springframework.util.CollectionUtils@isEmpty(accounts)">
+            <foreach collection="accounts" item="item" separator=" ) , ( " open=" ( " close=" ) ">
+                #{item.accountNo}, #{item.password}, #{item.accountType}
+            </foreach>
+        </if>
+    </insert>
+
     <update id="activateStudentAccount">
         insert into account(account_no, password, account_type)
             value (#{studentNo}, #{password}, ${@com.wt.courseselectionsystem.common.SystemUtils@

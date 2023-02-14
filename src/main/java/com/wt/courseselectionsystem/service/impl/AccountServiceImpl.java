@@ -16,10 +16,13 @@ import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.wt.courseselectionsystem.common.SystemUtils.generateStudentAccountNo;
 import static com.wt.courseselectionsystem.common.SystemUtils.passwordEncode;
 
 /**
@@ -86,17 +89,24 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public NoDataResult activateStudentList(ActiveStudentForm activeStudentForm) {
-        List<String> studentNoList = activeStudentForm.getStudentNoList();
-        if (studentNoList.size() > 0) {
-            List<String> collect = studentNoList.stream()
-                    .map(SystemUtils::generateStudentAccountNo).collect(Collectors.toList());
-            int i = accountDao.activateStudentList(collect, passwordEncode(AccountConstant.DEFAULT_PASSWORD));
-            if (i != 0) {
-                return ResultUtils.success("学生账号批量激活成功");
-            }
+        List<String> studentNoList = Optional.ofNullable(activeStudentForm.getStudentNos())
+                .orElse(Collections.emptyList());
+        List<Account> accounts = studentNoList.stream()
+                .filter(studentNo ->
+                        Objects.isNull(accountDao.selectByAccountNo(generateStudentAccountNo(studentNo))))
+                .map(studentNo -> {
+                    Account account = new Account();
+                    account.setAccountNo(SystemUtils.generateStudentAccountNo(studentNo));
+                    account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+                    account.setAccountType(AccountConstant.STUDENT_CODE);
+                    return account;
+                }).collect(Collectors.toList());
+        if (accounts.isEmpty()) {
+            return ResultUtils.success("学生账号批量激活成功");
         }
-
-        return ResultUtils.fail("学生账号批量激活失败");
+        Integer row = accountDao.insertAccountList(accounts);
+        return row.equals(accounts.size()) ? ResultUtils.success("学生账号批量激活成功")
+                : ResultUtils.fail("学生账号批量激活失败");
     }
 
     @Override

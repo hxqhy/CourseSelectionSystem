@@ -11,10 +11,7 @@ import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
 import com.wt.courseselectionsystem.service.TokenService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
 
@@ -58,20 +55,20 @@ public class AccountController {
     }
 
     @LoginRequired(role = {ADMIN_CODE})
-    @PostMapping("/activeStudent")
+    @PostMapping("/active_student")
     public NoDataResult activateStudentAccount(String studentNo) {
         return accountService.activateStudentAccount(studentNo);
     }
 
     @LoginRequired(role = {ADMIN_CODE})
-    @PostMapping("/activeTeacher")
+    @PostMapping("/active_teacher")
     public NoDataResult activateTeacherAccount(String teacherNo) {
         return accountService.activateStudentAccount(teacherNo);
     }
 
 
     @LoginRequired(role = {ADMIN_CODE})
-    @PostMapping("list/activeStudent")
+    @PostMapping("/active_list_student")
     public NoDataResult activateStudentList(@RequestBody ActiveStudentForm activeStudentForm) {
         return accountService.activateStudentList(activeStudentForm);
     }

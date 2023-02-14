@@ -29,10 +29,18 @@ public interface AccountDao {
     int insertAccount(Account account);
 
     /**
+     * 保存账号信息
+     *
+     * @param accounts accounts
+     * @return row
+     */
+    int insertAccountList(@Param("accounts") List<Account> accounts);
+
+    /**
      * 激活学生账号
      *
      * @param studentNo studentNo
-     * @param password password
+     * @param password  password
      * @return row
      */
     int activateStudentAccount(@Param("studentNo") String studentNo, @Param("password") String password);
@@ -48,16 +56,18 @@ public interface AccountDao {
 
     /**
      * 批量激活学生账号
+     *
      * @param studentNoList 学生账号集合
-     * @param password password
+     * @param password      password
      * @return row
      */
     int activateStudentList(@Param("studentNoList") List<String> studentNoList, @Param("password") String password);
 
     /**
      * 批量激活导师账号
+     *
      * @param teacherNoList 导师账号集合
-     * @param password password
+     * @param password      password
      * @return row
      */
     int activateTeacherList(@Param("teacherNoList") List<String> teacherNoList, @Param("password") String password);
