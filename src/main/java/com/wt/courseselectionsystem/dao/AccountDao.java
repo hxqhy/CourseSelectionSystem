@@ -53,22 +53,4 @@ public interface AccountDao {
      * @return row
      */
     int activateTeacherAccount(@Param("teacherNo") String teacherNo, @Param("password") String password);
-
-    /**
-     * 批量激活学生账号
-     *
-     * @param studentNoList 学生账号集合
-     * @param password      password
-     * @return row
-     */
-    int activateStudentList(@Param("studentNoList") List<String> studentNoList, @Param("password") String password);
-
-    /**
-     * 批量激活导师账号
-     *
-     * @param teacherNoList 导师账号集合
-     * @param password      password
-     * @return row
-     */
-    int activateTeacherList(@Param("teacherNoList") List<String> teacherNoList, @Param("password") String password);
 }

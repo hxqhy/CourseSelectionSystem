@@ -75,16 +75,14 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public NoDataResult activateStudentAccount(String studentNo) {
-        int i = accountDao.activateStudentAccount(SystemUtils.generateStudentAccountNo(studentNo)
-                , passwordEncode(AccountConstant.DEFAULT_PASSWORD));
-        return i != 0 ? ResultUtils.success("学生账号激活成功") : ResultUtils.fail("学生账号激活失败");
+        // todo 业务逻辑实现
+        return ResultUtils.success("学生账号激活成功");
     }
 
     @Override
     public NoDataResult activateTeacherAccount(String teacherNo) {
-        int i = accountDao.activateStudentAccount(SystemUtils.generateTeacherAccountNo(teacherNo)
-                , passwordEncode(AccountConstant.DEFAULT_PASSWORD));
-        return i != 0 ? ResultUtils.success("导师账号激活成功") : ResultUtils.fail("导师账号激活成功");
+        // todo 业务逻辑实现
+        return ResultUtils.success("导师账号激活成功");
     }
 
     @Override
@@ -111,14 +109,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public NoDataResult activateTeacherList(List<String> teacherNoList) {
-        if (teacherNoList.size() > 0) {
-            List<String> collect = teacherNoList.stream()
-                    .map(SystemUtils::generateStudentAccountNo).collect(Collectors.toList());
-            int i = accountDao.activateStudentList(collect, passwordEncode(AccountConstant.DEFAULT_PASSWORD));
-            if (i != 0) {
-                return ResultUtils.success("导师账号批量激活成功");
-            }
-        }
+        // todo 业务逻辑实现
         return ResultUtils.fail("导师账号批量激活失败");
     }
 

@@ -23,7 +23,7 @@ public class CoursePlanController {
     }
 
     @PostMapping("/add")
-    public NoDataResult addCourse(@RequestBody CoursePlanAddForm form) {
+    public NoDataResult add(@RequestBody CoursePlanAddForm form) {
         return coursePlanService.addCoursePlan(form);
     }
 

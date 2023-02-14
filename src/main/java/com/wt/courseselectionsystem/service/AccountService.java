@@ -52,7 +52,7 @@ public interface AccountService {
      * 批量激活学生账号
      *
      * @param activeStudentForm ...
-     * @return row
+     * @return ...
      */
     NoDataResult activateStudentList(ActiveStudentForm activeStudentForm);
 
@@ -60,7 +60,7 @@ public interface AccountService {
      * 批量激活导师账号
      *
      * @param teacherNoList ...
-     * @return row
+     * @return ...
      */
     NoDataResult activateTeacherList(List<String> teacherNoList);
 }
