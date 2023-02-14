@@ -10,10 +10,10 @@
     <update id="updateTeacherInfo">
         update teacher
         <set>
-            <if test="teacher.teacherName != null and teacher.teacherName !='' ">
+            <if test="teacher.teacherName != null and teacher.teacherName != '' ">
                 teacher_name=#{teacher.teacherName},
             </if>
-            <if test="teacher.gender!= null">
+            <if test="teacher.gender != null">
                 gender=#{teacher.gender},
             </if>
         </set>

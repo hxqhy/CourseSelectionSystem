@@ -22,13 +22,13 @@
             <if test="course.courseName != null and course.courseName != '' ">
                 course_name = #{course.courseName},
             </if>
-            <if test="course.credit!= null">
+            <if test="course.credit != null">
                 credit = #{course.credit},
             </if>
-            <if test="course.courseHours!= null">
+            <if test="course.courseHours != null">
                 course_hours = #{course.courseHours},
             </if>
-            <if test="course.studentNumber!= null">
+            <if test="course.studentNumber != null">
                 student_number = #{course.studentNumber}
             </if>
         </set>
