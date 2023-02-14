@@ -3,11 +3,10 @@ package com.wt.courseselectionsystem.service;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseAddForm;
-import com.wt.courseselectionsystem.model.vo.request.course.CourseQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.CourseListVo;
 import com.wt.courseselectionsystem.model.vo.response.CourseVo;
-
-import java.util.List;
 
 /**
  * @author HY
@@ -27,7 +26,7 @@ public interface CourseService {
      * @param query ...
      * @return ...
      */
-    DataResult<List<CourseVo>> list(CourseQuery query);
+    DataResult<CourseListVo> list(CourseListQuery query);
 
     /**
      * 修改

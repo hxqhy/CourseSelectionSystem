@@ -8,9 +8,11 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.StudentDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
+import com.wt.courseselectionsystem.model.dao.exbean.StudentInfo;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
-import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.StudentListVo;
 import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
 import org.springframework.beans.BeanUtils;
@@ -32,12 +34,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public DataResult<List<StudentVo>> list(StudentQuery query) {
+    public DataResult<StudentListVo> list(StudentListQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        List<Student> list = studentDao.select(query);
-        List<StudentVo> studentVos = SystemUtils.easyCopy(list, StudentVo.class);
-        PageInfo<StudentVo> info = new PageInfo<>(studentVos);
-        return ResultUtils.success(info.getList());
+        List<StudentInfo> list = studentDao.selectStudentInfo(query);
+        PageInfo<StudentInfo> info = new PageInfo<>(list);
+        StudentListVo result = new StudentListVo();
+        result.setList(SystemUtils.easyCopy(list, StudentVo.class));
+        SystemUtils.configPageInfo(result, info);
+        return ResultUtils.success(result);
     }
 
     @Override

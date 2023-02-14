@@ -51,4 +51,23 @@
             </if>
         </where>
     </select>
+    <select id="selectTeacherInfo" resultType="com.wt.courseselectionsystem.model.dao.exbean.TeacherInfo">
+        select id, teacher_no, teacher_name, gender from teacher
+        <where>
+            <if test="@org.springframework.util.StringUtils@hasLength(query.teacherName)">
+                teacher_name like concat('%',#{query.teacherName},'%')
+            </if>
+            <if test="query.gender != null">
+                and gender = #{query.gender}
+            </if>
+            <if test="query.active == 0 or query.active == 1">
+                and (select count(*) from account where account_no =
+                concat(
+                ${@com.wt.courseselectionsystem.common.SystemUtils@
+                xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@TEACHER_PREFIX)}
+                ,teacher_no))
+                = #{query.active}
+            </if>
+        </where>
+    </select>
 </mapper>

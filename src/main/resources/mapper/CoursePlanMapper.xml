@@ -57,34 +57,34 @@
         inner join teacher t on cp.teacher_no = t.teacher_no
         <where>
             <if test="query.coursePlanNo != null and query.coursePlanNo != '' ">
-                course_plan_no=#{query.coursePlanNo}
+                cp.course_plan_no=#{query.coursePlanNo}
             </if>
             <if test="query.courseNo != null and query.courseNo != '' ">
-                and course_no=#{query.courseNo}
+                or c.course_no=#{query.courseNo}
             </if>
             <if test="@org.springframework.util.StringUtils@hasLength(query.courseName)">
-                and course_name like concat('%',#{query.courseName},'%')
+                or c.course_name like concat('%',#{query.courseName},'%')
             </if>
-            <if test="course.credit != null">
-                and credit = #{query.credit}
+            <if test="query.credit != null">
+                or c.credit = #{query.credit}
             </if>
-            <if test="course.courseHours != null">
-                and course_hours = #{query.courseHours}
+            <if test="query.courseHours != null">
+                or c.course_hours = #{query.courseHours}
             </if>
-            <if test="course.studentNumber != null">
-                and student_number = #{query.studentNumber}
+            <if test="query.studentNumber != null">
+                or c.student_number = #{query.studentNumber}
             </if>
             <if test="query.courseNo != null and query.courseNo != '' ">
-                and course_no=#{query.courseNo}
+                or c.course_no=#{query.courseNo}
             </if>
             <if test="query.teacherNo != null and query.teacherNo != '' ">
-                and teacher_no=#{query.teacherNo}
+                or t.teacher_no=#{query.teacherNo}
             </if>
             <if test="@org.springframework.util.StringUtils@hasLength(query.teacherName)">
-                and teacher_name like concat('%',#{query.teacherName},'%')
+                or t.teacher_name like concat('%',#{query.teacherName},'%')
             </if>
             <if test="query.coursePlanYear != null and query.coursePlanYear != '' ">
-                and course_plan_year=#{query.coursePlanYear}
+                or t.course_plan_year=#{query.coursePlanYear}
             </if>
         </where>
 

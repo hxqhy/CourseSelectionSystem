@@ -3,8 +3,10 @@ package com.wt.courseselectionsystem.service;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
+import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.TeacherListVo;
 import com.wt.courseselectionsystem.model.vo.response.TeacherVo;
 
 import java.util.List;
@@ -27,7 +29,7 @@ public interface TeacherService {
      * @param query ...
      * @return ...
      */
-    DataResult<List<TeacherVo>> list(TeacherQuery query);
+    DataResult<TeacherListVo> list(TeacherListQuery query);
 
     /**
      * 修改教师信息列表

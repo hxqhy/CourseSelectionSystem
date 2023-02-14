@@ -1,19 +1,15 @@
-package com.wt.courseselectionsystem.model.vo.request.course.plan;
+package com.wt.courseselectionsystem.model.vo.request.course;
 
 import com.wt.courseselectionsystem.model.vo.request.base.PageRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author lixin
+ * @author xxx
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class CoursePlanInfoQuery extends PageRequest {
-    /**
-     * 课程计划号
-     */
-    private String coursePlanNo;
+public class CourseListQuery extends PageRequest {
     /**
      * 课程号
      */
@@ -22,14 +18,6 @@ public class CoursePlanInfoQuery extends PageRequest {
      * 课程名称
      */
     private String courseName;
-    /**
-     * 授课老师编号
-     */
-    private String teacherNo;
-    /**
-     * 教师名称
-     */
-    private String teacherName;
     /**
      * 学分
      */
@@ -42,8 +30,4 @@ public class CoursePlanInfoQuery extends PageRequest {
      * 学生人数
      */
     private Integer studentNumber;
-    /**
-     * 开课年份
-     */
-    private String coursePlanYear;
 }

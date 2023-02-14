@@ -8,9 +8,11 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.TeacherDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
+import com.wt.courseselectionsystem.model.dao.exbean.TeacherInfo;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
-import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
+import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.TeacherListVo;
 import com.wt.courseselectionsystem.model.vo.response.TeacherVo;
 import com.wt.courseselectionsystem.service.TeacherService;
 import org.springframework.beans.BeanUtils;
@@ -46,12 +48,14 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public DataResult<List<TeacherVo>> list(TeacherQuery query) {
+    public DataResult<TeacherListVo> list(TeacherListQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        List<Teacher> list = teacherDao.select(query);
-        List<TeacherVo> teacherVos = SystemUtils.easyCopy(list, TeacherVo.class);
-        PageInfo<TeacherVo> info = new PageInfo<>(teacherVos);
-        return ResultUtils.success(info.getList());
+        List<TeacherInfo> list = teacherDao.selectTeacherInfo(query);
+        PageInfo<TeacherInfo> info = new PageInfo<>(list);
+        TeacherListVo result = new TeacherListVo();
+        result.setList(SystemUtils.easyCopy(list, TeacherVo.class));
+        SystemUtils.configPageInfo(result, info);
+        return ResultUtils.success(result);
     }
 
     @Override

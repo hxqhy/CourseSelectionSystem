@@ -2,6 +2,8 @@ package com.wt.courseselectionsystem.dao;
 
 
 import com.wt.courseselectionsystem.model.dao.basebean.Course;
+import com.wt.courseselectionsystem.model.dao.exbean.CourseInfo;
+import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -52,4 +54,13 @@ public interface CourseDao {
      * @return ...
      */
     int delete(String courseNo);
+
+    /**
+     * 查询课程详情
+     *
+     * @param query 查询条件
+     * @return list
+     */
+    List<CourseInfo> selectCourseInfo(@Param("query") CourseListQuery query);
+
 }

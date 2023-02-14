@@ -1,6 +1,8 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
+import com.wt.courseselectionsystem.model.dao.exbean.StudentInfo;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -36,7 +38,7 @@ public interface StudentDao {
      * @return ...
      */
     List<Student> select(@Param("query") StudentQuery query);
-    
+
 
     /**
      * 修改学生信息
@@ -53,5 +55,13 @@ public interface StudentDao {
      * @return ...
      */
     int delete(String studentNo);
+
+    /**
+     * 查询学生详情
+     *
+     * @param query 条件
+     * @return list
+     */
+    List<StudentInfo> selectStudentInfo(@Param("query") StudentListQuery query);
 
 }

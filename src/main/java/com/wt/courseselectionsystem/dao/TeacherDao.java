@@ -1,6 +1,8 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
+import com.wt.courseselectionsystem.model.dao.exbean.TeacherInfo;
+import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -52,4 +54,12 @@ public interface TeacherDao {
      * @return ...
      */
     int delete(String teacherNo);
+
+    /**
+     * 查询教师详情
+     *
+     * @param query 条件
+     * @return list
+     */
+    List<TeacherInfo> selectTeacherInfo(@Param("query") TeacherListQuery query);
 }

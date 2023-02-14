@@ -62,5 +62,27 @@
             </if>
         </where>
     </select>
+    <select id="selectStudentInfo" resultType="com.wt.courseselectionsystem.model.dao.exbean.StudentInfo">
+        select id, student_no, student_name, gender, student_class from student
+        <where>
+            <if test="@org.springframework.util.StringUtils@hasLength(query.studentName)">
+                student_name like concat('%',#{query.studentName},'%')
+            </if>
+            <if test="query.gender != null">
+                and gender = #{query.gender}
+            </if>
+            <if test="query.studentClass != null and query.studentClass != '' ">
+                and studnet_class = #{query.studentClass}
+            </if>
+            <if test="query.active == 0 or query.active == 1">
+                and (select count(*) from account where account_no =
+                concat(
+                ${@com.wt.courseselectionsystem.common.SystemUtils@
+                xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@STUDENT_PREFIX)}
+                ,student_no))
+                = #{query.active}
+            </if>
+        </where>
+    </select>
 
 </mapper>

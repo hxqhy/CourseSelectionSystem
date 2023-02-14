@@ -2,7 +2,7 @@ package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.CoursePlan;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
-import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,9 +38,9 @@ public class CoursePlanDaoTest {
 
     @Test
     public void testSelect() {
-        CoursePlanQuery query = new CoursePlanQuery();
-        query.setCourseNo("785080");
-        System.out.println(coursePlanDao.select(query));
+        CoursePlanInfoQuery info = new CoursePlanInfoQuery();
+        info.setTeacherNo("张");
+        System.out.println(coursePlanDao.selectCoursePlanInfo(info));
     }
 
     @Test

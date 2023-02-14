@@ -64,6 +64,24 @@
             </if>
         </where>
     </select>
+    <select id="selectCourseInfo" resultType="com.wt.courseselectionsystem.model.dao.exbean.CourseInfo">
+        select id, course_no, course_name, credit, course_hours, student_number
+        from course
+        <where>
+            <if test="query.courseName != null and query.courseName != '' ">
+                course_name like '%${query.courseName}%'
+            </if>
+            <if test="query.credit != null">
+                and credit=#{query.credit},
+            </if>
+            <if test="query.courseHours != null">
+                and course_hours=#{query.courseHours}
+            </if>
+            <if test="query.studentNumber != null">
+                and student_number=#{query.studentNumber}
+            </if>
+        </where>
+    </select>
 
 </mapper>
 
