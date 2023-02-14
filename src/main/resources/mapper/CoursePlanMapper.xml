@@ -44,17 +44,50 @@
     <select id="selectCoursePlanInfo"
             resultType="com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo">
         select cp.course_plan_no
-             , cp.course_no
-             , c.course_name
-             , c.credit
-             , c.course_hours
-             , c.student_number
-             , cp.teacher_no
-             , t.teacher_name
-             , cp.course_plan_year
+        , cp.course_no
+        , c.course_name
+        , c.credit
+        , c.course_hours
+        , c.student_number
+        , cp.teacher_no
+        , t.teacher_name
+        , cp.course_plan_year
         from course_plan cp
-                 inner join course c on cp.course_no = c.course_no
-                 inner join teacher t on cp.teacher_no = t.teacher_no
+        inner join course c on cp.course_no = c.course_no
+        inner join teacher t on cp.teacher_no = t.teacher_no
+        <where>
+            <if test="query.coursePlanNo!= null and query.coursePlanNo!=''">
+                course_plan_no=#{query.coursePlanNo}
+            </if>
+            <if test="query.courseNo!= null and query.courseNo!=''">
+                and course_no=#{query.courseNo}
+            </if>
+            <if test="@org.springframework.util.StringUtils@hasLength(query.courseName)">
+                and course_name like concat('%',#{query.courseName},'%')
+            </if>
+            <if test="course.credit!= null">
+                and credit = #{query.credit}
+            </if>
+            <if test="course.courseHours!= null">
+                and course_hours = #{query.courseHours}
+            </if>
+            <if test="course.studentNumber!= null">
+                and student_number = #{query.studentNumber}
+            </if>
+            <if test="query.courseNo!= null and query.courseNo!=''">
+                and course_no=#{query.courseNo}
+            </if>
+            <if test="query.teacherNo!= null and query.teacherNo!=''">
+                and teacher_no=#{query.teacherNo}
+            </if>
+            <if test="@org.springframework.util.StringUtils@hasLength(query.teacherName)">
+                and teacher_name like concat('%',#{query.teacherName},'%')
+            </if>
+            <if test="query.coursePlanYear!= null and query.coursePlanYear!=''">
+                and course_plan_year=#{query.coursePlanYear}
+            </if>
+        </where>
+
     </select>
     <select id="selectByCoursePlanNo"
             resultType="com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo">
