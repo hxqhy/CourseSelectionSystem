@@ -14,10 +14,10 @@ import java.time.LocalDate;
  */
 @SpringBootTest
 public class CoursePlanDaoTest {
+
     @Autowired
     private CoursePlanDao coursePlanDao;
 
-    
     @Test
     public void testInsert() {
         CoursePlan coursePlan = new CoursePlan();
@@ -57,8 +57,7 @@ public class CoursePlanDaoTest {
     public void testDelete() {
         System.out.println(coursePlanDao.delete("123"));
     }
-
-
+    
     private String generateCoursePlanNo(CoursePlanAddForm form, LocalDate date) {
         return form.getTeacherNo() + form.getCourseNo() + date.getYear();
     }
