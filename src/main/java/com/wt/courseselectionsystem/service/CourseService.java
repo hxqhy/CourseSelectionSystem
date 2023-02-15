@@ -24,7 +24,7 @@ public interface CourseService {
      * 条件查询
      *
      * @param query ...
-     * @return ...
+     * @return list
      */
     DataResult<CourseListVo> list(CourseListQuery query);
 

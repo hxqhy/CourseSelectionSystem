@@ -1,7 +1,6 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
-import com.wt.courseselectionsystem.model.dao.exbean.StudentInfo;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
 import org.apache.ibatis.annotations.Param;
@@ -62,6 +61,6 @@ public interface StudentDao {
      * @param query 条件
      * @return list
      */
-    List<StudentInfo> selectStudentInfo(@Param("query") StudentListQuery query);
+    List<Student> selectStudentInfo(@Param("query") StudentListQuery query);
 
 }

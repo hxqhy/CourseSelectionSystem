@@ -8,7 +8,6 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.StudentDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
-import com.wt.courseselectionsystem.model.dao.exbean.StudentInfo;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
@@ -36,8 +35,8 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public DataResult<StudentListVo> list(StudentListQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        List<StudentInfo> list = studentDao.selectStudentInfo(query);
-        PageInfo<StudentInfo> info = new PageInfo<>(list);
+        List<Student> list = studentDao.selectStudentInfo(query);
+        PageInfo<Student> info = new PageInfo<>(list);
         StudentListVo result = new StudentListVo();
         result.setList(SystemUtils.easyCopy(list, StudentVo.class));
         SystemUtils.configPageInfo(result, info);

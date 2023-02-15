@@ -8,7 +8,6 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.CourseDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Course;
-import com.wt.courseselectionsystem.model.dao.exbean.CourseInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseUpdateForm;
@@ -51,8 +50,8 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public DataResult<CourseListVo> list(CourseListQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        List<CourseInfo> list = courseDao.selectCourseInfo(query);
-        PageInfo<CourseInfo> info = new PageInfo<>(list);
+        List<Course> list = courseDao.selectCourseInfo(query);
+        PageInfo<Course> info = new PageInfo<>(list);
         CourseListVo result = new CourseListVo();
         result.setList(SystemUtils.easyCopy(list, CourseVo.class));
         SystemUtils.configPageInfo(result, info);

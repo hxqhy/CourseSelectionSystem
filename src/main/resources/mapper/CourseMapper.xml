@@ -64,7 +64,7 @@
             </if>
         </where>
     </select>
-    <select id="selectCourseInfo" resultType="com.wt.courseselectionsystem.model.dao.exbean.CourseInfo">
+    <select id="selectCourseInfo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Course">
         select id, course_no, course_name, credit, course_hours, student_number
         from course
         <where>
