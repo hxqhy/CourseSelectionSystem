@@ -6,6 +6,8 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
+import com.wt.courseselectionsystem.model.vo.request.account.ActivateSingleAccountForm;
+import com.wt.courseselectionsystem.model.vo.request.account.ActivateTeacherForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
@@ -56,14 +58,14 @@ public class AccountController {
 
     @LoginRequired(role = {ADMIN_CODE})
     @PostMapping("/active_student")
-    public NoDataResult activateStudentAccount(String studentNo) {
-        return accountService.activateStudentAccount(studentNo);
+    public NoDataResult activateStudentAccount(@RequestBody ActivateSingleAccountForm form) {
+        return accountService.activateStudentAccount(form);
     }
 
     @LoginRequired(role = {ADMIN_CODE})
     @PostMapping("/active_teacher")
-    public NoDataResult activateTeacherAccount(String teacherNo) {
-        return accountService.activateStudentAccount(teacherNo);
+    public NoDataResult activateTeacherAccount(ActivateSingleAccountForm form) {
+        return accountService.activateStudentAccount(form);
     }
 
 
@@ -71,5 +73,11 @@ public class AccountController {
     @PostMapping("/active_list_student")
     public NoDataResult activateStudentList(@RequestBody ActiveStudentForm activeStudentForm) {
         return accountService.activateStudentList(activeStudentForm);
+    }
+
+    @LoginRequired(role = {ADMIN_CODE})
+    @PostMapping("/active_list_teacher")
+    public NoDataResult activateTeacherList(@RequestBody ActivateTeacherForm activateTeacherForm) {
+        return accountService.activateTeacherList(activateTeacherForm);
     }
 }

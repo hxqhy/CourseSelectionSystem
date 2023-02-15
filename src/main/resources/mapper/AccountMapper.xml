@@ -14,33 +14,6 @@
             value (#{accountNo}, #{password}, #{accountType});
     </insert>
 
-    <insert id="activateTeacherAccount">
-        insert into account(account_no, password, account_type)
-            value (#{studentNo}, #{password}, ${@com.wt.courseselectionsystem.common.SystemUtils@
-                xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@TEACHER_CODE)})
-    </insert>
-
-    <insert id="activateStudentList">
-        insert into account(account_no, password, account_type)
-        values
-        <if test="studentNoList != null and studentNoList.size() > 0">
-            <foreach collection="studentNoList" item="studentNo" separator=" ) , ( " open=" ( " close=" ) ">
-                #{studentNo},#{password},${@com.wt.courseselectionsystem.common.SystemUtils@
-                    xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@STUDENT_CODE)}
-            </foreach>
-        </if>
-    </insert>
-
-    <insert id="activateTeacherList">
-        insert into account(account_no, password, account_type)
-        values
-        <if test="teacherNoList != null and teacherNoList.size() > 0">
-            <foreach collection="teacherNoList" item="teacherNo" separator=" ) , ( " open=" ( " close=" ) ">
-                #{teacherNo},#{password},${@com.wt.courseselectionsystem.common.SystemUtils@
-                    xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@TEACHER_CODE)}
-            </foreach>
-        </if>
-    </insert>
 
     <insert id="insertAccountList">
         insert into account(account_no, password, account_type)
@@ -52,11 +25,6 @@
         </if>
     </insert>
 
-    <update id="activateStudentAccount">
-        insert into account(account_no, password, account_type)
-            value (#{studentNo}, #{password}, ${@com.wt.courseselectionsystem.common.SystemUtils@
-                xmlConstant(@com.wt.courseselectionsystem.common.constant.AccountConstant@STUDENT_CODE)})
-    </update>
 
     <select id="selectByAccountNo" resultMap="AccountMap">
         select id, account_no, password, account_type

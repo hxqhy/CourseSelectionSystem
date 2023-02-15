@@ -3,6 +3,8 @@ package com.wt.courseselectionsystem.service;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
+import com.wt.courseselectionsystem.model.vo.request.account.ActivateSingleAccountForm;
+import com.wt.courseselectionsystem.model.vo.request.account.ActivateTeacherForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
@@ -35,18 +37,17 @@ public interface AccountService {
     /**
      * 激活学生账号
      *
-     * @param studentNo 学号
+     * @param form ...
      * @return ...
      */
-    NoDataResult activateStudentAccount(String studentNo);
+    NoDataResult activateStudentAccount(ActivateSingleAccountForm form);
 
     /**
      * 激活导师账号
-     *
-     * @param teacherNo 导师号
+     * @param form ...
      * @return ...
      */
-    NoDataResult activateTeacherAccount(String teacherNo);
+    NoDataResult activateTeacherAccount(ActivateSingleAccountForm form);
 
     /**
      * 批量激活学生账号
@@ -58,9 +59,8 @@ public interface AccountService {
 
     /**
      * 批量激活导师账号
-     *
-     * @param teacherNoList ...
+     * @param activateTeacherForm ...
      * @return ...
      */
-    NoDataResult activateTeacherList(List<String> teacherNoList);
+    NoDataResult activateTeacherList(ActivateTeacherForm activateTeacherForm);
 }

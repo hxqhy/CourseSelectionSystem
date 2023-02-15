@@ -29,28 +29,10 @@ public interface AccountDao {
     int insertAccount(Account account);
 
     /**
-     * 保存账号信息
+     * 批量激活账号
      *
      * @param accounts accounts
      * @return row
      */
     int insertAccountList(@Param("accounts") List<Account> accounts);
-
-    /**
-     * 激活学生账号
-     *
-     * @param studentNo studentNo
-     * @param password  password
-     * @return row
-     */
-    int activateStudentAccount(@Param("studentNo") String studentNo, @Param("password") String password);
-
-    /**
-     * 激活导师账号
-     *
-     * @param teacherNo teacherNo
-     * @param password  password
-     * @return row
-     */
-    int activateTeacherAccount(@Param("teacherNo") String teacherNo, @Param("password") String password);
 }
