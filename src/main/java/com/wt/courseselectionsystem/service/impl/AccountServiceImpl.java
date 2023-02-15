@@ -1,6 +1,5 @@
 package com.wt.courseselectionsystem.service.impl;
 
-import com.github.pagehelper.util.StringUtil;
 import com.wt.courseselectionsystem.common.ResultUtils;
 import com.wt.courseselectionsystem.common.SystemUtils;
 import com.wt.courseselectionsystem.common.constant.AccountConstant;
@@ -93,6 +92,19 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public NoDataResult activateTeacherAccount(ActivateSingleAccountForm form) {
         // todo 业务逻辑实现
+        String s = generateTeacherAccountNo(form.getNumber());
+        Account no = accountDao.selectByAccountNo(s);
+        if (no != null) {
+            return ResultUtils.fail("请选择教师账号或账号已激活");
+        }
+        Account account = new Account();
+        account.setAccountNo(s);
+        account.setPassword(SystemUtils.passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+        account.setAccountType(AccountConstant.TEACHER_CODE);
+        int i = accountDao.insertAccount(account);
+        if (i == 0) {
+            return ResultUtils.fail("导师账号激活失败");
+        }
         return ResultUtils.success("导师账号激活成功");
     }
 
