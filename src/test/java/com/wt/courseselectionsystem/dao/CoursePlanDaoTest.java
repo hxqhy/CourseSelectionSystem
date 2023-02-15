@@ -17,6 +17,7 @@ public class CoursePlanDaoTest {
     @Autowired
     private CoursePlanDao coursePlanDao;
 
+    
     @Test
     public void testInsert() {
         CoursePlan coursePlan = new CoursePlan();
