@@ -3,12 +3,14 @@ package com.wt.courseselectionsystem.controller;
 import com.wt.courseselectionsystem.common.annotation.LoginRequired;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
+import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.StudentListVo;
 import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
+import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.web.bind.annotation.*;
 
 import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
@@ -22,9 +24,11 @@ import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN
 public class StudentController {
 
     private final StudentService studentService;
+    private final TokenService<Account> tokenService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, TokenService<Account> tokenService) {
         this.studentService = studentService;
+        this.tokenService = tokenService;
     }
 
     @PostMapping("/list")
@@ -50,5 +54,12 @@ public class StudentController {
     @DeleteMapping()
     public NoDataResult delete(String studentNo) {
         return studentService.delete(studentNo);
+    }
+
+    @GetMapping("/personal_info")
+    public DataResult<StudentVo> studentInfo(@RequestHeader(value = "token") String token) {
+        Account account = tokenService.getData(token);
+        String s = account.getAccountNo().substring(1);
+        return studentService.info(s);
     }
 }
