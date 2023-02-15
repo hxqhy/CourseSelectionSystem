@@ -2,7 +2,7 @@ package com.wt.courseselectionsystem.service;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
-import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
+import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
 import com.wt.courseselectionsystem.utils.TeacherBuilder;
 import org.junit.jupiter.api.Test;
@@ -21,9 +21,9 @@ public class TeacherServiceTest {
 
     @Test
     public void testTeacherQuery() {
-        TeacherQuery query = new TeacherQuery();
+        TeacherListQuery query = new TeacherListQuery();
         query.setTeacherName("张");
-        System.out.println(service.list(query).getData().size());
+        System.out.println(service.list(query).getData());
     }
 
     @Test

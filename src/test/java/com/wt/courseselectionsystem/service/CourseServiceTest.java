@@ -2,7 +2,7 @@ package com.wt.courseselectionsystem.service;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Course;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseAddForm;
-import com.wt.courseselectionsystem.model.vo.request.course.CourseQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseUpdateForm;
 import com.wt.courseselectionsystem.utils.CourseBuilder;
 import org.junit.jupiter.api.Test;
@@ -20,9 +20,9 @@ public class CourseServiceTest {
 
     @Test
     public void testCourseQuery() {
-        CourseQuery query = new CourseQuery();
+        CourseListQuery query = new CourseListQuery();
         query.setCourseName("生");
-        System.out.println(service.list(query).getData().size());
+        System.out.println(service.list(query).getData());
     }
 
     @Test

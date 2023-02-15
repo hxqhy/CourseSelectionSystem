@@ -2,7 +2,7 @@ package com.wt.courseselectionsystem.service;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
-import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
 import com.wt.courseselectionsystem.utils.StudentBuilder;
 import org.junit.jupiter.api.Test;
@@ -20,9 +20,9 @@ public class StudentServiceTest {
 
     @Test
     public void testStudentQuery() {
-        StudentQuery query = new StudentQuery();
+        StudentListQuery query = new StudentListQuery();
         query.setStudentName("h");
-        System.out.println(service.list(query).getData().size());
+        System.out.println(service.list(query).getData());
     }
 
     @Test
