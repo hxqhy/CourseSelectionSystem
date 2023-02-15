@@ -3,13 +3,12 @@ package com.wt.courseselectionsystem.controller;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
-import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
+import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.TeacherListVo;
 import com.wt.courseselectionsystem.model.vo.response.TeacherVo;
 import com.wt.courseselectionsystem.service.TeacherService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author HY
@@ -30,7 +29,7 @@ public class TeacherController {
     }
 
     @PostMapping("/list")
-    public DataResult<List<TeacherVo>> list(@RequestBody TeacherQuery query) {
+    public DataResult<TeacherListVo> list(@RequestBody TeacherListQuery query) {
         return teacherService.list(query);
     }
 
@@ -43,7 +42,7 @@ public class TeacherController {
     public DataResult<TeacherVo> info(String teacherNo) {
         return teacherService.info(teacherNo);
     }
-    
+
     @DeleteMapping()
     public NoDataResult delete(String teacherNo) {
         return teacherService.delete(teacherNo);

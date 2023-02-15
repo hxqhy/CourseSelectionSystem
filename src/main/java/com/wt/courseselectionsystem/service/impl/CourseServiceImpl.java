@@ -36,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public NoDataResult addCourse(CourseAddForm form) {
         if (!Objects.isNull(courseDao.selectByCourseNo(form.getCourseNo()))) {
-            return ResultUtils.fail("课程计划编号重复");
+            return ResultUtils.fail("课程编号重复");
         }
         Course course = new Course();
         BeanUtils.copyProperties(form, course);

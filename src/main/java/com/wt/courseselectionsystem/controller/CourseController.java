@@ -3,13 +3,12 @@ package com.wt.courseselectionsystem.controller;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseAddForm;
-import com.wt.courseselectionsystem.model.vo.request.course.CourseQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.CourseListVo;
 import com.wt.courseselectionsystem.model.vo.response.CourseVo;
 import com.wt.courseselectionsystem.service.CourseService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author HY
@@ -30,7 +29,7 @@ public class CourseController {
     }
 
     @PostMapping("/list")
-    public DataResult<List<CourseVo>> list(@RequestBody CourseQuery query) {
+    public DataResult<CourseListVo> list(@RequestBody CourseListQuery query) {
         return courseService.list(query);
     }
 

@@ -4,13 +4,12 @@ import com.wt.courseselectionsystem.common.annotation.LoginRequired;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
-import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.StudentListVo;
 import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
 
@@ -29,7 +28,7 @@ public class StudentController {
     }
 
     @PostMapping("/list")
-    public DataResult<List<StudentVo>> list(@RequestBody StudentQuery query) {
+    public DataResult<StudentListVo> list(@RequestBody StudentListQuery query) {
         return studentService.list(query);
     }
 
