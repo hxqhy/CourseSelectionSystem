@@ -6,6 +6,7 @@ import com.wt.courseselectionsystem.model.vo.request.LoginForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActivateSingleAccountForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActivateTeacherForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
+import com.wt.courseselectionsystem.model.vo.request.account.UpdatePasswordForm;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 
@@ -63,4 +64,11 @@ public interface AccountService {
      * @return ...
      */
     NoDataResult activateTeacherList(ActivateTeacherForm activateTeacherForm);
+
+    /**
+     * 修改密码
+     * @param passwordForm ...
+     * @return ...
+     */
+    NoDataResult updatePassword(UpdatePasswordForm passwordForm);
 }

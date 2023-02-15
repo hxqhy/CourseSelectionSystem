@@ -1,10 +1,14 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
+import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
+import com.wt.courseselectionsystem.model.vo.response.TeacherDetails;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 /**
  * @author xxx
@@ -48,5 +52,14 @@ public class TeacherDaoTest {
     @Test
     public void testDelete() {
         System.out.println(teacherDao.delete("123"));
+    }
+
+    @Test
+    public void testDetails(){
+        TeacherListQuery form = new TeacherListQuery();
+        form.setTeacherNo("201880264102");
+        form.setTeacherName("宋小美");
+        List<TeacherDetails> teacherDetails = teacherDao.selectDetails(form);
+        teacherDetails.forEach(System.out::println);
     }
 }

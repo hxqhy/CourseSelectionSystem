@@ -12,6 +12,7 @@ import com.wt.courseselectionsystem.model.dao.exbean.TeacherInfo;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.TeacherDetails;
 import com.wt.courseselectionsystem.model.vo.response.TeacherListVo;
 import com.wt.courseselectionsystem.model.vo.response.TeacherVo;
 import com.wt.courseselectionsystem.service.TeacherService;
@@ -54,6 +55,17 @@ public class TeacherServiceImpl implements TeacherService {
         PageInfo<TeacherInfo> info = new PageInfo<>(list);
         TeacherListVo result = new TeacherListVo();
         result.setList(SystemUtils.easyCopy(list, TeacherVo.class));
+        SystemUtils.configPageInfo(result, info);
+        return ResultUtils.success(result);
+    }
+
+    @Override
+    public DataResult<TeacherListVo> selectTeacherDetails(TeacherListQuery query) {
+        PageHelper.startPage(query.getPageNum(), query.getPageSize());
+        List<TeacherDetails> list = teacherDao.selectDetails(query);
+        PageInfo<TeacherDetails> info = new PageInfo<>(list);
+        TeacherListVo result = new TeacherListVo();
+        result.setDetails(SystemUtils.easyCopy(list, TeacherDetails.class));
         SystemUtils.configPageInfo(result, info);
         return ResultUtils.success(result);
     }

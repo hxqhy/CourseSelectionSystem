@@ -48,4 +48,10 @@ public class TeacherServiceTest {
         System.out.println(service.info("201665489569"));
     }
 
+    @Test
+    public void testDetails(){
+        TeacherListQuery q = new TeacherListQuery();
+        q.setTeacherName("宋小美");
+        System.out.println(service.selectTeacherDetails(q));
+    }
 }

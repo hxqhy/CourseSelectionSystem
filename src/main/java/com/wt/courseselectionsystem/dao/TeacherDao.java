@@ -4,6 +4,7 @@ import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
 import com.wt.courseselectionsystem.model.dao.exbean.TeacherInfo;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
+import com.wt.courseselectionsystem.model.vo.response.TeacherDetails;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -62,4 +63,11 @@ public interface TeacherDao {
      * @return list
      */
     List<TeacherInfo> selectTeacherInfo(@Param("query") TeacherListQuery query);
+
+    /**
+     * 查询导师所有详情
+     * @param query ...
+     * @return ...
+     */
+    List<TeacherDetails> selectDetails(@Param("query") TeacherListQuery query);
 }

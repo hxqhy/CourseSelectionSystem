@@ -4,8 +4,8 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
-import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
+import com.wt.courseselectionsystem.model.vo.response.TeacherDetails;
 import com.wt.courseselectionsystem.model.vo.response.TeacherListVo;
 import com.wt.courseselectionsystem.model.vo.response.TeacherVo;
 
@@ -54,4 +54,11 @@ public interface TeacherService {
      * @return ...
      */
     NoDataResult delete(String teacherNo);
+
+    /**
+     * 查询导师所有详情
+     * @param query ...
+     * @return ...
+     */
+    DataResult<TeacherListVo> selectTeacherDetails(TeacherListQuery query);
 }

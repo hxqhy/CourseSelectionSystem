@@ -9,13 +9,14 @@ import com.wt.courseselectionsystem.model.vo.request.LoginForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActivateSingleAccountForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActivateTeacherForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
+import com.wt.courseselectionsystem.model.vo.request.account.UpdatePasswordForm;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
 import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.web.bind.annotation.*;
 
-import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
+import static com.wt.courseselectionsystem.common.constant.AccountConstant.*;
 
 /**
  * 系统用户登录 控制
@@ -66,6 +67,12 @@ public class AccountController {
     @PostMapping("/active_teacher")
     public NoDataResult activateTeacherAccount(@RequestBody ActivateSingleAccountForm form) {
         return accountService.activateTeacherAccount(form);
+    }
+
+    @LoginRequired(role = {STUDENT_CODE, ADMIN_CODE, TEACHER_CODE})
+    @PostMapping("/update_password")
+    NoDataResult updatePassword(@RequestBody UpdatePasswordForm passwordForm) {
+        return accountService.updatePassword(passwordForm);
     }
 
 

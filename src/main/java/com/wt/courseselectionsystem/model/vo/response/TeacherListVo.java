@@ -13,4 +13,5 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class TeacherListVo extends PageResponse {
     private List<TeacherVo> list;
+    private List<TeacherDetails> details;
 }

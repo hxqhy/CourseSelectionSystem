@@ -11,7 +11,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TeacherQuery extends PageRequest {
     private Integer gender;
-
     private String teacherName;
     /**
      * 是否处于激活状态，激活：1，未激活：0；

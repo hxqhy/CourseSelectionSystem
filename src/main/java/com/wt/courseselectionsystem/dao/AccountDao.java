@@ -35,4 +35,11 @@ public interface AccountDao {
      * @return row
      */
     int insertAccountList(@Param("accounts") List<Account> accounts);
+
+    /**
+     * 修改密码
+     * @param account ...
+     * @return ...
+     */
+    int updatePassword(@Param("account") Account account);
 }

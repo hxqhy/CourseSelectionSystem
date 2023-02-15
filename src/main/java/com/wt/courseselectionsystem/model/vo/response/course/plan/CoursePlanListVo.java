@@ -12,5 +12,6 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CoursePlanListVo extends PageResponse {
+
     private List<CoursePlanVo> list;
 }

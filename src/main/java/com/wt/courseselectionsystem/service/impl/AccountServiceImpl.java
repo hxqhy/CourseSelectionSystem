@@ -11,6 +11,7 @@ import com.wt.courseselectionsystem.model.vo.request.LoginForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActivateSingleAccountForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActivateTeacherForm;
 import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
+import com.wt.courseselectionsystem.model.vo.request.account.UpdatePasswordForm;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
@@ -151,6 +152,19 @@ public class AccountServiceImpl implements AccountService {
         Integer row = accountDao.insertAccountList(collect);
         return row.equals(collect.size()) ? ResultUtils.success("导师账号批量激活成功")
                 : ResultUtils.fail("导师账号批量激活失败");
+    }
+
+    @Override
+    public NoDataResult updatePassword(UpdatePasswordForm passwordForm) {
+        Account accountNo = accountDao.selectByAccountNo(passwordForm.getAccountNo());
+        if (accountNo != null) {
+            Account account = new Account();
+            account.setAccountNo(passwordForm.getAccountNo());
+            account.setPassword(passwordEncode(passwordForm.getPassword()));
+            int row = accountDao.updatePassword(account);
+            return row == 1 ? ResultUtils.success("修改密码成功") : ResultUtils.fail("修改密码失败");
+        }
+        return ResultUtils.fail("请先激活账号");
     }
 
 }
