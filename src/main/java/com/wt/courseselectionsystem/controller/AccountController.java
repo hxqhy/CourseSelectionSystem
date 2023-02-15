@@ -64,8 +64,8 @@ public class AccountController {
 
     @LoginRequired(role = {ADMIN_CODE})
     @PostMapping("/active_teacher")
-    public NoDataResult activateTeacherAccount(ActivateSingleAccountForm form) {
-        return accountService.activateStudentAccount(form);
+    public NoDataResult activateTeacherAccount(@RequestBody ActivateSingleAccountForm form) {
+        return accountService.activateTeacherAccount(form);
     }
 
 

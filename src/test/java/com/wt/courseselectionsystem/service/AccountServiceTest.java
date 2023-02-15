@@ -12,10 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author lixin
@@ -45,7 +43,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void testActivateTeacherList(){
+    public void testActivateTeacherList() {
         List<String> teacherNos = teacherDao.select(new TeacherQuery())
                 .stream().map(Teacher::getTeacherNo).collect(Collectors.toList());
         ActivateTeacherForm form = new ActivateTeacherForm();
@@ -64,4 +62,5 @@ public class AccountServiceTest {
         form.setTeacherNo(collect);
         System.out.println(accountService.activateTeacherList(form));
     }
+    
 }
