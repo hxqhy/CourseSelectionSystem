@@ -1,6 +1,7 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.CoursePlan;
+import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author xxx
@@ -40,8 +42,9 @@ public class CoursePlanDaoTest {
     @Test
     public void testSelect() {
         CoursePlanInfoQuery info = new CoursePlanInfoQuery();
-        info.setTeacherNo("张");
-        System.out.println(coursePlanDao.selectCoursePlanInfo(info));
+        info.setTeacherName("小");
+        List<CoursePlanInfo> infos = coursePlanDao.selectCoursePlanInfo(info);
+        infos.forEach(System.out::println);
     }
 
     @Test
@@ -57,7 +60,7 @@ public class CoursePlanDaoTest {
     public void testDelete() {
         System.out.println(coursePlanDao.delete("123"));
     }
-    
+
     private String generateCoursePlanNo(CoursePlanAddForm form, LocalDate date) {
         return form.getTeacherNo() + form.getCourseNo() + date.getYear();
     }
