@@ -2,9 +2,12 @@ package com.wt.courseselectionsystem.config;
 
 import com.wt.courseselectionsystem.config.interceptor.AuthenticationInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 /**
  * @author lixin
@@ -13,9 +16,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     private final AuthenticationInterceptor authenticationInterceptor;
+    private final LimitAbilityMethodArgumentResolver handlerMethodArgumentResolver;
 
-    public WebConfig(AuthenticationInterceptor authenticationInterceptor) {
+    public WebConfig(AuthenticationInterceptor authenticationInterceptor,
+                     LimitAbilityMethodArgumentResolver handlerMethodArgumentResolver) {
         this.authenticationInterceptor = authenticationInterceptor;
+        this.handlerMethodArgumentResolver = handlerMethodArgumentResolver;
     }
 
     @Override
@@ -33,6 +39,12 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .maxAge(3600)
                 .allowedHeaders("*");
+    }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        WebMvcConfigurer.super.addArgumentResolvers(resolvers);
+        resolvers.add(handlerMethodArgumentResolver);
     }
 
 }

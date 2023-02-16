@@ -1,6 +1,8 @@
 package com.wt.courseselectionsystem.controller;
 
+import com.wt.courseselectionsystem.common.annotation.LimitAbility;
 import com.wt.courseselectionsystem.common.annotation.LoginRequired;
+import com.wt.courseselectionsystem.common.annotation.limiter.StudentInfoQueryLimiter;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
@@ -46,7 +48,9 @@ public class StudentController {
         return studentService.addStudent(form);
     }
 
+    @LoginRequired
     @GetMapping("/info")
+    @LimitAbility(StudentInfoQueryLimiter.class)
     public DataResult<StudentVo> info(String studentNo) {
         return studentService.info(studentNo);
     }

@@ -36,7 +36,6 @@ public class CoursePlanServiceImpl implements CoursePlanService {
 
     private final CoursePlanDao coursePlanDao;
 
-
     @Override
     public NoDataResult addCoursePlan(CoursePlanAddForm form) {
         LocalDate now = LocalDate.now();
