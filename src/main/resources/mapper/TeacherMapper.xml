@@ -51,7 +51,7 @@
             </if>
         </where>
     </select>
-    <select id="selectTeacherInfo" resultType="com.wt.courseselectionsystem.model.dao.exbean.TeacherInfo">
+    <select id="selectTeacherInfo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Teacher">
         select id, teacher_no, teacher_name, gender from teacher
         <where>
             <if test="@org.springframework.util.StringUtils@hasLength(query.teacherName)">

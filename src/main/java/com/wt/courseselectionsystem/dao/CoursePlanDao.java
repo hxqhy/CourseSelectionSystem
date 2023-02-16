@@ -4,7 +4,6 @@ import com.wt.courseselectionsystem.model.dao.basebean.CoursePlan;
 import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanQuery;
-import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,15 +14,7 @@ import java.util.List;
  */
 @Repository
 public interface CoursePlanDao {
-
-    /**
-     * 根据课程计划号获取课程计划信息
-     *
-     * @param coursePlanNo 课程计划编码
-     * @return ...
-     */
-    CoursePlanVo selectByCoursePlanNo(String coursePlanNo);
-
+    
     /**
      * 保存信息
      *
@@ -63,4 +54,12 @@ public interface CoursePlanDao {
      * @return list
      */
     List<CoursePlanInfo> selectCoursePlanInfo(@Param("query") CoursePlanInfoQuery query);
+
+    /**
+     * 根据课程计划号获取课程计划信息
+     *
+     * @param coursePlanNo 课程计划编码
+     * @return ...
+     */
+    CoursePlanInfo selectInfoByCoursePlanNo(String coursePlanNo);
 }

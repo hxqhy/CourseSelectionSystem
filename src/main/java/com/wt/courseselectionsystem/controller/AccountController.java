@@ -87,4 +87,5 @@ public class AccountController {
     public NoDataResult activateTeacherList(@RequestBody ActivateTeacherForm activateTeacherForm) {
         return accountService.activateTeacherList(activateTeacherForm);
     }
+    
 }

@@ -78,6 +78,17 @@ public final class SystemUtils {
     }
 
     /**
+     * 解析账号获取用户编号
+     * example S123->123; T123->123;
+     *
+     * @param accountNo accountNO.
+     * @return ...
+     */
+    public static String parseAccountNo(String accountNo) {
+        return accountNo.substring(1);
+    }
+
+    /**
      * 通过学生编号生成账号
      *
      * @param teacherNo 导师号

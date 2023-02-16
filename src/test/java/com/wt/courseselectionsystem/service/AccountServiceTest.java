@@ -35,9 +35,6 @@ public class AccountServiceTest {
         List<String> studentNos = studentDao.select(new StudentQuery())
                 .stream().map(Student::getStudentNo).collect(Collectors.toList());
         ActiveStudentForm form = new ActiveStudentForm();
-        studentNos.add(" ");
-        studentNos.add(" ");
-        studentNos.add(" ");
         form.setStudentNos(studentNos);
         System.out.println(accountService.activateStudentList(form));
     }
@@ -62,5 +59,5 @@ public class AccountServiceTest {
         form.setTeacherNo(collect);
         System.out.println(accountService.activateTeacherList(form));
     }
-    
+
 }

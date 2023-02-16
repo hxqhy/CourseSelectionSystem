@@ -62,7 +62,7 @@ public class TestData {
     @Test
     public void students() {
         StudentBuilder builder = new StudentBuilder();
-        addData(builder::generate, (data) -> studentDao.insertStudent(data), 100);
+        addData(builder::generate, (data) -> studentDao.insertStudent(data), 200);
     }
 
     @Test

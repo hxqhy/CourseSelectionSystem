@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wt.courseselectionsystem.dao.CourseSelectionDao">
+
     <insert id="insertCourseSelection">
-        insert into course_selection(student_no,course_plan_no)
-        value (#{courseSelection.studentNo},#{courseSelection.coursePlanNo});
+        insert into course_selection(student_no, course_plan_no, gmt_create)
+            value (#{courseSelection.studentNo}, #{courseSelection.coursePlanNo}, #{courseSelection.gmtCreate});
     </insert>
+
+    <select id="countByStudentNoAndCoursePlanNo" resultType="java.lang.Integer">
+        select count(*)
+        from course_selection
+        where student_no = #{studentNo}
+          and course_plan_no = #{coursePlanNo}
+    </select>
+
+    <select id="countByCoursePlanNo" resultType="java.lang.Integer">
+        select count(*)
+        from course_selection
+        where course_plan_no = #{coursePlanNo}
+    </select>
+
+    <select id="selectSumCredit" resultType="java.lang.Integer">
+        select sum(c.credit)
+        from course_selection cs
+                 inner join course_plan cp on cs.course_plan_no = cp.course_plan_no
+                 inner join course c on cp.course_no = c.course_no
+        where cs.student_no = #{studentNo};
+    </select>
 
 </mapper>

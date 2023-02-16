@@ -36,7 +36,7 @@ public class CoursePlanDaoTest {
 
     @Test
     public void testSelectByCoursePlanNo() {
-        System.out.println(coursePlanDao.selectByCoursePlanNo("2005912933802419192023"));
+        System.out.println(coursePlanDao.selectInfoByCoursePlanNo("2005912933802419192023"));
     }
 
     @Test

@@ -39,7 +39,7 @@ public class CoursePlanServiceImpl implements CoursePlanService {
     public NoDataResult addCoursePlan(CoursePlanAddForm form) {
         LocalDate now = LocalDate.now();
         String coursePlanNo = generateCoursePlanNo(form, now);
-        if (!Objects.isNull(coursePlanDao.selectByCoursePlanNo(coursePlanNo))) {
+        if (!Objects.isNull(coursePlanDao.selectInfoByCoursePlanNo(coursePlanNo))) {
             throw new RuntimeException("排课已存在");
         }
         CoursePlan coursePlan = new CoursePlan();
@@ -80,7 +80,10 @@ public class CoursePlanServiceImpl implements CoursePlanService {
 
     @Override
     public DataResult<CoursePlanVo> info(String coursePlanNo) {
-        return ResultUtils.success(coursePlanDao.selectByCoursePlanNo(coursePlanNo));
+        CoursePlanVo coursePlanVo = new CoursePlanVo();
+        CoursePlanInfo info = coursePlanDao.selectInfoByCoursePlanNo(coursePlanNo);
+        BeanUtils.copyProperties(info, coursePlanVo);
+        return ResultUtils.success(coursePlanVo);
     }
 
     @Override

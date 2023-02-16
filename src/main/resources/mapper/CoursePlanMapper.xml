@@ -89,8 +89,8 @@
         </where>
 
     </select>
-    <select id="selectByCoursePlanNo"
-            resultType="com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo">
+    <select id="selectInfoByCoursePlanNo"
+            resultType="com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo">
         select cp.course_plan_no
              , cp.course_no
              , c.course_name
@@ -104,6 +104,12 @@
                  inner join course c on cp.course_no = c.course_no
                  inner join teacher t on cp.teacher_no = t.teacher_no
         where course_plan_no = #{coursePlanNo};
+    </select>
+
+    <select id="selectByNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.CoursePlan">
+        select id, course_plan_no, course_no, teacher_no, course_plan_year
+        from course_plan
+        where course_plan_no = #{coursePlanNo}
     </select>
 
 </mapper>
