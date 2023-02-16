@@ -12,6 +12,8 @@ import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanForm;
+import com.wt.courseselectionsystem.model.vo.response.StudentsOfCoursePlanVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 import com.wt.courseselectionsystem.service.CoursePlanService;
@@ -84,6 +86,12 @@ public class CoursePlanServiceImpl implements CoursePlanService {
         CoursePlanInfo info = coursePlanDao.selectInfoByCoursePlanNo(coursePlanNo);
         BeanUtils.copyProperties(info, coursePlanVo);
         return ResultUtils.success(coursePlanVo);
+    }
+
+    @Override
+    public DataResult<StudentsOfCoursePlanVo> students(StudentsOfCoursePlanForm form) {
+        // todo 业务逻辑
+        return null;
     }
 
     @Override

@@ -5,13 +5,10 @@ import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
-import com.wt.courseselectionsystem.model.vo.response.TeacherDetails;
 import com.wt.courseselectionsystem.model.vo.response.TeacherListVo;
 import com.wt.courseselectionsystem.model.vo.response.TeacherVo;
 import com.wt.courseselectionsystem.service.TeacherService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author HY
@@ -50,7 +47,6 @@ public class TeacherController {
     public NoDataResult delete(String teacherNo) {
         return teacherService.delete(teacherNo);
     }
-
 
     @GetMapping("/details")
     DataResult<TeacherListVo> selectTeacherDetails(TeacherListQuery query) {

@@ -5,6 +5,8 @@ import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanForm;
+import com.wt.courseselectionsystem.model.vo.response.StudentsOfCoursePlanVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 import com.wt.courseselectionsystem.service.CoursePlanService;
@@ -45,6 +47,11 @@ public class CoursePlanController {
     @DeleteMapping()
     public NoDataResult delete(String teacherNo) {
         return coursePlanService.delete(teacherNo);
+    }
+
+    @PostMapping("/students")
+    public DataResult<StudentsOfCoursePlanVo> students(@RequestBody StudentsOfCoursePlanForm form) {
+        return coursePlanService.students(form);
     }
 
 }

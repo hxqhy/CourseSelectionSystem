@@ -92,7 +92,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public NoDataResult activateTeacherAccount(ActivateSingleAccountForm form) {
-        // todo 业务逻辑实现
         String s = generateTeacherAccountNo(form.getNumber());
         Account no = accountDao.selectByAccountNo(s);
         if (no != null) {

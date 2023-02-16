@@ -5,6 +5,8 @@ import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanForm;
+import com.wt.courseselectionsystem.model.vo.response.StudentsOfCoursePlanVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 
@@ -51,4 +53,12 @@ public interface CoursePlanService {
      * @return ...
      */
     NoDataResult delete(String coursePlanNo);
+
+    /**
+     * 根据排课号查询学生列表
+     *
+     * @param form ...
+     * @return ...
+     */
+    DataResult<StudentsOfCoursePlanVo> students(StudentsOfCoursePlanForm form);
 }
