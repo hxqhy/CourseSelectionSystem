@@ -9,6 +9,7 @@ import com.wt.courseselectionsystem.dao.CourseSelectionDao;
 import com.wt.courseselectionsystem.model.dao.basebean.CourseSelection;
 import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
 import com.wt.courseselectionsystem.service.CourseSelectionService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,11 +17,14 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author lixin
  */
 @Service
+@Slf4j
 public class CourseSelectionServiceImpl implements CourseSelectionService {
 
     private final CourseSelectionDao courseSelectionDao;
@@ -36,6 +40,11 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
             .expireAfterAccess(1, TimeUnit.MINUTES)
             .build();
 
+    private final Cache<String, Lock> lockCache = CacheBuilder.newBuilder()
+            .maximumSize(100L)
+            .expireAfterAccess(5, TimeUnit.MINUTES)
+            .build();
+
     public CourseSelectionServiceImpl(CourseSelectionDao courseSelectionDao, CoursePlanDao coursePlanDao) {
         this.courseSelectionDao = courseSelectionDao;
         this.coursePlanDao = coursePlanDao;
@@ -43,9 +52,9 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
 
     @Override
     public NoDataResult selectCourse(String studentNo, String coursePlanNo) {
-        Integer sumCredit = courseSelectionDao.selectSumCredit(studentNo);
-        Integer creditStandard = 10;
-        if (creditStandard.compareTo(sumCredit) >= 0) {
+        Integer sumCredit = Optional.ofNullable(courseSelectionDao.selectSumCredit(studentNo)).orElse(0);
+        final Integer creditStandard = 10;
+        if (creditStandard.compareTo(sumCredit) <= 0) {
             return ResultUtils.fail("选课失败：学分已修满");
         }
         if (courseSelectionDao.countByStudentNoAndCoursePlanNo(studentNo, coursePlanNo) != 0) {
@@ -58,11 +67,16 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
                     () -> Optional.ofNullable(coursePlanDao.selectInfoByCoursePlanNo(coursePlanNo))
                             .map(CoursePlanInfo::getStudentNumber)
                             .orElseThrow(() -> new RuntimeException("排课不存在")));
-            synchronized (this) {
+            Lock lock = lockCache.get(coursePlanNo, ReentrantLock::new);
+            lock.lock();
+            try {
                 usedQuotaCache.get(coursePlanNo,
                         () -> new AtomicInteger(courseSelectionDao.countByCoursePlanNo(coursePlanNo)));
+            } finally {
+                lock.unlock();
             }
         } catch (ExecutionException e) {
+            log.error(e.getMessage(), e);
             throw new RuntimeException(e);
         }
         AtomicInteger usedQuota = Optional.ofNullable(usedQuotaCache.getIfPresent(coursePlanNo))
