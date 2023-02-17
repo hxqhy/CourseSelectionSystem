@@ -4,7 +4,6 @@ import com.wt.courseselectionsystem.common.annotation.LimitAbility;
 import com.wt.courseselectionsystem.common.annotation.limiter.CoursePlanInfoListQueryLimiter;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
-import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
@@ -13,7 +12,6 @@ import com.wt.courseselectionsystem.model.vo.response.StudentsOfCoursePlanVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 import com.wt.courseselectionsystem.service.CoursePlanService;
-import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -24,11 +22,9 @@ import org.springframework.web.bind.annotation.*;
 public class CoursePlanController {
 
     private final CoursePlanService coursePlanService;
-    private final TokenService<Account> tokenService;
 
-    public CoursePlanController(CoursePlanService coursePlanService, TokenService<Account> tokenService) {
+    public CoursePlanController(CoursePlanService coursePlanService) {
         this.coursePlanService = coursePlanService;
-        this.tokenService = tokenService;
     }
 
     @PostMapping("/add")
