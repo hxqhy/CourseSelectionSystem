@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author HY
@@ -73,7 +74,8 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public DataResult<CourseVo> info(String courseNo) {
         CourseVo courseVo = new CourseVo();
-        Course course = courseDao.selectByCourseNo(courseNo);
+        Course course = Optional.ofNullable(courseDao.selectByCourseNo(courseNo))
+                .orElse(new Course());
         BeanUtils.copyProperties(course, courseVo);
         return ResultUtils.success(courseVo);
     }

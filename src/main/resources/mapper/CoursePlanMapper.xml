@@ -17,6 +17,9 @@
             <if test="coursePlan.teacherNo != null and coursePlan.teacherNo != '' ">
                 teacher_no = #{coursePlan.teacherNo},
             </if>
+            <if test="query.coursePlanYear != null and query.coursePlanYear != '' ">
+                t.course_plan_year=#{query.coursePlanYear},
+            </if>
         </set>
         where course_plan_no = #{coursePlan.coursePlanNo}
     </update>
@@ -37,6 +40,9 @@
             </if>
             <if test="query.teacherNo!= null and query.teacherNo != '' ">
                 and teacher_no=#{query.teacherNo}
+            </if>
+            <if test="query.coursePlanYear!= null and query.coursePlanYear != '' ">
+                and course_plan_year=#{query.coursePlanYear}
             </if>
         </where>
     </select>

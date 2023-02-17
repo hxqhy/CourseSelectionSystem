@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author HY
@@ -84,7 +85,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public DataResult<TeacherVo> info(String teacherNo) {
         TeacherVo teacherVo = new TeacherVo();
-        Teacher teacher = teacherDao.selectByTeacherNo(teacherNo);
+        Teacher teacher = Optional.ofNullable(teacherDao.selectByTeacherNo(teacherNo)).orElse(new Teacher());
         BeanUtils.copyProperties(teacher, teacherVo);
         return ResultUtils.success(teacherVo);
     }
