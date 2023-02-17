@@ -21,7 +21,7 @@ public class CourseDaoTest {
         course.setCourseHours(21);
         course.setCourseName("英语");
         course.setCredit(3);
-        course.setStudentNumber(12);
+        course.setQuota(12);
         courseDao.insertCourse(course);
     }
 

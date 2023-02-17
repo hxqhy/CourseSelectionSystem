@@ -78,7 +78,7 @@
         c.course_name,
         c.credit,
         c.course_hours,
-        c.student_number,
+        c.quota,
         cp.course_plan_year,
         t.teacher_name,
         cs.course_plan_no,

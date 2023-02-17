@@ -48,7 +48,7 @@
         , c.course_name
         , c.credit
         , c.course_hours
-        , c.student_number
+        , c.quota
         , cp.teacher_no
         , t.teacher_name
         , cp.course_plan_year
@@ -71,8 +71,8 @@
             <if test="query.courseHours != null">
                 and c.course_hours = #{query.courseHours}
             </if>
-            <if test="query.studentNumber != null">
-                and c.student_number = #{query.studentNumber}
+            <if test="query.quota != null">
+                and c.student_number = #{query.quota}
             </if>
             <if test="query.courseNo != null and query.courseNo != '' ">
                 and c.course_no=#{query.courseNo}
@@ -96,7 +96,7 @@
              , c.course_name
              , c.credit
              , c.course_hours
-             , c.student_number
+             , c.quota
              , cp.teacher_no
              , t.teacher_name
              , cp.course_plan_year

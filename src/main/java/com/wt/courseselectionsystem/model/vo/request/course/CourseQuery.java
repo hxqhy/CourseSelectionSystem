@@ -20,7 +20,7 @@ public class CourseQuery extends PageRequest {
      */
     private Integer courseHours;
     /**
-     * 学生人数
+     * 课程名额
      */
-    private Integer studentNumber;
+    private Integer quota;
 }

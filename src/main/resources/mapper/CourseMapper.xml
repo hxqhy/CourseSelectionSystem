@@ -8,13 +8,13 @@
         <result column="course_name" property="courseName"/>
         <result column="credit" property="credit"/>
         <result column="course_hours" property="courseHours"/>
-        <result column="student_number" property="studentNumber"/>
+        <result column="quota" property="quota"/>
     </resultMap>
 
     <insert id="insertCourse">
-        insert into course(course_no, course_name, credit, course_hours, student_number)
+        insert into course(course_no, course_name, credit, course_hours, quota)
             value (#{course.courseNo}, #{course.courseName}, #{course.credit}, #{course.courseHours},
-            #{course.studentNumber});
+                   #{course.quota});
     </insert>
     <update id="updateCourseInfo">
         update course
@@ -28,8 +28,8 @@
             <if test="course.courseHours != null">
                 course_hours = #{course.courseHours},
             </if>
-            <if test="course.studentNumber != null">
-                student_number = #{course.studentNumber}
+            <if test="course.quota != null">
+                student_number = #{course.quota}
             </if>
         </set>
         where course_no = #{course.courseNo}
@@ -41,13 +41,13 @@
     </delete>
 
     <select id="selectByCourseNo" resultMap="CourseMap">
-        select id, course_no, course_name, credit, course_hours, student_number
+        select id, course_no, course_name, credit, course_hours, quota
         from course
         where course_no = #{courseNo};
     </select>
 
     <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.Course">
-        select id, course_no, course_name, credit, course_hours, student_number
+        select id, course_no, course_name, credit, course_hours, quota
         from course
         <where>
             <if test="query.courseName != null and query.courseName != '' ">
@@ -59,13 +59,13 @@
             <if test="query.courseHours != null">
                 and course_hours=#{query.courseHours}
             </if>
-            <if test="query.studentNumber != null">
-                and student_number=#{query.studentNumber}
+            <if test="query.quota != null">
+                and student_number=#{query.quota}
             </if>
         </where>
     </select>
     <select id="selectCourseInfo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Course">
-        select id, course_no, course_name, credit, course_hours, student_number
+        select id, course_no, course_name, credit, course_hours, quota
         from course
         <where>
             <if test="query.courseName != null and query.courseName != '' ">
@@ -77,8 +77,8 @@
             <if test="query.courseHours != null">
                 and course_hours=#{query.courseHours}
             </if>
-            <if test="query.studentNumber != null">
-                and student_number=#{query.studentNumber}
+            <if test="query.quota != null">
+                and student_number=#{query.quota}
             </if>
         </where>
     </select>

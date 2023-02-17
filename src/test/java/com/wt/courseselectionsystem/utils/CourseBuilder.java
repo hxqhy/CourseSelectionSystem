@@ -17,7 +17,7 @@ public class CourseBuilder {
         course.setCourseName(courseName);
         course.setCourseHours(generateCourseHours());
         course.setCredit(generateCredit());
-        course.setStudentNumber(generateStudentNumber());
+        course.setQuota(generateQuota());
         return course;
     }
 
@@ -39,7 +39,7 @@ public class CourseBuilder {
         return random.nextInt(1, 5) * 10;
     }
 
-    private Integer generateStudentNumber() {
+    private Integer generateQuota() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         return random.nextInt(1, 5) * 20;
     }

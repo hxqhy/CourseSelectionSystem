@@ -24,8 +24,8 @@ public class CourseAddForm {
      */
     private Integer courseHours;
     /**
-     * 学生人数
+     * 名额
      */
-    private Integer studentNumber;
+    private Integer quota;
 
 }

@@ -36,9 +36,9 @@ public class CoursePlanInfo {
      */
     private Integer courseHours;
     /**
-     * 学生人数
+     * 课程名额
      */
-    private Integer studentNumber;
+    private Integer quota;
     /**
      * 开课年份
      */

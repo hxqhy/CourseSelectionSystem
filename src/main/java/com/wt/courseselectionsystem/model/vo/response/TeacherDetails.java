@@ -1,10 +1,9 @@
 package com.wt.courseselectionsystem.model.vo.response;
 
-import com.wt.courseselectionsystem.common.result.PageResponse;
 import lombok.Data;
 
 @Data
-public class TeacherDetails  {
+public class TeacherDetails {
     /**
      * 课程计划编号
      */
@@ -33,7 +32,7 @@ public class TeacherDetails  {
     /**
      * 学生人数
      */
-    private Integer studentNumber;
+    private Integer quota;
     /**
      * 开课年份
      */

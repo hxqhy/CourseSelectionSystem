@@ -39,12 +39,12 @@ create table teacher
 drop table if exists course;
 create table course
 (
-    id             int auto_increment primary key,
-    course_no      char(6)     not null comment '课程号',
-    course_name    varchar(20) not null comment '课程名称',
-    credit         int         not null comment '学分',
-    course_hours   int         not null comment '学时',
-    student_number int         not null comment '学生人数',
+    id           int auto_increment primary key,
+    course_no    char(6)     not null comment '课程号',
+    course_name  varchar(20) not null comment '课程名称',
+    credit       int         not null comment '学分',
+    course_hours int         not null comment '学时',
+    quota        int         not null comment '选课名额',
     unique index course_no_index (course_no)
 ) comment '课程信息表';
 

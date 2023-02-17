@@ -26,6 +26,6 @@ public class CourseVo {
     /**
      * 学生人数
      */
-    private Integer studentNumber;
+    private Integer quota;
 
 }

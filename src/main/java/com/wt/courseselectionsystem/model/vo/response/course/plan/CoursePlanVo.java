@@ -39,7 +39,7 @@ public class CoursePlanVo {
     /**
      * 学生人数
      */
-    private Integer studentNumber;
+    private Integer quota;
     /**
      * 开课年份
      */

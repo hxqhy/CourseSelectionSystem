@@ -58,14 +58,14 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
             return ResultUtils.fail("选课失败：学分已修满");
         }
         if (courseSelectionDao.countByStudentNoAndCoursePlanNo(studentNo, coursePlanNo) != 0) {
-            return ResultUtils.fail("重复选课");
+            return ResultUtils.fail("选课失败：重复选课");
         }
         // 课程名额
         Integer quota;
         try {
             quota = quotaCache.get(coursePlanNo,
                     () -> Optional.ofNullable(coursePlanDao.selectInfoByCoursePlanNo(coursePlanNo))
-                            .map(CoursePlanInfo::getStudentNumber)
+                            .map(CoursePlanInfo::getQuota)
                             .orElseThrow(() -> new RuntimeException("排课不存在")));
             Lock lock = lockCache.get(coursePlanNo, ReentrantLock::new);
             lock.lock();
@@ -79,10 +79,11 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
             log.error(e.getMessage(), e);
             throw new RuntimeException(e);
         }
+        // 已使用名额
         AtomicInteger usedQuota = Optional.ofNullable(usedQuotaCache.getIfPresent(coursePlanNo))
                 .orElseThrow(() -> new RuntimeException("获取缓存失败"));
         if (quota.compareTo(usedQuota.getAndIncrement()) <= 0) {
-            // 计划人数小于等于已选人数
+            // 满员判断
             return ResultUtils.fail("选课失败：课程人数已满");
         }
 
