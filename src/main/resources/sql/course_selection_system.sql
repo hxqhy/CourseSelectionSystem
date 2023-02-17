@@ -65,7 +65,7 @@ create table course_selection
     id             int auto_increment primary key,
     student_no     char(12)    not null comment '学生编号',
     course_plan_no char(22)    not null comment '课程计划编号',
-    gmt_create     datetime(8) not null comment '创建时间',
+    gmt_create     datetime(6) not null comment '创建时间',
     unique index student_no_course_plan_no_index (student_no, course_plan_no)
 ) comment '选课表';
 

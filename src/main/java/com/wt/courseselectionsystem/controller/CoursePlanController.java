@@ -49,8 +49,8 @@ public class CoursePlanController {
     }
 
     @DeleteMapping()
-    public NoDataResult delete(String teacherNo) {
-        return coursePlanService.delete(teacherNo);
+    public NoDataResult delete(String coursePlanNo) {
+        return coursePlanService.delete(coursePlanNo);
     }
 
     @PostMapping("/students")

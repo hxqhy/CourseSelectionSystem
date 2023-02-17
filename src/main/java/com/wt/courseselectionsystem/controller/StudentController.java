@@ -16,6 +16,7 @@ import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.web.bind.annotation.*;
 
 import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
+import static com.wt.courseselectionsystem.common.constant.AccountConstant.STUDENT_CODE;
 
 /**
  * @author lixin
@@ -61,9 +62,12 @@ public class StudentController {
     }
 
     @GetMapping("/personal_info")
+    @LoginRequired(role = {STUDENT_CODE})
     public DataResult<StudentVo> studentInfo(@RequestHeader(value = "token") String token) {
         Account account = tokenService.getData(token);
         String s = account.getAccountNo().substring(1);
         return studentService.info(s);
     }
+
+
 }

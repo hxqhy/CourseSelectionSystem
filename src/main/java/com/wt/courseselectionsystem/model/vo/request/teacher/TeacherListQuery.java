@@ -22,4 +22,6 @@ public class TeacherListQuery extends PageRequest {
      * 性别
      */
     private Integer gender;
+       
+    private Integer active;
 }

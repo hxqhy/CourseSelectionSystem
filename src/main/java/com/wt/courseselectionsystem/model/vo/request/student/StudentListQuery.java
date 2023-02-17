@@ -27,4 +27,5 @@ public class StudentListQuery extends PageRequest {
      * 班级
      */
     private String studentClass;
+    private Integer active;
 }

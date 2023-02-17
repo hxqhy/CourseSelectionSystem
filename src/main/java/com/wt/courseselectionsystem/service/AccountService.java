@@ -10,8 +10,6 @@ import com.wt.courseselectionsystem.model.vo.request.account.UpdatePasswordForm;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 
-import java.util.List;
-
 /**
  * 用户模块 业务接口
  *
@@ -45,6 +43,7 @@ public interface AccountService {
 
     /**
      * 激活导师账号
+     *
      * @param form ...
      * @return ...
      */
@@ -60,6 +59,7 @@ public interface AccountService {
 
     /**
      * 批量激活导师账号
+     *
      * @param activateTeacherForm ...
      * @return ...
      */
@@ -67,6 +67,7 @@ public interface AccountService {
 
     /**
      * 修改密码
+     *
      * @param passwordForm ...
      * @return ...
      */

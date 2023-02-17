@@ -21,7 +21,7 @@ public class StudentServiceTest {
     @Test
     public void testStudentQuery() {
         StudentListQuery query = new StudentListQuery();
-        query.setStudentName("h");
+        query.setStudentNo("201609792637");
         System.out.println(service.list(query).getData());
     }
 
@@ -45,6 +45,6 @@ public class StudentServiceTest {
 
     @Test
     public void selectByStudentNo() {
-        System.out.println(service.info("202040823585"));
+        System.out.println(service.info("201578167291"));
     }
 }
