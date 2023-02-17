@@ -29,7 +29,6 @@ public class AccountController {
 
     private final AccountService accountService;
 
-
     private final TokenService<Account> tokenService;
 
     public AccountController(AccountService accountService, TokenService<Account> tokenService) {
@@ -87,5 +86,5 @@ public class AccountController {
     public NoDataResult activateTeacherList(@RequestBody ActivateTeacherForm activateTeacherForm) {
         return accountService.activateTeacherList(activateTeacherForm);
     }
-    
+
 }

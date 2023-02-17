@@ -50,7 +50,7 @@ public class StudentBuilder {
 
     private String generateStudentClass(String year) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        return year + choice(major) + random.nextInt(2) + random.nextInt(10) + "班";
+        return year + choice(major) + random.nextInt(2) + random.nextInt(1, 10) + "班";
     }
 
 

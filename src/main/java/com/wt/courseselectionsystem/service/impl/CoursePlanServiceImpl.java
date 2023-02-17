@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author HY
@@ -82,7 +83,8 @@ public class CoursePlanServiceImpl implements CoursePlanService {
     @Override
     public DataResult<CoursePlanVo> info(String coursePlanNo) {
         CoursePlanVo coursePlanVo = new CoursePlanVo();
-        CoursePlanInfo info = coursePlanDao.selectInfoByCoursePlanNo(coursePlanNo);
+        CoursePlanInfo info = Optional.ofNullable(coursePlanDao.selectInfoByCoursePlanNo(coursePlanNo))
+                .orElse(new CoursePlanInfo());
         BeanUtils.copyProperties(info, coursePlanVo);
         return ResultUtils.success(coursePlanVo);
     }
