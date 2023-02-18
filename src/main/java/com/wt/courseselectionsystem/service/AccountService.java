@@ -3,10 +3,7 @@ package com.wt.courseselectionsystem.service;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
-import com.wt.courseselectionsystem.model.vo.request.account.ActivateSingleAccountForm;
-import com.wt.courseselectionsystem.model.vo.request.account.ActivateTeacherForm;
-import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
-import com.wt.courseselectionsystem.model.vo.request.account.UpdatePasswordForm;
+import com.wt.courseselectionsystem.model.vo.request.account.*;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 
@@ -72,4 +69,18 @@ public interface AccountService {
      * @return ...
      */
     NoDataResult updatePassword(UpdatePasswordForm passwordForm);
+
+    /**
+     * 批量激活所有用户
+     * @param allForm ...
+     * @return ...
+     */
+    NoDataResult activateAllAccount(ActivateAllAccountForm allForm);
+
+    /**
+     * 重置密码
+     * @param resetForm ...
+     * @return ...
+     */
+    NoDataResult resetPassword(ResetPasswordForm resetForm);
 }

@@ -38,6 +38,7 @@ public interface AccountDao {
 
     /**
      * 修改密码
+     *
      * @param account ...
      * @return ...
      */

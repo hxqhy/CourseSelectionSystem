@@ -6,10 +6,7 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
-import com.wt.courseselectionsystem.model.vo.request.account.ActivateSingleAccountForm;
-import com.wt.courseselectionsystem.model.vo.request.account.ActivateTeacherForm;
-import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
-import com.wt.courseselectionsystem.model.vo.request.account.UpdatePasswordForm;
+import com.wt.courseselectionsystem.model.vo.request.account.*;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
@@ -87,4 +84,15 @@ public class AccountController {
         return accountService.activateTeacherList(activateTeacherForm);
     }
 
+    @PostMapping("/activate_all_account")
+    @LoginRequired(role = {ADMIN_CODE})
+    public NoDataResult activateAllAccount(ActivateAllAccountForm allForm) {
+        return accountService.activateAllAccount(allForm);
+    }
+
+    @PostMapping("/reset_password")
+    @LoginRequired(role = {ADMIN_CODE})
+    public NoDataResult resetPassword(ResetPasswordForm resetPasswordForm) {
+        return accountService.resetPassword(resetPasswordForm);
+    }
 }

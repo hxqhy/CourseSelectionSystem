@@ -26,9 +26,10 @@
     </insert>
 
     <update id="updatePassword">
-        update account set password = #{account.password} where account_no = #{account.accountNo}
+        update account
+        set password = #{account.password}
+        where account_no = #{account.accountNo}
     </update>
-
 
     <select id="selectByAccountNo" resultMap="AccountMap">
         select id, account_no, password, account_type

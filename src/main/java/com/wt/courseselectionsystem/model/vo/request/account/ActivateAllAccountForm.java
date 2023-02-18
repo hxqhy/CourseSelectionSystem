@@ -1,14 +1,14 @@
 package com.wt.courseselectionsystem.model.vo.request.account;
 
 import lombok.Data;
+
+import java.util.List;
 /**
  * @author mry5l
  */
+
 @Data
-public class UpdatePasswordForm {
+public class ActivateAllAccountForm {
 
-    private String accountNo;
-
-    private String password;
-
+    private List<String> allNumber;
 }

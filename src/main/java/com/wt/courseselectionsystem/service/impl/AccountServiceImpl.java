@@ -6,12 +6,13 @@ import com.wt.courseselectionsystem.common.constant.AccountConstant;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.AccountDao;
+import com.wt.courseselectionsystem.dao.StudentDao;
+import com.wt.courseselectionsystem.dao.TeacherDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
+import com.wt.courseselectionsystem.model.dao.basebean.Student;
+import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
-import com.wt.courseselectionsystem.model.vo.request.account.ActivateSingleAccountForm;
-import com.wt.courseselectionsystem.model.vo.request.account.ActivateTeacherForm;
-import com.wt.courseselectionsystem.model.vo.request.account.ActiveStudentForm;
-import com.wt.courseselectionsystem.model.vo.request.account.UpdatePasswordForm;
+import com.wt.courseselectionsystem.model.vo.request.account.*;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
@@ -19,7 +20,6 @@ import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedWriter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -40,9 +40,16 @@ public class AccountServiceImpl implements AccountService {
 
     private final TokenService<Account> tokenService;
 
-    public AccountServiceImpl(AccountDao accountDao, TokenService<Account> tokenService) {
+    private final TeacherDao teacherDao;
+
+    private final StudentDao studentDao;
+
+    public AccountServiceImpl(AccountDao accountDao, TokenService<Account> tokenService
+            , TeacherDao teacherDao, StudentDao studentDao) {
         this.accountDao = accountDao;
         this.tokenService = tokenService;
+        this.teacherDao = teacherDao;
+        this.studentDao = studentDao;
     }
 
     /**
@@ -167,4 +174,46 @@ public class AccountServiceImpl implements AccountService {
         return ResultUtils.fail("请先激活账号");
     }
 
+    @Override
+    public NoDataResult activateAllAccount(ActivateAllAccountForm allForm) {
+        List<String> allAccount = Optional.ofNullable(allForm.getAllNumber()).orElse(Collections.emptyList());
+
+        List<Account> all = allAccount.stream().filter(filterNo -> Objects.isNull(accountDao.selectByAccountNo(generateTeacherAccountNo(filterNo))))
+                .filter(filterNo -> Objects.isNull(accountDao.selectByAccountNo(generateStudentAccountNo(filterNo))))
+                .map(allAccountNo -> {
+                    Teacher teacher = teacherDao.selectByTeacherNo(allAccountNo);
+                    if (teacher != null) {
+                        Account account = new Account();
+                        account.setAccountNo(generateTeacherAccountNo(teacher.getTeacherNo()));
+                        account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+                        account.setAccountType(AccountConstant.TEACHER_CODE);
+                        return account;
+                    } else {
+                        Account account = new Account();
+                        account.setAccountNo(generateStudentAccountNo(allAccountNo));
+                        account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+                        account.setAccountType(AccountConstant.STUDENT_CODE);
+                        return account;
+                    }
+                }).collect(Collectors.toList());
+        if (all.isEmpty()) {
+            return ResultUtils.fail("请选择账号或账号已激活");
+        }
+        Integer row = accountDao.insertAccountList(all);
+        return row.equals(all.size()) ? ResultUtils.success("批量激活所有账号成功")
+                : ResultUtils.fail("批量激活所有账号失败");
+    }
+
+    @Override
+    public NoDataResult resetPassword(ResetPasswordForm resetForm) {
+        Account accountNo = accountDao.selectByAccountNo(resetForm.getAccountNo());
+        if (accountNo != null) {
+            Account account = new Account();
+            account.setAccountNo(resetForm.getAccountNo());
+            account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+            int row = accountDao.updatePassword(account);
+            return row == 1 ? ResultUtils.success("重置密码成功") : ResultUtils.fail("重置密码失败");
+        }
+        return ResultUtils.fail("请先激活账号");
+    }
 }
