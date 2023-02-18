@@ -3,11 +3,14 @@ package com.wt.courseselectionsystem.service.impl;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.wt.courseselectionsystem.common.ResultUtils;
+import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.CoursePlanDao;
 import com.wt.courseselectionsystem.dao.CourseSelectionDao;
 import com.wt.courseselectionsystem.model.dao.basebean.CourseSelection;
 import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
+import com.wt.courseselectionsystem.model.vo.request.course.select.CreditsSummaryQuery;
+import com.wt.courseselectionsystem.model.vo.response.course.select.CreditsSummaryListVo;
 import com.wt.courseselectionsystem.service.CourseSelectionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -94,5 +97,10 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
         return courseSelectionDao.insertCourseSelection(courseSelection) == 1 ?
                 ResultUtils.success("选课成功") :
                 ResultUtils.fail("选课失败");
+    }
+
+    @Override
+    public DataResult<CreditsSummaryListVo> summary(CreditsSummaryQuery query) {
+        return null;
     }
 }
