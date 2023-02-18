@@ -122,7 +122,7 @@
         select s.student_name, s.student_no, s.student_class, s.gender
         from course_selection cs
                  join student s on cs.student_no = s.student_no
-        where cs.course_plan_no = #{form.coursePlanNo}
+        where cs.course_plan_no = #{coursePlanNo}
     </select>
 
 </mapper>
