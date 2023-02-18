@@ -1,7 +1,7 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Student;
-import com.wt.courseselectionsystem.model.vo.request.student.StudentQuery;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.utils.StudentBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +30,10 @@ public class StudentDaoTest {
 
     @Test
     public void testSelect() {
-        StudentQuery query = new StudentQuery();
+        StudentListQuery query = new StudentListQuery();
         query.setGender(1);
         query.setActive(1);
-        System.out.println(studentDao.select(query));
+        System.out.println(studentDao.selectStudentInfo(query));
     }
 
     @Test

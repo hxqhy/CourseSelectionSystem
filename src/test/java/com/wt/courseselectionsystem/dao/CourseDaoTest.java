@@ -1,7 +1,7 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Course;
-import com.wt.courseselectionsystem.model.vo.request.course.CourseQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,9 +33,9 @@ public class CourseDaoTest {
 
     @Test
     public void testSelect() {
-        CourseQuery query = new CourseQuery();
+        CourseListQuery query = new CourseListQuery();
         query.setCourseHours(30);
-        System.out.println(courseDao.select(query));
+        System.out.println(courseDao.selectCourseInfo(query));
     }
 
     @Test

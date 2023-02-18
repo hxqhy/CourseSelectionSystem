@@ -36,5 +36,17 @@ public final class AccountConstant {
      * 默认密码
      */
     public static final String DEFAULT_PASSWORD = "123456";
+
+    /**
+     * 查询学生或老师是否处于激活状态
+     */
+    public static final Integer QUERY_ACTIVE_CODE_IS_ACTIVE = 1;
+
+    /**
+     * 查询学生或老师是否处于未激活状态
+     */
+    public static final Integer QUERY_ACTIVE_CODE_IS_NO_ACTIVE = 0;
+
+
 }
 

@@ -2,13 +2,9 @@ package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
-import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
-import com.wt.courseselectionsystem.model.vo.response.TeacherDetails;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 /**
  * @author xxx
@@ -35,9 +31,9 @@ public class TeacherDaoTest {
 
     @Test
     public void testSelect() {
-        TeacherQuery query = new TeacherQuery();
+        TeacherListQuery query = new TeacherListQuery();
         query.setActive(1);
-        System.out.println(teacherDao.select(query));
+        System.out.println(teacherDao.selectTeacherInfo(query));
     }
 
     @Test

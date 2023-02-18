@@ -9,9 +9,9 @@ import com.wt.courseselectionsystem.dao.TeacherDao;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.dao.basebean.Course;
 import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
-import com.wt.courseselectionsystem.model.vo.request.course.CourseQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
-import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherQuery;
+import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.service.CoursePlanService;
 import com.wt.courseselectionsystem.utils.CourseBuilder;
 import com.wt.courseselectionsystem.utils.RandomDataUtils;
@@ -86,11 +86,11 @@ public class TestData {
 
     @Test
     public void coursePlans() {
-        List<String> teacherNo = teacherDao.select(new TeacherQuery()).stream()
+        List<String> teacherNo = teacherDao.selectTeacherInfo(new TeacherListQuery()).stream()
                 .map(Teacher::getTeacherNo)
                 .limit(20)
                 .collect(Collectors.toList());
-        List<String> courseNo = courseDao.select(new CourseQuery()).stream()
+        List<String> courseNo = courseDao.selectCourseInfo(new CourseListQuery()).stream()
                 .map(Course::getCourseNo)
                 .limit(20)
                 .collect(Collectors.toList());

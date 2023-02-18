@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Repository
 public interface CoursePlanDao {
-    
+
     /**
      * 保存信息
      *
@@ -31,6 +31,7 @@ public interface CoursePlanDao {
      * @param query ...
      * @return ...
      */
+    @Deprecated
     List<CoursePlan> select(@Param("query") CoursePlanQuery query);
 
     /**
@@ -71,5 +72,5 @@ public interface CoursePlanDao {
      * @param form ...
      * @return ...
      */
-    List<Student> students(@Param("form")StudentsOfCoursePlanForm form);
+    List<Student> students(@Param("form") StudentsOfCoursePlanForm form);
 }

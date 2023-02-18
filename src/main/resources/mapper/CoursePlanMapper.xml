@@ -93,8 +93,8 @@
                 and t.course_plan_year=#{query.coursePlanYear}
             </if>
         </where>
-
     </select>
+
     <select id="selectInfoByCoursePlanNo"
             resultType="com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo">
         select cp.course_plan_no

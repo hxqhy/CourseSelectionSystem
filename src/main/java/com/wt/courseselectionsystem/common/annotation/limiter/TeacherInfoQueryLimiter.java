@@ -8,7 +8,7 @@ import java.util.Optional;
 import static com.wt.courseselectionsystem.common.constant.AccountConstant.TEACHER_CODE;
 
 /**
- * @author lixin
+ * @author hy
  */
 public class TeacherInfoQueryLimiter implements Limiter {
 

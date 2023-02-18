@@ -27,5 +27,15 @@ public class StudentListQuery extends PageRequest {
      * 班级
      */
     private String studentClass;
+
+    /**
+     * 是否处于激活状态
+     * <p>
+     * is active:
+     * {@link com.wt.courseselectionsystem.common.constant.AccountConstant#QUERY_ACTIVE_CODE_IS_ACTIVE}
+     * <br/>
+     * is not active:
+     * {@link com.wt.courseselectionsystem.common.constant.AccountConstant#QUERY_ACTIVE_CODE_IS_NO_ACTIVE}
+     */
     private Integer active;
 }

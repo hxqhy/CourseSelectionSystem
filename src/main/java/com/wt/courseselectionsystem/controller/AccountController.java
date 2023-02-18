@@ -13,7 +13,7 @@ import com.wt.courseselectionsystem.service.AccountService;
 import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.web.bind.annotation.*;
 
-import static com.wt.courseselectionsystem.common.constant.AccountConstant.*;
+import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
 
 /**
  * 系统用户登录 控制
@@ -22,6 +22,7 @@ import static com.wt.courseselectionsystem.common.constant.AccountConstant.*;
  */
 @RestController
 @RequestMapping("/account")
+@LoginRequired(role = {ADMIN_CODE})
 public class AccountController {
 
     private final AccountService accountService;
@@ -41,6 +42,7 @@ public class AccountController {
         return accountService.login(form);
     }
 
+    @LoginRequired
     @GetMapping("/logout")
     public NoDataResult logout(@RequestHeader(value = "token") String token) {
         tokenService.removeToken(token);
@@ -53,45 +55,43 @@ public class AccountController {
         return accountService.getAccountInfo(token);
     }
 
-    @LoginRequired(role = {ADMIN_CODE})
     @PostMapping("/active_student")
     public NoDataResult activateStudentAccount(@RequestBody ActivateSingleAccountForm form) {
         return accountService.activateStudentAccount(form);
     }
 
-    @LoginRequired(role = {ADMIN_CODE})
     @PostMapping("/active_teacher")
     public NoDataResult activateTeacherAccount(@RequestBody ActivateSingleAccountForm form) {
         return accountService.activateTeacherAccount(form);
     }
 
-    @LoginRequired(role = {STUDENT_CODE, ADMIN_CODE, TEACHER_CODE})
+    @LoginRequired
     @PostMapping("/update_password")
     NoDataResult updatePassword(@RequestBody UpdatePasswordForm passwordForm) {
         return accountService.updatePassword(passwordForm);
     }
 
-
-    @LoginRequired(role = {ADMIN_CODE})
     @PostMapping("/active_list_student")
     public NoDataResult activateStudentList(@RequestBody ActiveStudentForm activeStudentForm) {
         return accountService.activateStudentList(activeStudentForm);
     }
 
-    @LoginRequired(role = {ADMIN_CODE})
     @PostMapping("/active_list_teacher")
     public NoDataResult activateTeacherList(@RequestBody ActivateTeacherForm activateTeacherForm) {
         return accountService.activateTeacherList(activateTeacherForm);
     }
 
-    @PostMapping("/activate_all_account")
-    @LoginRequired(role = {ADMIN_CODE})
-    public NoDataResult activateAllAccount(@RequestBody ActivateAllAccountForm allForm) {
-        return accountService.activateAllAccount(allForm);
+    @PostMapping("/activate_all_student")
+    public NoDataResult activateAllStudent() {
+        return accountService.activateAllStudents();
+    }
+
+    @PostMapping("/activate_all_teacher")
+    public NoDataResult activateAllTeacher() {
+        return accountService.activateAllTeacher();
     }
 
     @PostMapping("/reset_password")
-    @LoginRequired(role = {ADMIN_CODE})
     public NoDataResult resetPassword(@RequestBody ResetPasswordForm resetPasswordForm) {
         return accountService.resetPassword(resetPasswordForm);
     }

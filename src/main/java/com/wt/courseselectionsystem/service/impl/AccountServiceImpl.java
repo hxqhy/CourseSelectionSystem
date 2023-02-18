@@ -13,20 +13,25 @@ import com.wt.courseselectionsystem.model.dao.basebean.Student;
 import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
 import com.wt.courseselectionsystem.model.vo.request.LoginForm;
 import com.wt.courseselectionsystem.model.vo.request.account.*;
+import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
+import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
 import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static com.wt.courseselectionsystem.common.SystemUtils.*;
+import static com.wt.courseselectionsystem.common.constant.AccountConstant.QUERY_ACTIVE_CODE_IS_ACTIVE;
 
 /**
  * 用户模块 业务实现类
@@ -40,16 +45,16 @@ public class AccountServiceImpl implements AccountService {
 
     private final TokenService<Account> tokenService;
 
-    private final TeacherDao teacherDao;
-
     private final StudentDao studentDao;
 
-    public AccountServiceImpl(AccountDao accountDao, TokenService<Account> tokenService
-            , TeacherDao teacherDao, StudentDao studentDao) {
+    private final TeacherDao teacherDao;
+
+    public AccountServiceImpl(AccountDao accountDao, TokenService<Account> tokenService,
+                              StudentDao studentDao, TeacherDao teacherDao) {
         this.accountDao = accountDao;
         this.tokenService = tokenService;
-        this.teacherDao = teacherDao;
         this.studentDao = studentDao;
+        this.teacherDao = teacherDao;
     }
 
     /**
@@ -120,17 +125,7 @@ public class AccountServiceImpl implements AccountService {
     public NoDataResult activateStudentList(ActiveStudentForm activeStudentForm) {
         List<String> studentNoList = Optional.ofNullable(activeStudentForm.getStudentNos())
                 .orElse(Collections.emptyList());
-        List<Account> accounts = studentNoList.stream()
-                .filter(studentNo ->
-                        Objects.isNull(accountDao.selectByAccountNo(generateStudentAccountNo(studentNo)))
-                )
-                .map(studentNo -> {
-                    Account account = new Account();
-                    account.setAccountNo(SystemUtils.generateStudentAccountNo(studentNo));
-                    account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
-                    account.setAccountType(AccountConstant.STUDENT_CODE);
-                    return account;
-                }).collect(Collectors.toList());
+        List<Account> accounts = studentNoToAccount(studentNoList);
         if (accounts.isEmpty()) {
             return ResultUtils.success("请选择学生账号或已经激活");
         }
@@ -141,17 +136,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public NoDataResult activateTeacherList(ActivateTeacherForm activateTeacherForm) {
-        List<String> teacherNos = activateTeacherForm.getTeacherNo();
-        List<String> teacherList = Optional.ofNullable(teacherNos).orElse(Collections.emptyList());
-        List<Account> collect = teacherList.stream()
-                .filter(filterNo -> Objects.isNull(accountDao.selectByAccountNo(generateTeacherAccountNo(filterNo))))
-                .map(item -> {
-                    Account account = new Account();
-                    account.setAccountNo(generateTeacherAccountNo(item));
-                    account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
-                    account.setAccountType(AccountConstant.TEACHER_CODE);
-                    return account;
-                }).collect(Collectors.toList());
+        List<String> teacherList = Optional.ofNullable(activateTeacherForm.getTeacherNo())
+                .orElse(Collections.emptyList());
+        List<Account> collect = teacherNoToAccount(teacherList);
 
         if (collect.isEmpty()) {
             return ResultUtils.fail("请选择导师账号或账号已激活");
@@ -175,33 +162,38 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public NoDataResult activateAllAccount(ActivateAllAccountForm allForm) {
-        List<String> allAccount = Optional.ofNullable(allForm.getAllNumber()).orElse(Collections.emptyList());
+    public NoDataResult activateAllStudents() {
+        return activateAll(() -> {
+            StudentListQuery query = new StudentListQuery();
+            query.setActive(QUERY_ACTIVE_CODE_IS_ACTIVE);
+            List<String> numbers = studentDao.selectStudentInfo(query).stream()
+                    .map(Student::getStudentNo).collect(Collectors.toList());
+            return studentNoToAccount(numbers);
+        });
+    }
 
-        List<Account> all = allAccount.stream().filter(filterNo -> Objects.isNull(accountDao.selectByAccountNo(generateTeacherAccountNo(filterNo))))
-                .filter(filterNo -> Objects.isNull(accountDao.selectByAccountNo(generateStudentAccountNo(filterNo))))
-                .map(allAccountNo -> {
-                    Teacher teacher = teacherDao.selectByTeacherNo(allAccountNo);
-                    if (teacher != null) {
-                        Account account = new Account();
-                        account.setAccountNo(generateTeacherAccountNo(teacher.getTeacherNo()));
-                        account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
-                        account.setAccountType(AccountConstant.TEACHER_CODE);
-                        return account;
-                    } else {
-                        Account account = new Account();
-                        account.setAccountNo(generateStudentAccountNo(allAccountNo));
-                        account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
-                        account.setAccountType(AccountConstant.STUDENT_CODE);
-                        return account;
-                    }
-                }).collect(Collectors.toList());
-        if (all.isEmpty()) {
-            return ResultUtils.fail("请选择账号或账号已激活");
-        }
-        Integer row = accountDao.insertAccountList(all);
-        return row.equals(all.size()) ? ResultUtils.success("批量激活所有账号成功")
-                : ResultUtils.fail("批量激活所有账号失败");
+    @Override
+    public NoDataResult activateAllTeacher() {
+        return activateAll(() -> {
+            TeacherListQuery query = new TeacherListQuery();
+            query.setActive(QUERY_ACTIVE_CODE_IS_ACTIVE);
+            List<String> numbers = teacherDao.selectTeacherInfo(query).stream()
+                    .map(Teacher::getTeacherNo).collect(Collectors.toList());
+            return teacherNoToAccount(numbers);
+        });
+    }
+
+    /**
+     * 使用到策略模式
+     *
+     * @param supplier supplier
+     * @return NoDataResult
+     */
+    private NoDataResult activateAll(Supplier<List<Account>> supplier) {
+        List<Account> accounts = supplier.get();
+        Integer row = accountDao.insertAccountList(accounts);
+        return row.equals(accounts.size()) ? ResultUtils.success("账号批量激活成功")
+                : ResultUtils.fail("账号批量激活失败");
     }
 
     @Override
@@ -216,4 +208,39 @@ public class AccountServiceImpl implements AccountService {
         }
         return ResultUtils.fail("请先激活账号");
     }
+
+    private List<Account> studentNoToAccount(List<String> numbers) {
+        if (CollectionUtils.isEmpty(numbers)) {
+            return Collections.emptyList();
+        }
+        return numbers.stream()
+                .filter(studentNo ->
+                        Objects.isNull(accountDao.selectByAccountNo(generateStudentAccountNo(studentNo)))
+                )
+                .map(studentNo -> {
+                    Account account = new Account();
+                    account.setAccountNo(SystemUtils.generateStudentAccountNo(studentNo));
+                    account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+                    account.setAccountType(AccountConstant.STUDENT_CODE);
+                    return account;
+                }).collect(Collectors.toList());
+    }
+
+    private List<Account> teacherNoToAccount(List<String> numbers) {
+        if (CollectionUtils.isEmpty(numbers)) {
+            return Collections.emptyList();
+        }
+        return numbers.stream()
+                .filter(number ->
+                        Objects.isNull(accountDao.selectByAccountNo(generateTeacherAccountNo(number)))
+                )
+                .map(number -> {
+                    Account account = new Account();
+                    account.setAccountNo(SystemUtils.generateTeacherAccountNo(number));
+                    account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+                    account.setAccountType(AccountConstant.TEACHER_CODE);
+                    return account;
+                }).collect(Collectors.toList());
+    }
+
 }

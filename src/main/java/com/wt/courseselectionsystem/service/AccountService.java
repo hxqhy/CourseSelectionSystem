@@ -71,14 +71,22 @@ public interface AccountService {
     NoDataResult updatePassword(UpdatePasswordForm passwordForm);
 
     /**
-     * 批量激活所有用户
-     * @param allForm ...
+     * 批量激活所有学生
+     *
      * @return ...
      */
-    NoDataResult activateAllAccount(ActivateAllAccountForm allForm);
+    NoDataResult activateAllStudents();
+
+    /**
+     * 批量激活所有教师
+     *
+     * @return ...
+     */
+    NoDataResult activateAllTeacher();
 
     /**
      * 重置密码
+     *
      * @param resetForm ...
      * @return ...
      */
