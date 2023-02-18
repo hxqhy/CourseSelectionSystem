@@ -70,36 +70,4 @@
             </if>
         </where>
     </select>
-
-    <!--非常丑陋 @author mry5l-->
-    <select id="selectDetails" resultType="com.wt.courseselectionsystem.model.vo.response.TeacherDetails">
-        select s.student_name,
-        s.student_no,
-        c.course_name,
-        c.credit,
-        c.course_hours,
-        c.quota,
-        cp.course_plan_year,
-        t.teacher_name,
-        cs.course_plan_no,
-        c.course_no
-        from course_plan cp
-        join course_selection cs on cp.course_plan_no = cs.course_plan_no
-        join course c on c.course_no = cp.course_no
-        join student s on cs.student_no = s.student_no
-        join teacher t on t.teacher_no = cp.teacher_no
-        <where>
-            <if test="query.teacherNo != null and query.teacherNo != ''">
-                t.teacher_no = #{query.teacherNo}
-            </if>
-            <if test="query.teacherName != null and query.teacherName != ''">
-                and t.teacher_name = #{query.teacherName}
-            </if>
-            <if test="query.gender != null">
-                and t.gender = #{query.gender}
-            </if>
-        </where>
-    </select>
-
-
 </mapper>

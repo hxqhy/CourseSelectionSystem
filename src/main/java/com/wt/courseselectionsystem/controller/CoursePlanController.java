@@ -57,5 +57,4 @@ public class CoursePlanController {
     public DataResult<StudentsOfCoursePlanVo> students(@RequestBody StudentsOfCoursePlanForm form) {
         return coursePlanService.students(form);
     }
-
 }

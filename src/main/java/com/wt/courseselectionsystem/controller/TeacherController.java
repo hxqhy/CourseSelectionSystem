@@ -48,8 +48,4 @@ public class TeacherController {
         return teacherService.delete(teacherNo);
     }
 
-    @GetMapping("/details")
-    DataResult<TeacherListVo> selectTeacherDetails(TeacherListQuery query) {
-        return teacherService.selectTeacherDetails(query);
-    }
 }

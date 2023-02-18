@@ -8,12 +8,17 @@ import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.CoursePlanDao;
 import com.wt.courseselectionsystem.model.dao.basebean.CoursePlan;
+import com.wt.courseselectionsystem.model.dao.basebean.Student;
+import com.wt.courseselectionsystem.model.dao.basebean.Teacher;
 import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanForm;
+import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 import com.wt.courseselectionsystem.model.vo.response.StudentsOfCoursePlanVo;
+import com.wt.courseselectionsystem.model.vo.response.TeacherListVo;
+import com.wt.courseselectionsystem.model.vo.response.TeacherVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 import com.wt.courseselectionsystem.service.CoursePlanService;
@@ -91,8 +96,13 @@ public class CoursePlanServiceImpl implements CoursePlanService {
 
     @Override
     public DataResult<StudentsOfCoursePlanVo> students(StudentsOfCoursePlanForm form) {
-        // todo 业务逻辑
-        return null;
+        PageHelper.startPage(form.getPageNum(), form.getPageSize());
+        List<Student> students = coursePlanDao.students(form);
+        PageInfo<Student> info = new PageInfo<>(students);
+        StudentsOfCoursePlanVo result = new StudentsOfCoursePlanVo();
+        result.setList(SystemUtils.easyCopy(students, StudentVo.class));
+        SystemUtils.configPageInfo(result, info);
+        return ResultUtils.success(result);
     }
 
     @Override

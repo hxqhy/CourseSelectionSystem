@@ -4,6 +4,7 @@ import com.wt.courseselectionsystem.model.dao.basebean.CoursePlan;
 import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanForm;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

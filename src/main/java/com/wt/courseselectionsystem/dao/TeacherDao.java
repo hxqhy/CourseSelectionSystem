@@ -62,11 +62,4 @@ public interface TeacherDao {
      * @return list
      */
     List<Teacher> selectTeacherInfo(@Param("query") TeacherListQuery query);
-
-    /**
-     * 查询导师所有详情
-     * @param query ...
-     * @return ...
-     */
-    List<TeacherDetails> selectDetails(@Param("query") TeacherListQuery query);
 }

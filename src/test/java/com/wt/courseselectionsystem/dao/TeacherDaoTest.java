@@ -53,13 +53,4 @@ public class TeacherDaoTest {
     public void testDelete() {
         System.out.println(teacherDao.delete("123"));
     }
-
-    @Test
-    public void testDetails(){
-        TeacherListQuery form = new TeacherListQuery();
-        form.setTeacherNo("201880264102");
-        form.setTeacherName("宋小美");
-        List<TeacherDetails> teacherDetails = teacherDao.selectDetails(form);
-        teacherDetails.forEach(System.out::println);
-    }
 }

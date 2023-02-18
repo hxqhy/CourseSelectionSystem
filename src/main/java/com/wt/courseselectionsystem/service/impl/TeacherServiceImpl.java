@@ -60,17 +60,6 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public DataResult<TeacherListVo> selectTeacherDetails(TeacherListQuery query) {
-        PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        List<TeacherDetails> list = teacherDao.selectDetails(query);
-        PageInfo<TeacherDetails> info = new PageInfo<>(list);
-        TeacherListVo result = new TeacherListVo();
-        result.setDetails(SystemUtils.easyCopy(list, TeacherDetails.class));
-        SystemUtils.configPageInfo(result, info);
-        return ResultUtils.success(result);
-    }
-
-    @Override
     public NoDataResult update(TeacherUpdateForm form) {
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(form, teacher);

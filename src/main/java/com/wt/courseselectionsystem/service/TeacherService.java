@@ -55,10 +55,4 @@ public interface TeacherService {
      */
     NoDataResult delete(String teacherNo);
 
-    /**
-     * 查询导师所有详情
-     * @param query ...
-     * @return ...
-     */
-    DataResult<TeacherListVo> selectTeacherDetails(TeacherListQuery query);
 }

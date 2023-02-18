@@ -15,7 +15,7 @@
     </insert>
 
 
-    <insert id="insertAccountList">
+    <insert id="insertAccountList" useGeneratedKeys="true" keyProperty="id">
         insert into account(account_no, password, account_type)
         values
         <if test="!@org.springframework.util.CollectionUtils@isEmpty(accounts)">
