@@ -4,7 +4,9 @@ import com.wt.courseselectionsystem.common.SystemUtils;
 import com.wt.courseselectionsystem.common.annotation.LoginRequired;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
+import com.wt.courseselectionsystem.model.vo.request.course.select.CourseSelectionSituationQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.select.SelectCourseForm;
+import com.wt.courseselectionsystem.model.vo.response.course.select.CourseSelectionSituationListVo;
 import com.wt.courseselectionsystem.service.CourseSelectionService;
 import com.wt.courseselectionsystem.service.TokenService;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +40,12 @@ public class CourseSelectionController {
                 .map(SystemUtils::parseAccountNo)
                 .orElseThrow(() -> new RuntimeException("获取学号失败"));
         return courseSelectionService.selectCourse(studentNo, form.getCoursePlanNo());
+    }
+
+    @PostMapping("situation")
+    public CourseSelectionSituationListVo infoList(@RequestBody CourseSelectionSituationQuery query) {
+        // todo 获取选课情况列表
+        return null;
     }
 
 }
