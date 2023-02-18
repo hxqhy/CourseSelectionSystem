@@ -198,17 +198,20 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public NoDataResult resetPassword(ResetPasswordForm resetForm) {
-        Account accountNo = accountDao.selectByAccountNo(resetForm.getAccountNo());
-        if (accountNo != null) {
-            Account account = new Account();
-            account.setAccountNo(resetForm.getAccountNo());
-            account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
-            int row = accountDao.updatePassword(account);
-            return row == 1 ? ResultUtils.success("重置密码成功") : ResultUtils.fail("重置密码失败");
-        }
-        return ResultUtils.fail("请先激活账号");
+        Account account = Optional.ofNullable(accountDao.selectByAccountNo(resetForm.getAccountNo()))
+                .orElseThrow(() -> new RuntimeException("账号不存在"));
+        account.setAccountNo(resetForm.getAccountNo());
+        account.setPassword(passwordEncode(AccountConstant.DEFAULT_PASSWORD));
+        int row = accountDao.updatePassword(account);
+        return row == 1 ? ResultUtils.success("重置密码成功") : ResultUtils.fail("重置密码失败");
     }
 
+    /**
+     * 根据学生编号生成Account对象
+     *
+     * @param numbers studentNo
+     * @return accounts
+     */
     private List<Account> studentNoToAccount(List<String> numbers) {
         if (CollectionUtils.isEmpty(numbers)) {
             return Collections.emptyList();
@@ -226,6 +229,12 @@ public class AccountServiceImpl implements AccountService {
                 }).collect(Collectors.toList());
     }
 
+    /**
+     * 根据教师编号生成Account对象
+     *
+     * @param numbers studentNo
+     * @return accounts
+     */
     private List<Account> teacherNoToAccount(List<String> numbers) {
         if (CollectionUtils.isEmpty(numbers)) {
             return Collections.emptyList();
