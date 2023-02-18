@@ -86,13 +86,13 @@ public class AccountController {
 
     @PostMapping("/activate_all_account")
     @LoginRequired(role = {ADMIN_CODE})
-    public NoDataResult activateAllAccount(ActivateAllAccountForm allForm) {
+    public NoDataResult activateAllAccount(@RequestBody ActivateAllAccountForm allForm) {
         return accountService.activateAllAccount(allForm);
     }
 
     @PostMapping("/reset_password")
     @LoginRequired(role = {ADMIN_CODE})
-    public NoDataResult resetPassword(ResetPasswordForm resetPasswordForm) {
+    public NoDataResult resetPassword(@RequestBody ResetPasswordForm resetPasswordForm) {
         return accountService.resetPassword(resetPasswordForm);
     }
 }
