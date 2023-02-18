@@ -35,13 +35,13 @@
         select id, course_plan_no, course_no, teacher_no, course_plan_year
         from course_plan
         <where>
-            <if test="query.courseNo!= null and query.courseNo != '' ">
+            <if test="query.courseNo != null and query.courseNo != '' ">
                 course_no=#{query.courseNo}
             </if>
-            <if test="query.teacherNo!= null and query.teacherNo != '' ">
+            <if test="query.teacherNo != null and query.teacherNo != '' ">
                 and teacher_no=#{query.teacherNo}
             </if>
-            <if test="query.coursePlanYear!= null and query.coursePlanYear != '' ">
+            <if test="query.coursePlanYear != null and query.coursePlanYear != '' ">
                 and course_plan_year=#{query.coursePlanYear}
             </if>
         </where>
@@ -121,8 +121,24 @@
     <select id="students" resultType="com.wt.courseselectionsystem.model.dao.basebean.Student">
         select s.student_name, s.student_no, s.student_class, s.gender
         from course_selection cs
-                 join student s on cs.student_no = s.student_no
-        where cs.course_plan_no = #{coursePlanNo}
+        join student s on cs.student_no = s.student_no
+        <where>
+            <if test="query.coursePlanNo != null and query.coursePlanNo != ''">
+                cs.course_plan_no = #{query.coursePlanNo}
+            </if>
+            <if test="query.studentNo != null and query.studentNo != ''">
+                and s.student_no = #{query.studentNo}
+            </if>
+            <if test="query.studentName != null and query.studentName != ''">
+                and s.student_name like concat('%',#{query.studentName},'%')
+            </if>
+            <if test="query.studentGender != null">
+                and s.gender = #{query.studentGender}
+            </if>
+            <if test="query.studentClass != null and query.studentClass != ''">
+                and s.student_class = #{query.studentClass}
+            </if>
+        </where>
     </select>
 
 </mapper>

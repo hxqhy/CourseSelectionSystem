@@ -13,7 +13,7 @@ import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
-import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanQuery;
 import com.wt.courseselectionsystem.model.vo.response.StudentVo;
 import com.wt.courseselectionsystem.model.vo.response.StudentsOfCoursePlanVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
@@ -92,9 +92,9 @@ public class CoursePlanServiceImpl implements CoursePlanService {
     }
 
     @Override
-    public DataResult<StudentsOfCoursePlanVo> students(StudentsOfCoursePlanForm form) {
-        PageHelper.startPage(form.getPageNum(), form.getPageSize());
-        List<Student> students = coursePlanDao.students(form.getCoursePlanNo());
+    public DataResult<StudentsOfCoursePlanVo> students(StudentsOfCoursePlanQuery query) {
+        PageHelper.startPage(query.getPageNum(), query.getPageSize());
+        List<Student> students = coursePlanDao.students(query);
         PageInfo<Student> info = new PageInfo<>(students);
         StudentsOfCoursePlanVo result = new StudentsOfCoursePlanVo();
         result.setList(SystemUtils.easyCopy(students, StudentVo.class));

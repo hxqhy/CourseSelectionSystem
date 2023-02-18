@@ -7,7 +7,7 @@ import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
-import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanForm;
+import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanQuery;
 import com.wt.courseselectionsystem.model.vo.response.StudentsOfCoursePlanVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
@@ -54,7 +54,7 @@ public class CoursePlanController {
     }
 
     @PostMapping("/students")
-    public DataResult<StudentsOfCoursePlanVo> students(@RequestBody StudentsOfCoursePlanForm form) {
+    public DataResult<StudentsOfCoursePlanVo> students(@RequestBody StudentsOfCoursePlanQuery form) {
         return coursePlanService.students(form);
     }
 }

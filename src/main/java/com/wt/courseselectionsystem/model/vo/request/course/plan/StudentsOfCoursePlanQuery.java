@@ -9,6 +9,10 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class StudentsOfCoursePlanForm extends PageRequest {
+public class StudentsOfCoursePlanQuery extends PageRequest {
     private String coursePlanNo;
+    private String studentNo;
+    private String studentName;
+    private Integer studentGender;
+    private String studentClass;
 }
