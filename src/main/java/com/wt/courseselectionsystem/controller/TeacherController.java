@@ -1,5 +1,8 @@
 package com.wt.courseselectionsystem.controller;
 
+import com.wt.courseselectionsystem.common.annotation.LimitAbility;
+import com.wt.courseselectionsystem.common.annotation.LoginRequired;
+import com.wt.courseselectionsystem.common.annotation.limiter.TeacherInfoQueryLimiter;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
@@ -38,7 +41,9 @@ public class TeacherController {
         return teacherService.update(form);
     }
 
+    @LoginRequired
     @GetMapping("/info")
+    @LimitAbility(TeacherInfoQueryLimiter.class)
     public DataResult<TeacherVo> info(String teacherNo) {
         return teacherService.info(teacherNo);
     }
