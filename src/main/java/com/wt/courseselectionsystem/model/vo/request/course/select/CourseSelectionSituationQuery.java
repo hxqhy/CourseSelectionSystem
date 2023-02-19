@@ -21,4 +21,9 @@ public class CourseSelectionSituationQuery extends PageRequest {
      */
     private String teacherNo;
 
+    /**
+     * 课程名
+     */
+    private String courseName;
+
 }

@@ -44,5 +44,13 @@ public class CoursePlanInfo {
      */
     private String coursePlanYear;
 
+    /**
+     * 学生名称
+     */
+    private String studentName;
 
+    /**
+     * 学生编号
+     */
+    private String studentNo;
 }

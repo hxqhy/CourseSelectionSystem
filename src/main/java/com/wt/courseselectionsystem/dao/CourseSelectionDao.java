@@ -1,8 +1,12 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.CourseSelection;
+import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
+import com.wt.courseselectionsystem.model.vo.request.course.select.CourseSelectionSituationQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author xxx
@@ -44,4 +48,11 @@ public interface CourseSelectionDao {
      * @return ...
      */
     Integer selectSumCredit(@Param("studentNo") String studentNo);
+
+    /**
+     * 获取选课情况列表
+     * @param query ...
+     * @return ...
+     */
+    List<CoursePlanInfo> selectCourseSelections(@Param("query") CourseSelectionSituationQuery query);
 }

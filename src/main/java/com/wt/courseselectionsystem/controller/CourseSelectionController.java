@@ -2,6 +2,7 @@ package com.wt.courseselectionsystem.controller;
 
 import com.wt.courseselectionsystem.common.SystemUtils;
 import com.wt.courseselectionsystem.common.annotation.LoginRequired;
+import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.dao.basebean.Account;
 import com.wt.courseselectionsystem.model.vo.request.course.select.CourseSelectionSituationQuery;
@@ -42,10 +43,9 @@ public class CourseSelectionController {
         return courseSelectionService.selectCourse(studentNo, form.getCoursePlanNo());
     }
 
-    @PostMapping("situation")
-    public CourseSelectionSituationListVo infoList(@RequestBody CourseSelectionSituationQuery query) {
-        // todo 获取选课情况列表
-        return null;
+    @PostMapping("/situation")
+    public DataResult<CourseSelectionSituationListVo> infoList(@RequestBody CourseSelectionSituationQuery query) {
+        return courseSelectionService.infoList(query);
     }
 
 }
