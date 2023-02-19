@@ -23,4 +23,9 @@ public class PageResponse {
      * total page
      */
     private Integer pages;
+
+    /**
+     * 总量
+     */
+    private Long total;
 }

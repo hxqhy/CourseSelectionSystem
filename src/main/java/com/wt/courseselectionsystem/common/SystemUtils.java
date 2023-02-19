@@ -65,6 +65,7 @@ public final class SystemUtils {
         response.setPageNum(pageInfo.getPageNum());
         response.setPageSize(pageInfo.getPageSize());
         response.setPages(pageInfo.getPages());
+        response.setTotal(pageInfo.getTotal());
     }
 
     /**
