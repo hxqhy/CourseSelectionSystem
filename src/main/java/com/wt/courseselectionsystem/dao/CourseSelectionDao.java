@@ -5,6 +5,8 @@ import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
 import com.wt.courseselectionsystem.model.dao.exbean.CreditInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.select.CourseSelectionSituationQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.select.CreditsSummaryQuery;
+import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
+import com.wt.courseselectionsystem.model.vo.request.course.select.CourseSelectionSituationQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

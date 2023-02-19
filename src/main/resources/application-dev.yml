@@ -8,3 +8,5 @@ spring:
     username: root
     # 登录数据库的密码
     password: root
+  jackson:
+    default-property-inclusion: non_null
