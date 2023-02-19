@@ -42,10 +42,9 @@ public class CourseSelectionController {
         return courseSelectionService.selectCourse(studentNo, form.getCoursePlanNo());
     }
 
-    @PostMapping("situation")
+    @PostMapping("/situation")
     public CourseSelectionSituationListVo infoList(@RequestBody CourseSelectionSituationQuery query) {
-        // todo 获取选课情况列表
-        return null;
+        return courseSelectionService.infoList(query);
     }
 
 }
