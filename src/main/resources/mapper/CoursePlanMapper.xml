@@ -30,23 +30,6 @@
         where course_plan_no = #{coursePlanNo}
     </delete>
 
-
-    <select id="select" resultType="com.wt.courseselectionsystem.model.dao.basebean.CoursePlan">
-        select id, course_plan_no, course_no, teacher_no, course_plan_year
-        from course_plan
-        <where>
-            <if test="query.courseNo != null and query.courseNo != '' ">
-                course_no=#{query.courseNo}
-            </if>
-            <if test="query.teacherNo != null and query.teacherNo != '' ">
-                and teacher_no=#{query.teacherNo}
-            </if>
-            <if test="query.coursePlanYear != null and query.coursePlanYear != '' ">
-                and course_plan_year=#{query.coursePlanYear}
-            </if>
-        </where>
-    </select>
-
     <select id="selectCoursePlanInfo"
             resultType="com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo">
         select cp.course_plan_no
