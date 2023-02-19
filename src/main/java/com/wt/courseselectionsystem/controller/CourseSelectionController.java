@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
 import static com.wt.courseselectionsystem.common.constant.AccountConstant.STUDENT_CODE;
 
 /**
@@ -52,6 +53,7 @@ public class CourseSelectionController {
     }
 
     @PostMapping("/summary")
+    @LoginRequired(role = {ADMIN_CODE})
     public DataResult<CreditsSummaryListVo> summary(@RequestBody CreditsSummaryQuery query) {
         return courseSelectionService.summary(query);
     }

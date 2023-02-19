@@ -1,12 +1,9 @@
-package com.wt.courseselectionsystem.model.vo.response.course.select;
+package com.wt.courseselectionsystem.model.dao.exbean;
 
 import lombok.Data;
 
-/**
- * @author lixin
- */
 @Data
-public class CreditsSummaryInfo {
+public class CreditInfo {
     private String studentName;
     private String studentNo;
     private String studentClass;

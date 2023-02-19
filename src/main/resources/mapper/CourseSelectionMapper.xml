@@ -21,11 +21,43 @@
     </select>
 
     <select id="selectSumCredit" resultType="java.lang.Integer">
-        select sum(c.credit)
+        select ifnull(sum(c.credit), 0)
         from course_selection cs
                  inner join course_plan cp on cs.course_plan_no = cp.course_plan_no
                  inner join course c on cp.course_no = c.course_no
         where cs.student_no = #{studentNo};
+    </select>
+
+    <select id="selectCreditsSummary" resultType="com.wt.courseselectionsystem.model.dao.exbean.CreditInfo">
+        select s.student_no, s.student_name,s.student_class,IFNULL(temp.total, 0) total_credits
+        from student s
+        left join (select cs.student_no, sum(c.credit) total
+        from course_selection cs
+        inner join course_plan cp on cs.course_plan_no = cp.course_plan_no
+        inner join course c on cp.course_no = c.course_no
+        group by cs.student_no) temp on s.student_no = temp.student_no
+        <where>
+            <if test="query.credits != null and query.comparison != null">
+                <choose>
+                    <when test="query.comparison == -1">
+                        total_credits <![CDATA[<]]> #{query.credits}
+                    </when>
+                    <when test="query.comparison == 0">
+                        total_credits = #{query.credits}
+                    </when>
+                    <when test="query.comparison == 1">
+                        total_credits <![CDATA[>]]> #{query.credits}
+                    </when>
+                </choose>
+            </if>
+            <if test="query.studentName != null and query.studentName != ''">
+                and s.student_name like concat('%',#{query.studentName},'%')
+            </if>
+            <if test="query.studentNo != null and query.studentNo != ''">
+                and s.student_no = #{query.studentNo}
+            </if>
+        </where>
+        order by total_credits desc
     </select>
 
 </mapper>

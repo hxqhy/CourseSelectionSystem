@@ -1,21 +1,27 @@
 package com.wt.courseselectionsystem.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.wt.courseselectionsystem.common.ResultUtils;
+import com.wt.courseselectionsystem.common.SystemUtils;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.CoursePlanDao;
 import com.wt.courseselectionsystem.dao.CourseSelectionDao;
 import com.wt.courseselectionsystem.model.dao.basebean.CourseSelection;
 import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
+import com.wt.courseselectionsystem.model.dao.exbean.CreditInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.select.CreditsSummaryQuery;
+import com.wt.courseselectionsystem.model.vo.response.course.select.CreditsSummaryInfo;
 import com.wt.courseselectionsystem.model.vo.response.course.select.CreditsSummaryListVo;
 import com.wt.courseselectionsystem.service.CourseSelectionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -101,6 +107,12 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
 
     @Override
     public DataResult<CreditsSummaryListVo> summary(CreditsSummaryQuery query) {
-        return null;
+        PageHelper.startPage(query.getPageNum(), query.getPageSize());
+        List<CreditInfo> list = courseSelectionDao.selectCreditsSummary(query);
+        PageInfo<CreditInfo> info = new PageInfo<>(list);
+        CreditsSummaryListVo result = new CreditsSummaryListVo();
+        result.setList(SystemUtils.easyCopy(list, CreditsSummaryInfo.class));
+        SystemUtils.configPageInfo(result, info);
+        return ResultUtils.success(result);
     }
 }

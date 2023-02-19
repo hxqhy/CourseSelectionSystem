@@ -1,9 +1,11 @@
 package com.wt.courseselectionsystem.model.vo.request.course.select;
 
+import com.wt.courseselectionsystem.model.vo.request.base.PageRequest;
+
 /**
  * @author lixin
  */
-public class CreditsSummaryQuery {
+public class CreditsSummaryQuery extends PageRequest {
     /**
      * 学分
      */
@@ -19,4 +21,8 @@ public class CreditsSummaryQuery {
      * 1：总学分高于 {@link CreditsSummaryQuery#credits}
      */
     private Integer comparison;
+
+    private String studentNo;
+
+    private String studentName;
 }
