@@ -14,10 +14,10 @@ import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddFo
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanQuery;
-import com.wt.courseselectionsystem.model.vo.response.StudentVo;
-import com.wt.courseselectionsystem.model.vo.response.StudentsOfCoursePlanVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
+import com.wt.courseselectionsystem.model.vo.response.course.plan.StudentsOfCoursePlanVo;
+import com.wt.courseselectionsystem.model.vo.response.student.StudentVo;
 import com.wt.courseselectionsystem.service.CoursePlanService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

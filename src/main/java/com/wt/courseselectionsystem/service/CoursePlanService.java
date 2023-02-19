@@ -6,9 +6,9 @@ import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanAddFo
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanInfoQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.CoursePlanUpdateForm;
 import com.wt.courseselectionsystem.model.vo.request.course.plan.StudentsOfCoursePlanQuery;
-import com.wt.courseselectionsystem.model.vo.response.StudentsOfCoursePlanVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
+import com.wt.courseselectionsystem.model.vo.response.course.plan.StudentsOfCoursePlanVo;
 
 /**
  * @author HY

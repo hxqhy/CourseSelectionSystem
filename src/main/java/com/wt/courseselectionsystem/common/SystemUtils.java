@@ -2,7 +2,7 @@ package com.wt.courseselectionsystem.common;
 
 import com.github.pagehelper.PageInfo;
 import com.wt.courseselectionsystem.common.constant.AccountConstant;
-import com.wt.courseselectionsystem.common.result.PageResponse;
+import com.wt.courseselectionsystem.model.vo.response.base.PageResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;

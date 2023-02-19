@@ -6,6 +6,7 @@ import com.wt.courseselectionsystem.model.vo.request.course.select.CourseSelecti
 import com.wt.courseselectionsystem.model.vo.request.course.select.CreditsSummaryQuery;
 import com.wt.courseselectionsystem.model.vo.response.course.select.CourseSelectionSituationListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.select.CreditsSummaryListVo;
+import com.wt.courseselectionsystem.model.vo.response.course.select.StudentCourseSelectionList;
 
 /**
  * @author lixin
@@ -36,4 +37,21 @@ public interface CourseSelectionService {
      * @return ...
      */
     DataResult<CourseSelectionSituationListVo> infoList(CourseSelectionSituationQuery query);
+
+    /**
+     * 取消选课
+     *
+     * @param coursePlanNo ...
+     * @param studentNo    ...
+     * @return ...
+     */
+    NoDataResult cancel(String coursePlanNo, String studentNo);
+
+    /**
+     * 获取学生选课列表
+     *
+     * @param studentNo ...
+     * @return ...
+     */
+    DataResult<StudentCourseSelectionList> list(String studentNo);
 }

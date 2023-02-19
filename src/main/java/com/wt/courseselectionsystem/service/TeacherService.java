@@ -5,11 +5,8 @@ import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
-import com.wt.courseselectionsystem.model.vo.response.TeacherDetails;
-import com.wt.courseselectionsystem.model.vo.response.TeacherListVo;
-import com.wt.courseselectionsystem.model.vo.response.TeacherVo;
-
-import java.util.List;
+import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherListVo;
+import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherVo;
 
 /**
  * @author HY

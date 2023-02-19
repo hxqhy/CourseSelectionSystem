@@ -11,14 +11,13 @@ import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.dao.CoursePlanDao;
 import com.wt.courseselectionsystem.dao.CourseSelectionDao;
 import com.wt.courseselectionsystem.model.dao.basebean.CourseSelection;
+import com.wt.courseselectionsystem.model.dao.exbean.CourseInfoForStudent;
 import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
+import com.wt.courseselectionsystem.model.dao.exbean.CourseSelectionSituationInfo;
 import com.wt.courseselectionsystem.model.dao.exbean.CreditInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.select.CourseSelectionSituationQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.select.CreditsSummaryQuery;
-import com.wt.courseselectionsystem.model.vo.response.course.select.CourseSelectionSituationListVo;
-import com.wt.courseselectionsystem.model.vo.response.course.select.CourseSelectionSituationVo;
-import com.wt.courseselectionsystem.model.vo.response.course.select.CreditsSummaryInfo;
-import com.wt.courseselectionsystem.model.vo.response.course.select.CreditsSummaryListVo;
+import com.wt.courseselectionsystem.model.vo.response.course.select.*;
 import com.wt.courseselectionsystem.service.CourseSelectionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -122,11 +121,25 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
     @Override
     public DataResult<CourseSelectionSituationListVo> infoList(CourseSelectionSituationQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        List<CoursePlanInfo> coursePlans = courseSelectionDao.selectCourseSelections(query);
-        PageInfo<CoursePlanInfo> info = new PageInfo<>(coursePlans);
+        List<CourseSelectionSituationInfo> coursePlans = courseSelectionDao.selectCourseSelections(query);
+        PageInfo<CourseSelectionSituationInfo> info = new PageInfo<>(coursePlans);
         CourseSelectionSituationListVo situations = new CourseSelectionSituationListVo();
         situations.setList(SystemUtils.easyCopy(coursePlans, CourseSelectionSituationVo.class));
         SystemUtils.configPageInfo(situations, info);
         return ResultUtils.success(situations);
+    }
+
+    @Override
+    public NoDataResult cancel(String coursePlanNo, String studentNo) {
+        int row = courseSelectionDao.deleteByCoursePlanNoAndStudentNo(coursePlanNo, studentNo);
+        return row == 1 ? ResultUtils.success("删除成功") : ResultUtils.fail("删除失败");
+    }
+
+    @Override
+    public DataResult<StudentCourseSelectionList> list(String studentNo) {
+        List<CourseInfoForStudent> list = courseSelectionDao.selectCoursePlanInfoByStudentNO(studentNo);
+        StudentCourseSelectionList result = new StudentCourseSelectionList();
+        result.setList(SystemUtils.easyCopy(list, CourseInfoForStudentVo.class));
+        return ResultUtils.success(result);
     }
 }

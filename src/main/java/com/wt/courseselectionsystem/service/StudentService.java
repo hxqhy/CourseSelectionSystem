@@ -5,8 +5,8 @@ import com.wt.courseselectionsystem.common.result.NoDataResult;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
-import com.wt.courseselectionsystem.model.vo.response.StudentListVo;
-import com.wt.courseselectionsystem.model.vo.response.StudentVo;
+import com.wt.courseselectionsystem.model.vo.response.student.StudentListVo;
+import com.wt.courseselectionsystem.model.vo.response.student.StudentVo;
 
 /**
  * @author lixin

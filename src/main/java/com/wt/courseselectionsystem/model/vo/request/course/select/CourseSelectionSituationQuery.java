@@ -16,14 +16,10 @@ public class CourseSelectionSituationQuery extends PageRequest {
      */
     private String studentNo;
 
-    /**
-     * 教师编号
-     */
-    private String teacherNo;
+    private String studentName;
 
-    /**
-     * 课程名
-     */
+    private String studentClass;
+    
     private String courseName;
 
 }

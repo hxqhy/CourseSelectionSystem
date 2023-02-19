@@ -1,6 +1,7 @@
-package com.wt.courseselectionsystem.model.vo.response;
+package com.wt.courseselectionsystem.model.vo.response.course.plan;
 
-import com.wt.courseselectionsystem.common.result.PageResponse;
+import com.wt.courseselectionsystem.model.vo.response.base.PageResponse;
+import com.wt.courseselectionsystem.model.vo.response.student.StudentVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

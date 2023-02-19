@@ -6,6 +6,12 @@
         insert into course_selection(student_no, course_plan_no, gmt_create)
             value (#{courseSelection.studentNo}, #{courseSelection.coursePlanNo}, #{courseSelection.gmtCreate});
     </insert>
+    <delete id="deleteByCoursePlanNoAndStudentNo">
+        delete
+        from course_selection
+        where student_no = #{studentNo}
+          and course_plan_no = #{coursePlanNo}
+    </delete>
 
     <select id="countByStudentNoAndCoursePlanNo" resultType="java.lang.Integer">
         select count(*)
@@ -26,33 +32,6 @@
                  inner join course_plan cp on cs.course_plan_no = cp.course_plan_no
                  inner join course c on cp.course_no = c.course_no
         where cs.student_no = #{studentNo};
-    </select>
-
-    <select id="selectCourseSelections"
-            resultType="com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo">
-
-        SELECT s.student_name , s.student_no , c.course_name , c.course_no ,
-        t.teacher_name , t.teacher_no , c.credit , c.course_hours
-        from student s
-        JOIN course_selection cs on s.student_no = cs.student_no
-        JOIN course_plan cp ON cs.course_plan_no = cp.course_plan_no
-        JOIN course c ON c.course_no = cp.course_no
-        join teacher t on t.teacher_no = cp.teacher_no
-        <where>
-
-            <if test="query.studentNo != null and query.studentNo !='' ">
-                cs.student_no = #{query.studentNo}
-            </if>
-
-            <if test="query.teacherNo != null and query.teacherNo !='' ">
-                and cp.teacher_no = #{query.teacherNo}
-            </if>
-
-            <if test="query.courseName != null and query.courseName !='' ">
-                and c.course_name = #{query.courseName}
-            </if>
-
-        </where>
     </select>
 
     <select id="selectCreditsSummary" resultType="com.wt.courseselectionsystem.model.dao.exbean.CreditInfo">
@@ -85,6 +64,51 @@
             </if>
         </where>
         order by total_credits desc
+    </select>
+
+    <select id="selectCourseSelections"
+            resultType="com.wt.courseselectionsystem.model.dao.exbean.CourseSelectionSituationInfo">
+        select s.student_name,
+        s.student_no,
+        c.course_name,
+        c.course_no,
+        t.teacher_name,
+        t.teacher_no,
+        c.credit,
+        c.course_hours
+        from course_selection cs
+        inner join student s on cs.student_no = s.student_no
+        inner join course_plan cp on cs.course_plan_no = cp.course_plan_no
+        inner join course c on cp.course_no = c.course_no
+        inner join teacher t on cp.teacher_no = t.teacher_no
+        <where>
+            <if test="query.studentName != null and query.studentName != ''">
+                s.student_name like concat('%',#{query.studentName},'%')
+            </if>
+            <if test="query.studentNo != null and query.studentNo != ''">
+                and s.student_no = #{query.studentNo}
+            </if>
+            <if test="query.studentClass != null and query.studentClass != ''">
+                and s.student_calss = #{query.studentClass}
+            </if>
+            <if test="query.courseName != null and query.courseName !='' ">
+                and c.course_name = #{query.courseName}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectCoursePlanInfoByStudentNO"
+            resultType="com.wt.courseselectionsystem.model.dao.exbean.CourseInfoForStudent">
+        select c.course_name
+             , c.credit
+             , c.course_hours
+             , t.teacher_name
+             , cp.course_plan_year
+        from course_selection cs
+                 inner join course_plan cp on cs.course_plan_no = cp.course_plan_no
+                 inner join course c on cp.course_no = c.course_no
+                 inner join teacher t on cp.teacher_no = t.teacher_no
+        where cs.student_no = #{studentNo}
     </select>
 
 </mapper>

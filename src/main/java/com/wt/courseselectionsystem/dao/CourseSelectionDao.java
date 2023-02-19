@@ -1,12 +1,11 @@
 package com.wt.courseselectionsystem.dao;
 
 import com.wt.courseselectionsystem.model.dao.basebean.CourseSelection;
-import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
+import com.wt.courseselectionsystem.model.dao.exbean.CourseInfoForStudent;
+import com.wt.courseselectionsystem.model.dao.exbean.CourseSelectionSituationInfo;
 import com.wt.courseselectionsystem.model.dao.exbean.CreditInfo;
 import com.wt.courseselectionsystem.model.vo.request.course.select.CourseSelectionSituationQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.select.CreditsSummaryQuery;
-import com.wt.courseselectionsystem.model.dao.exbean.CoursePlanInfo;
-import com.wt.courseselectionsystem.model.vo.request.course.select.CourseSelectionSituationQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -67,5 +66,24 @@ public interface CourseSelectionDao {
      * @param query ...
      * @return ...
      */
-    List<CoursePlanInfo> selectCourseSelections(@Param("query") CourseSelectionSituationQuery query);
+    List<CourseSelectionSituationInfo> selectCourseSelections(@Param("query") CourseSelectionSituationQuery query);
+
+    /**
+     * 根据学生编号和课程计划编号删除记录
+     *
+     * @param coursePlanNo ...
+     * @param studentNo    ...
+     * @return rows
+     */
+    int deleteByCoursePlanNoAndStudentNo(@Param("coursePlanNo") String coursePlanNo,
+                                         @Param("studentNo") String studentNo);
+
+    /**
+     * 查询学生选课列表
+     *
+     * @param studentNo ...
+     * @return list
+     */
+    List<CourseInfoForStudent> selectCoursePlanInfoByStudentNO(@Param("studentNo") String studentNo);
+
 }
