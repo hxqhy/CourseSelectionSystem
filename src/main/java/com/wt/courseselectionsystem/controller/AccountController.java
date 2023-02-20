@@ -11,6 +11,7 @@ import com.wt.courseselectionsystem.model.vo.response.AccountVo;
 import com.wt.courseselectionsystem.model.vo.response.LoginResult;
 import com.wt.courseselectionsystem.service.AccountService;
 import com.wt.courseselectionsystem.service.TokenService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
@@ -38,7 +39,7 @@ public class AccountController {
      * 功能描述：系统用户登录
      */
     @PostMapping("/login")
-    public DataResult<LoginResult> accountLogin(@RequestBody LoginForm form) {
+    public DataResult<LoginResult> accountLogin(@Validated @RequestBody LoginForm form) {
         return accountService.login(form);
     }
 
@@ -56,28 +57,28 @@ public class AccountController {
     }
 
     @PostMapping("/active_student")
-    public NoDataResult activateStudentAccount(@RequestBody ActivateSingleAccountForm form) {
+    public NoDataResult activateStudentAccount(@Validated @RequestBody ActivateSingleAccountForm form) {
         return accountService.activateStudentAccount(form);
     }
 
     @PostMapping("/active_teacher")
-    public NoDataResult activateTeacherAccount(@RequestBody ActivateSingleAccountForm form) {
+    public NoDataResult activateTeacherAccount(@Validated @RequestBody ActivateSingleAccountForm form) {
         return accountService.activateTeacherAccount(form);
     }
 
     @LoginRequired
     @PostMapping("/update_password")
-    NoDataResult updatePassword(@RequestBody UpdatePasswordForm passwordForm) {
+    NoDataResult updatePassword(@Validated @RequestBody UpdatePasswordForm passwordForm) {
         return accountService.updatePassword(passwordForm);
     }
 
     @PostMapping("/active_list_student")
-    public NoDataResult activateStudentList(@RequestBody ActiveStudentForm activeStudentForm) {
+    public NoDataResult activateStudentList(@Validated @RequestBody ActiveStudentForm activeStudentForm) {
         return accountService.activateStudentList(activeStudentForm);
     }
 
     @PostMapping("/active_list_teacher")
-    public NoDataResult activateTeacherList(@RequestBody ActivateTeacherForm activateTeacherForm) {
+    public NoDataResult activateTeacherList(@Validated @RequestBody ActivateTeacherForm activateTeacherForm) {
         return accountService.activateTeacherList(activateTeacherForm);
     }
 
@@ -92,7 +93,7 @@ public class AccountController {
     }
 
     @PostMapping("/reset_password")
-    public NoDataResult resetPassword(@RequestBody ResetPasswordForm resetPasswordForm) {
+    public NoDataResult resetPassword(@Validated @RequestBody ResetPasswordForm resetPasswordForm) {
         return accountService.resetPassword(resetPasswordForm);
     }
 }
