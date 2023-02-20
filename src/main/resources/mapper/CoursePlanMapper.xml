@@ -61,10 +61,7 @@
                 and c.course_hours = #{query.courseHours}
             </if>
             <if test="query.quota != null">
-                and c.student_number = #{query.quota}
-            </if>
-            <if test="query.courseNo != null and query.courseNo != '' ">
-                and c.course_no=#{query.courseNo}
+                and c.quota = #{query.quota}
             </if>
             <if test="query.teacherNo != null and query.teacherNo != '' ">
                 and t.teacher_no=#{query.teacherNo}
