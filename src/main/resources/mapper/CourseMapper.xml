@@ -81,7 +81,7 @@
                 and course_hours=#{query.courseHours}
             </if>
             <if test="query.quota != null">
-                and student_number=#{query.quota}
+                and quota=#{query.quota}
             </if>
         </where>
     </select>
