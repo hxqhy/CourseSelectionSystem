@@ -1,6 +1,7 @@
 package com.wt.courseselectionsystem.controller;
 
 import com.wt.courseselectionsystem.common.annotation.LimitAbility;
+import com.wt.courseselectionsystem.common.annotation.LoginRequired;
 import com.wt.courseselectionsystem.common.annotation.limiter.CoursePlanInfoListQueryLimiter;
 import com.wt.courseselectionsystem.common.result.DataResult;
 import com.wt.courseselectionsystem.common.result.NoDataResult;
@@ -15,11 +16,15 @@ import com.wt.courseselectionsystem.service.CoursePlanService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
+import static com.wt.courseselectionsystem.common.constant.AccountConstant.TEACHER_CODE;
+
 /**
  * @author HY
  */
 @RestController
 @RequestMapping("/course/plan")
+@LoginRequired(role = {ADMIN_CODE})
 public class CoursePlanController {
 
     private final CoursePlanService coursePlanService;
@@ -33,6 +38,7 @@ public class CoursePlanController {
         return coursePlanService.addCoursePlan(form);
     }
 
+    @LoginRequired
     @PostMapping("/list")
     @LimitAbility(CoursePlanInfoListQueryLimiter.class)
     public DataResult<CoursePlanListVo> list(CoursePlanInfoQuery query) {
@@ -44,6 +50,7 @@ public class CoursePlanController {
         return coursePlanService.update(form);
     }
 
+    @LoginRequired
     @GetMapping("/info")
     public DataResult<CoursePlanVo> info(String coursePlanNo) {
         return coursePlanService.info(coursePlanNo);
@@ -54,6 +61,7 @@ public class CoursePlanController {
         return coursePlanService.delete(coursePlanNo);
     }
 
+    @LoginRequired(role = {TEACHER_CODE})
     @PostMapping("/students")
     public DataResult<StudentsOfCoursePlanVo> students(@RequestBody StudentsOfCoursePlanQuery form) {
         return coursePlanService.students(form);

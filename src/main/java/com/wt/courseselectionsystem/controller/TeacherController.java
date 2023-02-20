@@ -14,11 +14,14 @@ import com.wt.courseselectionsystem.service.TeacherService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import static com.wt.courseselectionsystem.common.constant.AccountConstant.ADMIN_CODE;
+
 /**
  * @author HY
  */
 @RestController
 @RequestMapping("/teacher")
+@LoginRequired(role = {ADMIN_CODE})
 public class TeacherController {
 
     private final TeacherService teacherService;
