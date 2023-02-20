@@ -12,6 +12,7 @@ import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanList
 import com.wt.courseselectionsystem.model.vo.response.course.plan.CoursePlanVo;
 import com.wt.courseselectionsystem.model.vo.response.course.plan.StudentsOfCoursePlanVo;
 import com.wt.courseselectionsystem.service.CoursePlanService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -28,7 +29,7 @@ public class CoursePlanController {
     }
 
     @PostMapping("/add")
-    public NoDataResult add(@RequestBody CoursePlanAddForm form) {
+    public NoDataResult add(@Validated @RequestBody CoursePlanAddForm form) {
         return coursePlanService.addCoursePlan(form);
     }
 
@@ -39,7 +40,7 @@ public class CoursePlanController {
     }
 
     @PostMapping("/update")
-    public NoDataResult update(@RequestBody CoursePlanUpdateForm form) {
+    public NoDataResult update(@Validated @RequestBody CoursePlanUpdateForm form) {
         return coursePlanService.update(form);
     }
 

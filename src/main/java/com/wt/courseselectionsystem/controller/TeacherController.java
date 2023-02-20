@@ -11,6 +11,7 @@ import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherListVo;
 import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherVo;
 import com.wt.courseselectionsystem.service.TeacherService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -27,7 +28,7 @@ public class TeacherController {
     }
 
     @PostMapping("/add")
-    public NoDataResult addTeacher(@RequestBody TeacherAddForm form) {
+    public NoDataResult addTeacher(@Validated @RequestBody TeacherAddForm form) {
         return teacherService.addTeacher(form);
     }
 
@@ -37,7 +38,7 @@ public class TeacherController {
     }
 
     @PostMapping("/update")
-    public NoDataResult update(@RequestBody TeacherUpdateForm form) {
+    public NoDataResult update(@Validated @RequestBody TeacherUpdateForm form) {
         return teacherService.update(form);
     }
 

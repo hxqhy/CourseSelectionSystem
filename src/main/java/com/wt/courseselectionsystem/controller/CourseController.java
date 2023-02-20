@@ -8,6 +8,7 @@ import com.wt.courseselectionsystem.model.vo.request.course.CourseUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.course.CourseListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.CourseVo;
 import com.wt.courseselectionsystem.service.CourseService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -24,7 +25,7 @@ public class CourseController {
     }
 
     @PostMapping("/add")
-    public NoDataResult addCourse(@RequestBody CourseAddForm form) {
+    public NoDataResult addCourse(@Validated @RequestBody CourseAddForm form) {
         return courseService.addCourse(form);
     }
 
@@ -34,7 +35,7 @@ public class CourseController {
     }
 
     @PostMapping("/update")
-    public NoDataResult update(@RequestBody CourseUpdateForm form) {
+    public NoDataResult update(@Validated @RequestBody CourseUpdateForm form) {
         return courseService.update(form);
     }
 

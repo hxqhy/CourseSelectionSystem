@@ -26,7 +26,7 @@
         where course_plan_no = #{coursePlanNo}
     </select>
 
-    <select id="selectSumCredit" resultType="java.lang.Integer">
+     <select id="selectSumCredit" resultType="java.lang.Integer">
         select ifnull(sum(c.credit), 0)
         from course_selection cs
                  inner join course_plan cp on cs.course_plan_no = cp.course_plan_no
