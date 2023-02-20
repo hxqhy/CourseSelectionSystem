@@ -3,15 +3,21 @@ spring:
     active: dev
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
+    url: "jdbc:mysql://localhost:3306/course_selection_system
+       ?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai"
+    username: root
+    password: root
   jackson:
     default-property-inclusion: non_null
+  output:
+    ansi:
+      enabled: always
 
 # Mybatis相关配置
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
-
 
 pagehelper:
   helperDialect: mysql
@@ -20,6 +26,7 @@ pagehelper:
   params: count=countSql
 
 logging:
+  config: classpath:log4j2.xml
   level:
     com:
       wt:
