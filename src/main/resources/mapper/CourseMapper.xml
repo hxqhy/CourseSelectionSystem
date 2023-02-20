@@ -69,7 +69,10 @@
         from course
         <where>
             <if test="query.courseName != null and query.courseName != '' ">
-                course_name like '%${query.courseName}%'
+                course_no = #{query.courseNo}
+            </if>
+            <if test="query.courseName != null and query.courseName != '' ">
+                and course_name like '%${query.courseName}%'
             </if>
             <if test="query.credit != null">
                 and credit=#{query.credit},
