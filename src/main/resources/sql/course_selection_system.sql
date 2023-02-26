@@ -2,9 +2,6 @@ create database course_selection_system;
 
 use course_selection_system;
 
-
-use course_selection_system;
-
 drop table if exists account;
 create table account
 (

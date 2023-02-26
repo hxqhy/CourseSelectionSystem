@@ -31,16 +31,16 @@ public class CourseBuilder {
 
     private Integer generateCredit() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        return random.nextInt(1, 5);
+        return random.nextInt(1, 10);
     }
 
     private Integer generateCourseHours() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        return random.nextInt(1, 5) * 10;
+        return random.nextInt(10, 24);
     }
 
     private Integer generateQuota() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        return random.nextInt(1, 5) * 20;
+        return random.nextInt(40, 120);
     }
 }
