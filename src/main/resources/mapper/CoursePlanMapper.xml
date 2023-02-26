@@ -46,10 +46,13 @@
         inner join teacher t on cp.teacher_no = t.teacher_no
         <where>
             <if test="query.coursePlanNo != null and query.coursePlanNo != '' ">
-                cp.course_plan_no=#{query.coursePlanNo}
+                cp.course_plan_no = #{query.coursePlanNo}
+            </if>
+            <if test="query.coursePlanYear != null and query.coursePlanYear != '' ">
+                and cp.course_plan_year = #{query.coursePlanYear}
             </if>
             <if test="query.courseNo != null and query.courseNo != '' ">
-                and c.course_no=#{query.courseNo}
+                and c.course_no = #{query.courseNo}
             </if>
             <if test="@org.springframework.util.StringUtils@hasLength(query.courseName)">
                 and c.course_name like concat('%',#{query.courseName},'%')
@@ -64,13 +67,10 @@
                 and c.quota = #{query.quota}
             </if>
             <if test="query.teacherNo != null and query.teacherNo != '' ">
-                and t.teacher_no=#{query.teacherNo}
+                and t.teacher_no = #{query.teacherNo}
             </if>
             <if test="@org.springframework.util.StringUtils@hasLength(query.teacherName)">
                 and t.teacher_name like concat('%',#{query.teacherName},'%')
-            </if>
-            <if test="query.coursePlanYear != null and query.coursePlanYear != '' ">
-                and t.course_plan_year=#{query.coursePlanYear}
             </if>
         </where>
     </select>
