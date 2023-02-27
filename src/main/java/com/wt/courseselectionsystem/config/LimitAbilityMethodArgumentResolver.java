@@ -35,7 +35,9 @@ public class LimitAbilityMethodArgumentResolver implements HandlerMethodArgument
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return Objects.requireNonNull(parameter.getMethod()).isAnnotationPresent(LimitAbility.class);
+        return Optional.ofNullable(parameter.getMethod())
+                .map(method -> method.isAnnotationPresent(LimitAbility.class))
+                .orElse(false);
     }
 
     @Override
