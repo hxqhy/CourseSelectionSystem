@@ -61,6 +61,12 @@ public class CoursePlanController {
         return coursePlanService.delete(coursePlanNo);
     }
 
+    /**
+     * 获取课程的学生列表
+     *
+     * @param form ...
+     * @return ...
+     */
     @LoginRequired(role = {TEACHER_CODE})
     @PostMapping("/students")
     public DataResult<StudentsOfCoursePlanVo> students(@RequestBody StudentsOfCoursePlanQuery form) {
