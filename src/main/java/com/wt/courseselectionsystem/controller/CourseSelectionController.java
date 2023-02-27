@@ -56,7 +56,7 @@ public class CourseSelectionController {
     }
 
     /**
-     * 学生选课列表
+     * 学生已选课列表（学生使用）
      *
      * @param token ...
      * @return ...
@@ -89,7 +89,7 @@ public class CourseSelectionController {
     }
 
     /**
-     * 获取选课情况表
+     * 获取选课情况表（admin使用）
      *
      * @param query ...
      * @return ...
@@ -99,7 +99,7 @@ public class CourseSelectionController {
     public DataResult<CourseSelectionSituationListVo> infoList(@RequestBody CourseSelectionSituationQuery query) {
         return courseSelectionService.infoList(query);
     }
-    
+
     /**
      * 获取学分信息汇总表
      *
