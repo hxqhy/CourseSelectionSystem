@@ -7,6 +7,9 @@ package com.wt.courseselectionsystem.common.constant;
  */
 public final class AccountConstant {
 
+    private AccountConstant() {
+    }
+
     /**
      * 管理员账户类型code
      */
@@ -46,7 +49,6 @@ public final class AccountConstant {
      * 查询学生或老师是否处于未激活状态
      */
     public static final Integer QUERY_ACTIVE_CODE_IS_NO_ACTIVE = 0;
-
 
 }
 

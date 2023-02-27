@@ -31,6 +31,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import static com.wt.courseselectionsystem.common.constant.CourseSelectionConstant.CREDIT_STANDARD;
+
 /**
  * @author lixin
  */
@@ -64,8 +66,7 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
     @Override
     public NoDataResult selectCourse(String studentNo, String coursePlanNo) {
         Integer sumCredit = Optional.ofNullable(courseSelectionDao.selectSumCredit(studentNo)).orElse(0);
-        final Integer creditStandard = 10;
-        if (creditStandard.compareTo(sumCredit) <= 0) {
+        if (CREDIT_STANDARD.compareTo(sumCredit) <= 0) {
             return ResultUtils.fail("选课失败：学分已修满");
         }
         if (courseSelectionDao.countByStudentNoAndCoursePlanNo(studentNo, coursePlanNo) != 0) {

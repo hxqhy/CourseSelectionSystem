@@ -11,6 +11,12 @@ import static com.wt.courseselectionsystem.utils.RandomDataUtils.*;
  */
 public class StudentBuilder {
 
+    private final String[] major = {
+            "软件工程", "网络工程", "市场营销", "生物工程", "行政管理", "工程造价", "应用化学", "财务管理",
+            "市场营销", "应用数学", "学前教育", "人力资源管理", "审计学", "通信工程", "电子商务", "制药工程",
+            "环境工程", "生物科学", "地理科学",
+    };
+
     public Student generate() {
         Student student = new Student();
         String studentNo = generateStudentNo();
@@ -41,12 +47,6 @@ public class StudentBuilder {
         }
         return builder.toString();
     }
-
-    private final String[] major = {
-            "软件工程", "网络工程", "市场营销", "生物工程", "行政管理", "工程造价", "应用化学", "财务管理",
-            "市场营销", "应用数学", "学前教育", "人力资源管理", "审计学", "通信工程", "电子商务", "制药工程",
-            "环境工程", "生物科学", "地理科学",
-    };
 
     private String generateStudentClass(String year) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
