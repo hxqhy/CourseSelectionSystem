@@ -7,15 +7,19 @@ import lombok.Data;
  */
 @Data
 public class CourseInfoForStudent {
-    
+
+    private String coursePlanNo;
+
     /**
      * 课程名称
      */
     private String courseName;
+    
     /**
      * 教师名称
      */
     private String teacherName;
+
     /**
      * 学分
      */

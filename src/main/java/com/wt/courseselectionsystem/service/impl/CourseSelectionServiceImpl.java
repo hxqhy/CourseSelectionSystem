@@ -133,14 +133,14 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
     @Override
     public NoDataResult cancel(String coursePlanNo, String studentNo) {
         int row = courseSelectionDao.deleteByCoursePlanNoAndStudentNo(coursePlanNo, studentNo);
-        return row == 1 ? ResultUtils.success("删除成功") : ResultUtils.fail("删除失败");
+        return row == 1 ? ResultUtils.success("操作成功") : ResultUtils.fail("操作失败");
     }
 
     @Override
     public DataResult<StudentCourseSelectionList> list(String studentNo) {
         List<CourseInfoForStudent> list = courseSelectionDao.selectCoursePlanInfoByStudentNO(studentNo);
         StudentCourseSelectionList result = new StudentCourseSelectionList();
-        result.setList(SystemUtils.easyCopy(list, CourseInfoForStudentVo.class));
+        result.setList(SystemUtils.easyCopy(list, CourseSelectionInfoForStudentVo.class));
         return ResultUtils.success(result);
     }
 }

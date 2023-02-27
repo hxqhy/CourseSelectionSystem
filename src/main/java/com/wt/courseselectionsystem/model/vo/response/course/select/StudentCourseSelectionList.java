@@ -9,5 +9,5 @@ import java.util.List;
  */
 @Data
 public class StudentCourseSelectionList {
-    private List<CourseInfoForStudentVo> list;
+    private List<CourseSelectionInfoForStudentVo> list;
 }
