@@ -93,6 +93,8 @@ public class CoursePlanServiceImpl implements CoursePlanService {
 
     @Override
     public DataResult<StudentsOfCoursePlanVo> students(StudentsOfCoursePlanQuery query) {
+        Optional.ofNullable(query.getCoursePlanNo())
+                .orElseThrow(() -> new RuntimeException("课程计划编号不能为空"));
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
         List<Student> students = coursePlanDao.students(query);
         PageInfo<Student> info = new PageInfo<>(students);

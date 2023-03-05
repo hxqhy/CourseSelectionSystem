@@ -67,7 +67,7 @@ public class CoursePlanController {
      * @param form ...
      * @return ...
      */
-    @LoginRequired(role = {TEACHER_CODE})
+    @LoginRequired(role = {TEACHER_CODE, ADMIN_CODE})
     @PostMapping("/students")
     public DataResult<StudentsOfCoursePlanVo> students(@RequestBody StudentsOfCoursePlanQuery form) {
         return coursePlanService.students(form);
