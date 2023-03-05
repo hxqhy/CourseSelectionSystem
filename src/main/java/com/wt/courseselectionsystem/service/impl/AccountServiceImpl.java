@@ -149,16 +149,19 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public NoDataResult updatePassword(UpdatePasswordForm passwordForm) {
-        Account accountNo = accountDao.selectByAccountNo(passwordForm.getAccountNo());
-        if (accountNo != null) {
+    public NoDataResult updatePassword(UpdatePasswordForm form) {
+        String nowPassword = Optional.ofNullable(accountDao.selectByAccountNo(form.getAccountNo()))
+                .map(Account::getPassword)
+                .orElseThrow(() -> new RuntimeException("账号不存在"));
+        if (nowPassword.equals(SystemUtils.passwordEncode(form.getOldPassword()))) {
             Account account = new Account();
-            account.setAccountNo(passwordForm.getAccountNo());
-            account.setPassword(passwordEncode(passwordForm.getPassword()));
+            account.setAccountNo(form.getAccountNo());
+            account.setPassword(passwordEncode(form.getNewPassword()));
             int row = accountDao.updatePassword(account);
             return row == 1 ? ResultUtils.success("修改密码成功") : ResultUtils.fail("修改密码失败");
+        } else {
+            throw new RuntimeException("密码错误");
         }
-        return ResultUtils.fail("请先激活账号");
     }
 
     @Override

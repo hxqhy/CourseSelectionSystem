@@ -15,7 +15,9 @@ public class UpdatePasswordForm {
     @Length(max = 13, message = "长度不能超过13位")
     private String accountNo;
 
-    @NotBlank(message = "密码不能为空")
-    private String password;
+    @NotBlank(message = "旧密码不能为空")
+    private String oldPassword;
 
+    @NotBlank(message = "新密码不能为空")
+    private String newPassword;
 }

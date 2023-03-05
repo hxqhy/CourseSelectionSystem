@@ -92,6 +92,12 @@ public class AccountController {
         return accountService.activateAllTeacher();
     }
 
+    /**
+     * 重制密码
+     *
+     * @param resetPasswordForm ...
+     * @return ...
+     */
     @PostMapping("/reset_password")
     public NoDataResult resetPassword(@Validated @RequestBody ResetPasswordForm resetPasswordForm) {
         return accountService.resetPassword(resetPasswordForm);
