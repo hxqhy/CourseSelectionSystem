@@ -26,21 +26,20 @@ public class CourseUpdateForm {
     /**
      * 学分
      */
-    @Max(value = 10,message = "最大学分不能大于10")
-    @Min(value = 1,message = "最小学分不能小于1")
+    @Max(value = 10, message = "最大学分不能大于10")
+    @Min(value = 1, message = "最小学分不能小于1")
     private Integer credit;
     /**
      * 学时
      */
-    @Max(value = 24,message = "最大学时不能大于24")
-    @Min(value = 10,message = "最小学时不能小于10")
+    @Max(value = 24, message = "最大学时不能大于24")
+    @Min(value = 10, message = "最小学时不能小于10")
     private Integer courseHours;
     /**
      * 名额
      */
-    @Max(value = 120,message = "最大人数不能大于120人")
-    @Min(value = 40,message = "最小人数不能小于40人")
+    @Max(value = 120, message = "最大人数不能大于120人")
+    @Min(value = 40, message = "最小人数不能小于40人")
     private Integer quota;
-
-
+    
 }
