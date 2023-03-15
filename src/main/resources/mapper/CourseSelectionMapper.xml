@@ -70,6 +70,7 @@
             resultType="com.wt.courseselectionsystem.model.dao.exbean.CourseSelectionSituationInfo">
         select s.student_name,
         s.student_no,
+        s.student_class,
         c.course_name,
         c.course_no,
         t.teacher_name,
@@ -89,7 +90,7 @@
                 and s.student_no = #{query.studentNo}
             </if>
             <if test="query.studentClass != null and query.studentClass != ''">
-                and s.student_calss = #{query.studentClass}
+                and s.student_class like concat('%',#{query.studentClass},'%')
             </if>
             <if test="query.courseName != null and query.courseName !='' ">
                 and c.course_name = #{query.courseName}

@@ -6,6 +6,7 @@ import lombok.Data;
 public class CourseSelectionSituationInfo {
     private String studentName;
     private String studentNo;
+    private String studentClass;
     private String courseName;
     private String courseNo;
     private String teacherName;
