@@ -46,13 +46,13 @@
             <if test="query.credits != null and query.comparison != null">
                 <choose>
                     <when test="query.comparison == -1">
-                        total_credits <![CDATA[<]]> #{query.credits}
+                        total <![CDATA[<]]> #{query.credits}
                     </when>
                     <when test="query.comparison == 0">
-                        total_credits = #{query.credits}
+                        total = #{query.credits}
                     </when>
                     <when test="query.comparison == 1">
-                        total_credits <![CDATA[>]]> #{query.credits}
+                        total <![CDATA[>]]> #{query.credits}
                     </when>
                 </choose>
             </if>
