@@ -9,6 +9,7 @@ import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.student.StudentListVo;
+import com.wt.courseselectionsystem.model.vo.response.student.StudentSelectListVo;
 import com.wt.courseselectionsystem.model.vo.response.student.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
 import org.springframework.validation.annotation.Validated;
@@ -55,6 +56,12 @@ public class StudentController {
     @DeleteMapping()
     public NoDataResult delete(String studentNo) {
         return studentService.delete(studentNo);
+    }
+
+    @LoginRequired
+    @GetMapping("/selection_list")
+    public DataResult<StudentSelectListVo> selectionList(String studentNo) {
+        return studentService.selectionList(studentNo);
     }
 
 }

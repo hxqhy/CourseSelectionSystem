@@ -12,6 +12,8 @@ import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.student.StudentListVo;
+import com.wt.courseselectionsystem.model.vo.response.student.StudentSelectListItemVo;
+import com.wt.courseselectionsystem.model.vo.response.student.StudentSelectListVo;
 import com.wt.courseselectionsystem.model.vo.response.student.StudentVo;
 import com.wt.courseselectionsystem.service.StudentService;
 import org.springframework.beans.BeanUtils;
@@ -87,5 +89,13 @@ public class StudentServiceImpl implements StudentService {
         } else {
             return ResultUtils.fail("删除失败");
         }
+    }
+
+    @Override
+    public DataResult<StudentSelectListVo> selectionList(String studentNo) {
+        List<Student> list = studentDao.selectMatchListByNo(studentNo);
+        StudentSelectListVo vo = new StudentSelectListVo();
+        vo.setList(SystemUtils.easyCopy(list, StudentSelectListItemVo.class));
+        return ResultUtils.success(vo);
     }
 }

@@ -51,16 +51,16 @@
         from course
         <where>
             <if test="query.courseName != null and query.courseName != '' ">
-                course_name like '%${query.courseName}%'
+                and course_name like concat('%'，#{query.courseName}，'%')
             </if>
             <if test="query.credit != null">
-                and credit=#{query.credit},
+                and credit = #{query.credit},
             </if>
             <if test="query.courseHours != null">
-                and course_hours=#{query.courseHours}
+                and course_hours = #{query.courseHours}
             </if>
             <if test="query.quota != null">
-                and student_number=#{query.quota}
+                and student_number = #{query.quota}
             </if>
         </where>
     </select>
@@ -68,22 +68,29 @@
         select id, course_no, course_name, credit, course_hours, quota
         from course
         <where>
-            <if test="query.courseName != null and query.courseName != '' ">
+            <if test="query.courseNo != null">
                 course_no = #{query.courseNo}
             </if>
             <if test="query.courseName != null and query.courseName != '' ">
-                and course_name like '%${query.courseName}%'
+                and course_name like concat('%'，#{query.courseName}，'%')
             </if>
             <if test="query.credit != null">
-                and credit=#{query.credit},
+                and credit = #{query.credit},
             </if>
             <if test="query.courseHours != null">
-                and course_hours=#{query.courseHours}
+                and course_hours = #{query.courseHours}
             </if>
             <if test="query.quota != null">
-                and quota=#{query.quota}
+                and quota = #{query.quota}
             </if>
         </where>
+    </select>
+
+    <select id="selectMatchListByNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Course">
+        select course_no, course_name
+        from course
+        where course_no like concat(#{courseNo}, '%')
+        limit 10
     </select>
 
 </mapper>

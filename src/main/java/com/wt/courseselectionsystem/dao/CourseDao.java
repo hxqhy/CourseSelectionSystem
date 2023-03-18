@@ -28,7 +28,7 @@ public interface CourseDao {
      * @return ...
      */
     int insertCourse(@Param("course") Course course);
-    
+
 
     /**
      * 修改课程信息
@@ -54,4 +54,12 @@ public interface CourseDao {
      */
     List<Course> selectCourseInfo(@Param("query") CourseListQuery query);
 
+    /**
+     * selectMatchListByNo
+     *
+     * @param courseNo ...
+     * @return java.util.List<com.wt.courseselectionsystem.model.dao.basebean.Course>
+     * @date 2023/3/18 17:16
+     **/
+    List<Course> selectMatchListByNo(@Param("courseNo") String courseNo);
 }

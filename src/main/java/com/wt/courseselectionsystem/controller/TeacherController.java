@@ -9,6 +9,7 @@ import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherListVo;
+import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherSelectListVo;
 import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherVo;
 import com.wt.courseselectionsystem.service.TeacherService;
 import org.springframework.validation.annotation.Validated;
@@ -55,6 +56,21 @@ public class TeacherController {
     @DeleteMapping()
     public NoDataResult delete(String teacherNo) {
         return teacherService.delete(teacherNo);
+    }
+
+    /**
+     * assisted selection list
+     * <p>
+     * 辅助选择列表
+     * </p>
+     *
+     * @param teacherNo teacher no
+     * @return list
+     */
+    @LoginRequired
+    @GetMapping("/selection_list")
+    public DataResult<TeacherSelectListVo> selectionList(String teacherNo) {
+        return teacherService.selectionList(teacherNo);
     }
 
 }

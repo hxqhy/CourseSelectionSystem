@@ -6,6 +6,7 @@ import com.wt.courseselectionsystem.model.vo.request.student.StudentAddForm;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentListQuery;
 import com.wt.courseselectionsystem.model.vo.request.student.StudentUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.student.StudentListVo;
+import com.wt.courseselectionsystem.model.vo.response.student.StudentSelectListVo;
 import com.wt.courseselectionsystem.model.vo.response.student.StudentVo;
 
 /**
@@ -52,4 +53,13 @@ public interface StudentService {
      * @return ...
      */
     NoDataResult delete(String studentNo);
+
+    /**
+     * selectionList
+     *
+     * @param studentNo ...
+     * @return com.wt.courseselectionsystem.common.result.DataResult<com.wt.courseselectionsystem.model.vo.response.student.StudentSelectListVo>
+     * @date 2023/3/18 17:23
+     **/
+    DataResult<StudentSelectListVo> selectionList(String studentNo);
 }

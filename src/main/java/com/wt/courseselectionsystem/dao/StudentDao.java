@@ -28,7 +28,7 @@ public interface StudentDao {
      * @return ...
      */
     Student selectByStudentNo(String studentNo);
-    
+
     /**
      * 修改学生信息
      *
@@ -53,4 +53,12 @@ public interface StudentDao {
      */
     List<Student> selectStudentInfo(@Param("query") StudentListQuery query);
 
+    /**
+     * selectMatchListByNo
+     *
+     * @param studentNo ...
+     * @return java.util.List<com.wt.courseselectionsystem.model.dao.basebean.Student>
+     * @date 2023/3/18 17:25
+     **/
+    List<Student> selectMatchListByNo(@Param("studentNo") String studentNo);
 }

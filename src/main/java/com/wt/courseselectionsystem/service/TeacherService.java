@@ -6,6 +6,7 @@ import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherListVo;
+import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherSelectListVo;
 import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherVo;
 
 /**
@@ -52,4 +53,12 @@ public interface TeacherService {
      */
     NoDataResult delete(String teacherNo);
 
+    /**
+     * selectionList
+     *
+     * @param teacherNo ...
+     * @return com.wt.courseselectionsystem.common.result.DataResult<com.wt.courseselectionsystem.model.vo.response.teacher.TeacherSelectListVo>
+     * @date 2023/3/18 16:46
+     **/
+    DataResult<TeacherSelectListVo> selectionList(String teacherNo);
 }

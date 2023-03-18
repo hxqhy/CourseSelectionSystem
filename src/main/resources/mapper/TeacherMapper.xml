@@ -70,4 +70,13 @@
             </if>
         </where>
     </select>
+
+    <select id="selectMatchListByTeacherNo"
+            resultType="com.wt.courseselectionsystem.model.dao.basebean.Teacher">
+        select teacher_no, teacher_name
+        from teacher
+        where teacher_no like concat(#{teacherNo}, '%')
+        limit 10;
+    </select>
+
 </mapper>

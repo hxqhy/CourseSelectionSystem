@@ -12,6 +12,8 @@ import com.wt.courseselectionsystem.model.vo.request.course.CourseAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.course.CourseListVo;
+import com.wt.courseselectionsystem.model.vo.response.course.CourseSelectListItemVo;
+import com.wt.courseselectionsystem.model.vo.response.course.CourseSelectListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.CourseVo;
 import com.wt.courseselectionsystem.service.CourseService;
 import org.springframework.beans.BeanUtils;
@@ -88,5 +90,13 @@ public class CourseServiceImpl implements CourseService {
         } else {
             return ResultUtils.fail("删除失败");
         }
+    }
+
+    @Override
+    public DataResult<CourseSelectListVo> selectionList(String courseNo) {
+        List<Course> list = courseDao.selectMatchListByNo(courseNo);
+        CourseSelectListVo vo = new CourseSelectListVo();
+        vo.setList(SystemUtils.easyCopy(list, CourseSelectListItemVo.class));
+        return ResultUtils.success(vo);
     }
 }

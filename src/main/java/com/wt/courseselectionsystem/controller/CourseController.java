@@ -7,6 +7,7 @@ import com.wt.courseselectionsystem.model.vo.request.course.CourseAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.course.CourseListVo;
+import com.wt.courseselectionsystem.model.vo.response.course.CourseSelectListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.CourseVo;
 import com.wt.courseselectionsystem.service.CourseService;
 import org.springframework.validation.annotation.Validated;
@@ -53,4 +54,9 @@ public class CourseController {
         return courseService.delete(courseNo);
     }
 
+    @LoginRequired
+    @GetMapping("/selection_list")
+    public DataResult<CourseSelectListVo> selectionList(String courseNo) {
+        return courseService.selectionList(courseNo);
+    }
 }

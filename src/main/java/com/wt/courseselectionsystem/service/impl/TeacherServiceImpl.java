@@ -12,6 +12,8 @@ import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherAddForm;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherListQuery;
 import com.wt.courseselectionsystem.model.vo.request.teacher.TeacherUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherListVo;
+import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherSelectListItemVo;
+import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherSelectListVo;
 import com.wt.courseselectionsystem.model.vo.response.teacher.TeacherVo;
 import com.wt.courseselectionsystem.service.TeacherService;
 import org.springframework.beans.BeanUtils;
@@ -86,5 +88,13 @@ public class TeacherServiceImpl implements TeacherService {
         } else {
             return ResultUtils.fail("删除失败");
         }
+    }
+
+    @Override
+    public DataResult<TeacherSelectListVo> selectionList(String teacherNo) {
+        List<Teacher> list = teacherDao.selectMatchListByTeacherNo(teacherNo);
+        TeacherSelectListVo vo = new TeacherSelectListVo();
+        vo.setList(SystemUtils.easyCopy(list, TeacherSelectListItemVo.class));
+        return ResultUtils.success(vo);
     }
 }

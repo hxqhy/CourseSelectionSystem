@@ -11,10 +11,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TeacherListQuery extends PageRequest {
     /**
-     * 教师编号
-     */
-    private String teacherNo;
-    /**
      * 教师名称
      */
     private String teacherName;

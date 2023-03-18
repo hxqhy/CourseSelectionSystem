@@ -6,6 +6,7 @@ import com.wt.courseselectionsystem.model.vo.request.course.CourseAddForm;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseListQuery;
 import com.wt.courseselectionsystem.model.vo.request.course.CourseUpdateForm;
 import com.wt.courseselectionsystem.model.vo.response.course.CourseListVo;
+import com.wt.courseselectionsystem.model.vo.response.course.CourseSelectListVo;
 import com.wt.courseselectionsystem.model.vo.response.course.CourseVo;
 
 /**
@@ -51,4 +52,13 @@ public interface CourseService {
      * @return ...
      */
     NoDataResult delete(String courseNo);
+
+    /**
+     * selectionList
+     *
+     * @param courseNo ...
+     * @return com.wt.courseselectionsystem.common.result.DataResult<com.wt.courseselectionsystem.model.vo.response.course.CourseSelectListVo>
+     * @date 2023/3/18 17:13
+     **/
+    DataResult<CourseSelectListVo> selectionList(String courseNo);
 }

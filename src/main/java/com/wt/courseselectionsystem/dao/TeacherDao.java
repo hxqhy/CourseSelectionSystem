@@ -52,4 +52,13 @@ public interface TeacherDao {
      * @return list
      */
     List<Teacher> selectTeacherInfo(@Param("query") TeacherListQuery query);
+
+    /**
+     * selectMatchListByTeacherNo
+     *
+     * @param teacherNo ...
+     * @return java.util.List<com.wt.courseselectionsystem.model.dao.basebean.Teacher>
+     * @date 2023/3/18 16:53
+     **/
+    List<Teacher> selectMatchListByTeacherNo(@Param("teacherNo") String teacherNo);
 }

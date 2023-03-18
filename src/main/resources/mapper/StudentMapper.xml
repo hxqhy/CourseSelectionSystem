@@ -88,4 +88,11 @@
         </where>
     </select>
 
+    <select id="selectMatchListByNo" resultType="com.wt.courseselectionsystem.model.dao.basebean.Student">
+        select student_no, student_name
+        from student
+        where student_no like concat(#{studentNo}, '%')
+        limit 10;
+    </select>
+
 </mapper>
