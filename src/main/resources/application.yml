@@ -13,6 +13,11 @@ spring:
     ansi:
       enabled: always
 
+server:
+  port: 8080
+  servlet:
+    context-path: /CourseSelectionSystem
+
 # Mybatis相关配置
 mybatis:
   configuration:
